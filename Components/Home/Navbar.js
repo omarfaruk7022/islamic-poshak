@@ -5,7 +5,7 @@ import Image from "next/image";
 export default function Navbar() {
   return (
     <div>
-      <div className="">
+      <div>
         <header aria-label="Site Header" class="w-full absolute">
           <div class="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div class="flex items-center gap-4 ">
