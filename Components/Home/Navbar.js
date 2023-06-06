@@ -26,8 +26,8 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              <a href="#" class="flex">
-                <Image src={logo} width={50}></Image>
+              <a href="#">
+                <Image src={logo} width={50} alt="logo"></Image>
               </a>
             </div>
 
