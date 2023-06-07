@@ -4,15 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import NavbarOther from "@/Components/Common/NavbarOther";
 import Loading from "@/Components/Common/Loading";
 
-export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:5000/api/product");
-  const products = await res.json();
-  return {
-    props: {
-      products,
-    },
-  };
-};
 
 export default function Products(props) {
   const { isLoading, error, data } = useQuery({
@@ -38,3 +29,12 @@ export default function Products(props) {
     </div>
   );
 }
+export const getStaticProps = async () => {
+  const res = await fetch("http://localhost:5000/api/product");
+  const products = await res.json();
+  return {
+    props: {
+      products,
+    },
+  };
+};
