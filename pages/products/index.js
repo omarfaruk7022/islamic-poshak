@@ -5,6 +5,7 @@ import { loadProducts } from "@/lib/load-products";
 
 export async function getStaticProps() {
   const products = await loadProducts();
+  
   return {
     props: {
       products,
@@ -12,6 +13,7 @@ export async function getStaticProps() {
   };
 }
 export default function Products(products) {
+  console.log(products?.products?.data)
   return (
     <div>
       <NavbarOther />
@@ -23,5 +25,3 @@ export default function Products(products) {
     </div>
   );
 }
-
-
