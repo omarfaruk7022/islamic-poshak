@@ -3,11 +3,11 @@ import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Navbar() {
+export default function NavbarOther() {
   return (
     <div>
       <div>
-        <header aria-label="Site Header" class="w-full absolute">
+        <header aria-label="Site Header" class="w-full ">
           <div class="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div class="flex items-center gap-4 ">
               <button type="button" class="p-2 lg:hidden">
@@ -35,7 +35,7 @@ export default function Navbar() {
             <div class="flex flex-1 items-center justify-end gap-8">
               <nav
                 aria-label="Site Nav"
-                class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700"
+                class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-white"
               >
                 <Link
                   href="/"
@@ -44,25 +44,27 @@ export default function Navbar() {
                   Home
                 </Link>
 
-                <Link
+                
+
+                <a
                   href="/login"
                   class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                 >
                   Login
-                </Link>
+                </a>
 
-                <Link
+                <a
                   href="/profile"
                   class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
                 >
                   Profile
-                </Link>
-                <Link
+                </a>
+                <a
                   href="/contact"
                   class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
                 >
                   Contact
-                </Link>
+                </a>
               </nav>
             </div>
           </div>

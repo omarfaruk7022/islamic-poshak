@@ -1,15 +1,15 @@
-import Footer from "@/Components/Common/Footer";
+import Banner from "@/Components/Home/Banner";
 import Blog from "@/Components/Home/Blog";
 import Navbar from "@/Components/Home/Navbar";
-import Products from "@/Components/Home/Products";
+import ProductsComp from "@/Components/Home/ProductsComp";
 
 export default function Home() {
   return (
     <div>
       <Navbar />
-      <Products/>
-      <Blog/>
-      <Footer/>
+      <Banner />
+      <ProductsComp />
+      <Blog />
     </div>
   );
 }

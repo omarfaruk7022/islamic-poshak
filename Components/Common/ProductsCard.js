@@ -1,11 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function ProductsCard(product) {
-  const { id, name, image, price } = product.product;
+  const { _id, name, image, price } = product.product;
+  console.log(_id);
+
   return (
     <div className="m-auto">
-      <a href="#" class="relative block group">
+      <Link href={`/products/${_id}`} class="relative block group">
         <Image
           width={350}
           height={350}
@@ -23,7 +26,7 @@ export default function ProductsCard(product) {
             Shop Now
           </span>
         </div>
-      </a>
+      </Link>
     </div>
   );
 }
