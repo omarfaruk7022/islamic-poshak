@@ -3,7 +3,7 @@ import ProductsCard from "../../Components/Common/ProductsCard";
 import { useQuery } from "@tanstack/react-query";
 import NavbarOther from "@/Components/Common/NavbarOther";
 import Loading from "@/Components/Common/Loading";
-
+import { loadProducts } from "@/lib/load-products";
 
 export default function Products(products) {
   return (
@@ -17,13 +17,9 @@ export default function Products(products) {
     </div>
   );
 }
-export async function loadPosts() {
-  const res = await fetch("http://localhost:5000/api/product");
-  const products = await res.json();
-  return products;
-}
+
 export async function getStaticProps() {
-  const products = await loadPosts();
+  const products = await loadProducts();
   return {
     props: {
       products,
