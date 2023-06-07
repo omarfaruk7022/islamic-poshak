@@ -25,7 +25,7 @@ export default function ProductsComp() {
       ) : error ? (
         <h1>{error}</h1>
       ) : (
-        data?.data.map((product) => (
+        data?.data?.map((product) => (
           <ProductsCard key={product.id} product={product} />
         ))
       )}

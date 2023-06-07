@@ -16,7 +16,8 @@ export default function productDetails() {
       .then((res) => res.json())
       .then((json) => setProduct(json));
   }, [id]);
-  console.log(product?.data?.name);
+  console.log(product);
+
   return (
     <div>
       <NavbarOther />
@@ -24,7 +25,12 @@ export default function productDetails() {
         {product ? (
           <div className="flex justify-center">
             <div className="flex flex-col justify-center">
-              <Image width={300} height={300} src={product?.data?.image} alt="" />
+              <Image
+                width={300}
+                height={300}
+                src={product?.data?.image}
+                alt=""
+              />
               <h1>{product?.data?.name}</h1>
               <h1>{product?.data?.price}</h1>
               <h1>{product?.data?.description}</h1>
