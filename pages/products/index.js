@@ -3,25 +3,23 @@ import ProductsCard from "../../Components/Common/ProductsCard";
 import NavbarOther from "@/Components/Common/NavbarOther";
 import { loadProducts } from "@/lib/load-products";
 
-// export async function getStaticProps() {
-//   const products = await loadProducts();
+export async function getStaticProps() {
+  const products = await loadProducts();
+  return {
+    props: {
+      products,
+    },
+  };
+}
 
-//   return {
-//     props: {
-//       products,
-//     },
-//   };
-// }
+export default function Products({ products }) {
+  // const [products, setProducts] = useState();
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/product")
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data));
+  // }, []);
 
-export default function Products() {
-  const [products, setProducts] = useState();
-  useEffect(() => {
-    fetch("http://localhost:5000/api/product")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
-
-  console.log(products);
   return (
     <div>
       <NavbarOther />
