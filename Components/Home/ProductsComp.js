@@ -18,13 +18,17 @@ export default function ProductsComp() {
 
   return (
     <div className="grid grid-cols-1 gap-3 px-4 md:grid-cols-2 lg:grid-cols-4">
-        {
-            isLoading ? <h1><Loading/></h1> : error ? <h1>{error}</h1> : data?.data.map((product) => (<ProductsCard key={product.id} product={product} />
-            ))
-        }
-      {/* {data?.data.map((product) => (
-        <ProductsCard key={product.id} product={product} />
-      ))} */}
+      {isLoading ? (
+        <h1>
+          <Loading />
+        </h1>
+      ) : error ? (
+        <h1>{error}</h1>
+      ) : (
+        data?.data.map((product) => (
+          <ProductsCard key={product.id} product={product} />
+        ))
+      )}
     </div>
   );
 }
