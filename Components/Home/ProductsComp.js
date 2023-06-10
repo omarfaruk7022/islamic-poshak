@@ -19,7 +19,7 @@ export default function ProductsComp() {
         <h1>{error}</h1>
       ) : (
         data?.data?.map((product) => (
-          <ProductsCard key={product.id} product={product} />
+          <ProductsCard key={product._id} product={product} />
         ))
       )}
     </div>

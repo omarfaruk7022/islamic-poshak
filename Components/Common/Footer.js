@@ -7,36 +7,36 @@ export default function Footer() {
     <div>
       <footer
         aria-label="Site Footer"
-        class=" bg-[url(https://i.ibb.co/JQNXrBT/Banner.jpg)] bg-cover bg-center bg-no-repeat"
+        className=" bg-[url(https://i.ibb.co/JQNXrBT/Banner.jpg)] bg-cover bg-center bg-no-repeat"
       >
-        <div class="px-4 py-16 sm:px-6 lg:col-span-6 lg:px-8 ">
+        <div className="px-4 py-16 sm:px-6 lg:col-span-6 lg:px-8 ">
           <div className="flex justify-end">
             <div>
               <p>
                 <a
                   href="#"
-                  class="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl"
+                  className="block text-2xl font-medium text-gray-900 hover:opacity-75 sm:text-3xl"
                 >
                   BMW
                 </a>
               </p>
 
-              <ul class="mt-8 space-y-1 text-sm text-gray-400 ">
+              <ul className="mt-8 space-y-1 text-sm text-gray-400 ">
                 BMW Corporation
               </ul>
 
-              <ul class="flex gap-6 mt-8">
+              <ul className="flex gap-6 mt-8">
                 <li>
                   <a
                     href="/"
                     rel="noreferrer"
                     target="_blank"
-                    class="text-blue-500 transition hover:opacity-75"
+                    className="text-blue-500 transition hover:opacity-75"
                   >
-                    <span class="sr-only">Facebook</span>
+                    <span className="sr-only">Facebook</span>
 
                     <svg
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -55,12 +55,12 @@ export default function Footer() {
                     href="/"
                     rel="noreferrer"
                     target="_blank"
-                    class="text-red-400 transition hover:opacity-75"
+                    className="text-red-400 transition hover:opacity-75"
                   >
-                    <span class="sr-only">Instagram</span>
+                    <span className="sr-only">Instagram</span>
 
                     <svg
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -79,12 +79,12 @@ export default function Footer() {
                     href="/"
                     rel="noreferrer"
                     target="_blank"
-                    class="text-blue-500 transition hover:opacity-75"
+                    className="text-blue-500 transition hover:opacity-75"
                   >
-                    <span class="sr-only">Twitter</span>
+                    <span className="sr-only">Twitter</span>
 
                     <svg
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -99,12 +99,12 @@ export default function Footer() {
                     href="/"
                     rel="noreferrer"
                     target="_blank"
-                    class="text-gray-200 transition hover:opacity-75"
+                    className="text-gray-200 transition hover:opacity-75"
                   >
-                    <span class="sr-only">GitHub</span>
+                    <span className="sr-only">GitHub</span>
 
                     <svg
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -123,12 +123,12 @@ export default function Footer() {
                     href="/"
                     rel="noreferrer"
                     target="_blank"
-                    class="text-gray-900 transition hover:opacity-75"
+                    className="text-gray-900 transition hover:opacity-75"
                   >
-                    <span class="sr-only">Dribbble</span>
+                    <span className="sr-only">Dribbble</span>
 
                     <svg
-                      class="w-6 h-6"
+                      className="w-6 h-6"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -145,14 +145,14 @@ export default function Footer() {
             </div>
           </div>
 
-          <div class="pt-12 mt-12  ">
-            <div class="sm:flex sm:items-center sm:justify-between">
+          <div className="pt-12 mt-12  ">
+            <div className="sm:flex sm:items-center sm:justify-between">
               <nav aria-label="Footer Navigation - Support">
-                <ul class="flex flex-wrap gap-4 text-xs">
+                <ul className="flex flex-wrap gap-4 text-xs">
                   <li>
                     <a
                       href="#"
-                      class="text-gray-300 transition hover:opacity-75"
+                      className="text-gray-300 transition hover:opacity-75"
                     >
                       Terms & Conditions
                     </a>
@@ -161,7 +161,7 @@ export default function Footer() {
                   <li>
                     <a
                       href="#"
-                      class="text-gray-300 transition hover:opacity-75"
+                      className="text-gray-300 transition hover:opacity-75"
                     >
                       Privacy Policy
                     </a>
@@ -170,7 +170,7 @@ export default function Footer() {
                   <li>
                     <a
                       href="#"
-                      class="text-gray-300 transition hover:opacity-75"
+                      className="text-gray-300 transition hover:opacity-75"
                     >
                       Cookies
                     </a>
@@ -178,7 +178,7 @@ export default function Footer() {
                 </ul>
               </nav>
 
-              <p class="mt-8 text-xs text-gray-900 sm:mt-0">
+              <p className="mt-8 text-xs text-gray-900 sm:mt-0">
                 &copy; 2023. BMW. All rights reserved.
               </p>
             </div>

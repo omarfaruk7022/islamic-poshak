@@ -7,59 +7,65 @@ export default function Navbar() {
   return (
     <div>
       <div>
-        <header aria-label="Site Header" class="w-full absolute">
-          <div class="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
-            <div class="flex items-center gap-4 ">
-              <button type="button" class="p-2 lg:hidden">
+        <header aria-label="Site Header" className="w-full absolute">
+          <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
+            <div className="flex items-center gap-4 ">
+              <button type="button" className="p-2 lg:hidden">
                 <svg
-                  class="h-6 w-6"
+                  className="h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
               </button>
 
               <a href="#">
-                <Image src={logo} width={50} alt="logo"></Image>
+                <Image src={logo} width={50} alt="logo" priority></Image>
               </a>
             </div>
 
-            <div class="flex flex-1 items-center justify-end gap-8">
+            <div className="flex flex-1 items-center justify-end gap-8">
               <nav
                 aria-label="Site Nav"
-                class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700"
+                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700"
               >
                 <Link
                   href="/"
-                  class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                 >
                   Home
+                </Link>
+                <Link
+                  href="/products"
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                >
+                  Products
                 </Link>
 
                 <Link
                   href="/login"
-                  class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/profile"
-                  class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
                 >
                   Profile
                 </Link>
                 <Link
                   href="/contact"
-                  class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
                 >
                   Contact
                 </Link>

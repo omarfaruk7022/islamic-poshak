@@ -4,25 +4,24 @@ import React from "react";
 
 export default function ProductsCard(product) {
   const { _id, name, image, price } = product.product;
-  console.log(_id);
 
   return (
     <div className="m-auto">
-      <Link href={`/products/${_id}`} class="relative block group">
+      <Link href={`/products/${_id}`} className="relative block group">
         <Image
           width={350}
           height={350}
           src={image}
-          alt=""
-          class="h-[250px] w-full object-cover transition duration-500 group-hover:opacity-90 sm:h-[450px]"
+          alt="Product Image"
+          className="h-[250px] w-full object-cover transition duration-500 group-hover:opacity-90 sm:h-[450px]"
         />
 
-        <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-          <h3 class="text-xl font-medium text-white">{name}</h3>
+        <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
+          <h3 className="text-xl font-medium text-white">{name}</h3>
 
-          <p class="mt-1.5 max-w-[40ch] text-xs text-white">{price}</p>
+          <p className="mt-1.5 max-w-[40ch] text-xs text-white">{price}</p>
 
-          <span class="inline-block px-5 py-3 mt-3 text-xs font-medium tracking-wide text-white uppercase bg-black">
+          <span className="inline-block px-5 py-3 mt-3 text-xs font-medium tracking-wide text-white uppercase bg-black">
             Shop Now
           </span>
         </div>
