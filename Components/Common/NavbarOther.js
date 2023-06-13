@@ -2,8 +2,15 @@ import React from "react";
 import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "@/firebase.init";
+import { signOut } from "firebase/auth";
 
 export default function NavbarOther() {
+  const [user] = useAuthState(auth);
+  const handleSignOut = () => {
+    signOut(auth);
+  };
   return (
     <div>
       <div>
@@ -49,26 +56,43 @@ export default function NavbarOther() {
                 >
                   Products
                 </Link>
+                {user && (
+                  <Link
+                    href="/dashboard"
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  >
+                    Dashboard
+                  </Link>
+                )}
 
-                <a
-                  href="/login"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
-                >
-                  Login
-                </a>
+                {user ? (
+                  <button
+                    onClick={handleSignOut}
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
+                  >
+                    LOGOUT
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  >
+                    Login / Register
+                  </Link>
+                )}
 
-                <a
+                <Link
                   href="/profile"
                   className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
                 >
                   Profile
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/contact"
                   className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
                 >
                   Contact
-                </a>
+                </Link>
               </nav>
             </div>
           </div>

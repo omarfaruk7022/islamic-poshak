@@ -1,8 +1,11 @@
 import Loading from "@/Components/Common/Loading";
 import NavbarOther from "@/Components/Common/NavbarOther";
+import Navbar from "@/Components/Home/Navbar";
+import auth from "@/firebase.init";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function productDetails() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -16,30 +19,44 @@ export default function productDetails() {
       .then((res) => res.json())
       .then((json) => setProduct(json));
   }, [id]);
-  console.log(product);
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [user,loading] = useAuthState(auth);
+  if (loading) {
+    return <Loading />;
+  }
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    }
+  }, [user]);
 
   return (
     <div>
-      <NavbarOther />
-      <div className="flex justify-center">
-        {product ? (
+      {user && (
+        <>
+          <NavbarOther />
           <div className="flex justify-center">
-            <div className="flex flex-col justify-center">
-              <Image
-                width={300}
-                height={300}
-                src={product?.data?.image}
-                alt=""
-              />
-              <h1>{product?.data?.name}</h1>
-              <h1>{product?.data?.price}</h1>
-              <h1>{product?.data?.description}</h1>
-            </div>
+            {product ? (
+              <div className="flex justify-center">
+                <div className="flex flex-col justify-center">
+                  <Image
+                    width={300}
+                    height={300}
+                    src={product?.data?.image}
+                    alt=""
+                  />
+                  <h1>{product?.data?.name}</h1>
+                  <h1>{product?.data?.price}</h1>
+                  <h1>{product?.data?.description}</h1>
+                </div>
+              </div>
+            ) : (
+              <Loading />
+            )}
           </div>
-        ) : (
-          <Loading />
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

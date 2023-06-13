@@ -2,8 +2,15 @@ import React from "react";
 import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
+import auth from "@/firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signOut } from "firebase/auth";
 
 export default function Navbar() {
+  const [user] = useAuthState(auth);
+  const handleSignOut = () => {
+    signOut(auth);
+  };
   return (
     <div>
       <div>
@@ -49,13 +56,30 @@ export default function Navbar() {
                 >
                   Products
                 </Link>
+                {user && (
+                  <Link
+                    href="/dashboard"
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  >
+                    Dashboard
+                  </Link>
+                )}
 
-                <Link
-                  href="/login"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
-                >
-                  Login
-                </Link>
+                {user ? (
+                  <button
+                    onClick={handleSignOut}
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
+                  >
+                    LOGOUT
+                  </button>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  >
+                    Login / Register
+                  </Link>
+                )}
 
                 <Link
                   href="/profile"
