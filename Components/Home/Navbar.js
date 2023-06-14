@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
 import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import { Sidebar } from "primereact/sidebar";
+import MobileMenu from "../Dashboard/MobileMenu";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
+
   const handleSignOut = () => {
     signOut(auth);
   };
@@ -58,7 +61,7 @@ export default function Navbar() {
                 </Link>
                 {user && (
                   <Link
-                    href="/dashboard"
+                    href="/dashboard/dashboardHome"
                     className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                   >
                     Dashboard
@@ -93,6 +96,7 @@ export default function Navbar() {
                 >
                   Contact
                 </Link>
+                
               </nav>
             </div>
           </div>

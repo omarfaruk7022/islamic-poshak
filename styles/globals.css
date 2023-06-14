@@ -16,8 +16,26 @@
   }
 }
 
+canvas {
+  width: 85vw !important;
+  height: 600px !important;
+}
+
+@media screen and (max-width: 600px) {
+  canvas {
+    width: 100vw !important;
+    height: 300px !important;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1000px) {
+  canvas {
+    width: 100vw !important;
+    height: 400px !important;
+  }
+}
+
 body {
   color: rgb(var(--foreground-rgb));
- background-color: #111121;
-
+  background-color: #111121;
 }

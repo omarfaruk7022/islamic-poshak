@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "@/firebase.init";
 import { signOut } from "firebase/auth";
+import { Sidebar } from "primereact/sidebar";
+import MobileMenu from "../Dashboard/MobileMenu";
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
+  const [visible, setVisible] = useState(false);
+
   const handleSignOut = () => {
     signOut(auth);
   };
@@ -17,22 +21,25 @@ export default function NavbarOther() {
         <header aria-label="Site Header" className="w-full ">
           <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
-              <button type="button" className="p-2 lg:hidden">
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
+            <div class="lg:hidden md:block">
+                  <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
+                    <svg
+                      aria-hidden="true"
+                      class="h-5 w-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewbox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M4 6h16M4 12h16M4 18h16"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </p>
+                </div>
 
               <a href="#">
                 <Image src={logo} width={50} alt="logo"></Image>
@@ -58,7 +65,7 @@ export default function NavbarOther() {
                 </Link>
                 {user && (
                   <Link
-                    href="/dashboard"
+                    href="/dashboard/dashboardHome"
                     className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                   >
                     Dashboard
@@ -93,6 +100,12 @@ export default function NavbarOther() {
                 >
                   Contact
                 </Link>
+                
+                <div>
+                  <Sidebar visible={visible} onHide={() => setVisible(false)}>
+                    <MobileMenu />
+                  </Sidebar>
+                </div>
               </nav>
             </div>
           </div>
