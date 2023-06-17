@@ -24,12 +24,12 @@ export default function productDetails() {
   if (loading) {
     return <Loading />;
   }
-  // eslint-disable-next-line react-hooks/rules-of-hooks
+  if (!user) {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (!user) {
       router.push("/login");
-    }
-  }, [user]);
+    }, [router]);
+  }
 
   return (
     <div>

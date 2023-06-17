@@ -65,7 +65,7 @@ export default function NavbarOther() {
                 </Link>
                 {user && (
                   <Link
-                    href="/dashboard/dashboardHome"
+                    href="/dashboard/dashboard"
                     className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                   >
                     Dashboard
