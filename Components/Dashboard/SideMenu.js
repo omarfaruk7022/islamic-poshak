@@ -8,25 +8,25 @@ import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function SideMenu() {
-    const [user] = useAuthState(auth);
-    const email = user?.email;
-    const [userInfo, setUserInfo] = useState();
-  
-    useEffect(() => {
-      fetch(`http://localhost:5000/api/users/email/${email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setUserInfo(data);
-        });
-    }, [email]);
-    console.log(userInfo?.data[0]?.email)
+  const [user] = useAuthState(auth);
+  const email = user?.email;
+  const [userInfo, setUserInfo] = useState();
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/users/email/${email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setUserInfo(data);
+      });
+  }, [email]);
+  console.log(userInfo?.data[0]?.email);
   return (
-    <div className="hidden lg:block">
+    <div className="hidden lg:block ">
       <div class="flex h-screen flex-col justify-between">
-        <div class="px-4 py-6">
+        <div class="px-4 py-6 ">
           <nav aria-label="Main Nav" class="mt-6 flex flex-col space-y-1">
             <Link
-              href="/dashboard/dashboardHome"
+              href="/dashboard/"
               class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
             >
               <MdOutlineSpaceDashboard className="text-[20px]" />
@@ -92,7 +92,7 @@ export default function SideMenu() {
             </details>
 
             <Link
-              href="/"
+              href="/dashboard/myProfile"
               class="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
             >
               <svg
@@ -110,7 +110,7 @@ export default function SideMenu() {
                 />
               </svg>
 
-              <span class="text-sm font-medium"> Billing </span>
+              <span class="text-sm font-medium"> My Profile </span>
             </Link>
 
             <Link
@@ -245,11 +245,8 @@ export default function SideMenu() {
           </nav>
         </div>
 
-        <div class="sticky inset-x-0 bottom-0 ">
-          <Link
-            href="/"
-            class="flex items-center gap-2  p-4"
-          >
+        {/* <div class="sticky inset-x-0 bottom-0 ">
+          <Link href="/" class="flex items-center gap-2  p-4">
             <Image
               alt="Man"
               width={40}
@@ -260,13 +257,15 @@ export default function SideMenu() {
 
             <div>
               <p class="text-xs">
-                <strong class="block font-medium">{userInfo?.data[0]?.username}</strong>
+                <strong class="block font-medium">
+                  {userInfo?.data[0]?.username}
+                </strong>
 
                 <span> {userInfo?.data[0]?.email} </span>
               </p>
             </div>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -35,9 +35,9 @@ export default function Navbar() {
                 </svg>
               </button>
 
-              <a href="#">
+              <Link href="/">
                 <Image src={logo} width={50} alt="logo" priority></Image>
-              </a>
+              </Link>
             </div>
 
             <div className="flex flex-1 items-center justify-end gap-8">
@@ -59,7 +59,7 @@ export default function Navbar() {
                 </Link>
                 {user && (
                   <Link
-                    href="/dashboard/dashboard"
+                    href="/dashboard"
                     className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                   >
                     Dashboard

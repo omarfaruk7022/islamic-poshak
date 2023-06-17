@@ -1,10 +1,11 @@
 import Loading from "@/Components/Common/Loading";
 import auth from "@/firebase.init";
+import DashboardLayout from "@/layouts/dashboardLayout";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-export default function Profile() {
+export default function MyProfile() {
   const router = useRouter();
   const [userInfo, setUserInfo] = useState();
 
@@ -30,10 +31,11 @@ export default function Profile() {
     <div>
       {user && (
         <>
-          <h1>Profile</h1>
           <p>{userInfo?.data[0]?.email}</p>
         </>
       )}
     </div>
   );
 }
+
+MyProfile.Layout = DashboardLayout;

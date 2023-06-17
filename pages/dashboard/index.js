@@ -1,16 +1,13 @@
 import NavbarOther from "@/Components/Common/NavbarOther";
 import HomeChart from "@/Components/Dashboard/HomeChart";
 import SideMenu from "@/Components/Dashboard/SideMenu";
+import DashboardLayout from "@/layouts/dashboardLayout";
 import React from "react";
 
 export default function dashboard() {
   return (
     <div>
-      <NavbarOther />
-      <div className="flex">
-        <div>
-          <SideMenu />
-        </div>
+      <div>
         <div>
           <HomeChart />
         </div>
@@ -18,3 +15,5 @@ export default function dashboard() {
     </div>
   );
 }
+
+dashboard.Layout = DashboardLayout;

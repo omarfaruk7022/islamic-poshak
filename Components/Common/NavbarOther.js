@@ -21,29 +21,9 @@ export default function NavbarOther() {
         <header aria-label="Site Header" className="w-full ">
           <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
-            <div class="lg:hidden md:block">
-                  <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
-                    <svg
-                      aria-hidden="true"
-                      class="h-5 w-5 text-white"
-                      fill="none"
-                      stroke="currentColor"
-                      viewbox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M4 6h16M4 12h16M4 18h16"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      />
-                    </svg>
-                  </p>
-                </div>
-
-              <a href="#">
+              <Link href="/">
                 <Image src={logo} width={50} alt="logo"></Image>
-              </a>
+              </Link>
             </div>
 
             <div className="flex flex-1 items-center justify-end gap-8">
@@ -65,7 +45,7 @@ export default function NavbarOther() {
                 </Link>
                 {user && (
                   <Link
-                    href="/dashboard/dashboard"
+                    href="/dashboard"
                     className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                   >
                     Dashboard
@@ -100,16 +80,38 @@ export default function NavbarOther() {
                 >
                   Contact
                 </Link>
-                
+
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>
                     <MobileMenu />
                   </Sidebar>
+                  
                 </div>
               </nav>
+              <div class="lg:hidden md:block">
+                <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
+                  <svg
+                    aria-hidden="true"
+                    class="h-5 w-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewbox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M4 6h16M4 12h16M4 18h16"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                    />
+                  </svg>
+                </p>
+              </div>
             </div>
           </div>
+          
         </header>
+        
       </div>
     </div>
   );

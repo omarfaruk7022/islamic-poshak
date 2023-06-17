@@ -1,3 +1,4 @@
+import DashboardLayout from "@/Components/Dashboard/DashboardLayout";
 import Banner from "@/Components/Home/Banner";
 import Blog from "@/Components/Home/Blog";
 import Navbar from "@/Components/Home/Navbar";
@@ -13,4 +14,5 @@ export default function Home() {
     </div>
   );
 }
+
 
