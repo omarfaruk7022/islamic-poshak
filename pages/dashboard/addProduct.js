@@ -31,7 +31,6 @@ export default function AddProduct() {
   } else if (data?.data[0]?.role !== "admin") {
     router.push("/dashboard");
   }
-
   if (!user) {
     router.push("/login");
   }
