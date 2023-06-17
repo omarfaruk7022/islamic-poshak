@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ProductsCard from "../../Components/Common/ProductsCard";
 import { loadProducts } from "@/lib/load-products";
 import { useQuery } from "@tanstack/react-query";
-import Navbar from "@/Components/Home/Navbar";
 import NavbarOther from "@/Components/Common/NavbarOther";
 import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -42,7 +41,7 @@ export default function Products() {
           <NavbarOther />
           <div className="grid grid-cols-1 gap-3 px-4 md:grid-cols-2 lg:grid-cols-4">
             {data?.data.map((product) => (
-              <ProductsCard key={product.id} product={product} />
+              <ProductsCard key={product._id} product={product} />
             ))}
           </div>
         </>

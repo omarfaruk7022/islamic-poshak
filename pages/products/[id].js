@@ -1,6 +1,5 @@
 import Loading from "@/Components/Common/Loading";
 import NavbarOther from "@/Components/Common/NavbarOther";
-import Navbar from "@/Components/Home/Navbar";
 import auth from "@/firebase.init";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -20,15 +19,12 @@ export default function productDetails() {
       .then((json) => setProduct(json));
   }, [id]);
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [user,loading] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   if (loading) {
     return <Loading />;
   }
   if (!user) {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-  useEffect(() => {
-      router.push("/login");
-    }, [router]);
+    router.push("/login");
   }
 
   return (
@@ -41,6 +37,7 @@ export default function productDetails() {
               <div className="flex justify-center">
                 <div className="flex flex-col justify-center">
                   <Image
+                    priority
                     width={300}
                     height={300}
                     src={product?.data?.image}

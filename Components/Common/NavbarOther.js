@@ -68,50 +68,36 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-                <Link
-                  href="/profile"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
-                >
-                  Profile
-                </Link>
-                <Link
-                  href="/contact"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
-                >
-                  Contact
-                </Link>
+               
 
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>
                     <MobileMenu />
                   </Sidebar>
-                  
                 </div>
               </nav>
-              <div class="lg:hidden md:block">
+              <div className="lg:hidden md:block">
                 <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
                   <svg
                     aria-hidden="true"
-                    class="h-5 w-5 text-white"
+                    className="h-5 w-5 text-white"
                     fill="none"
                     stroke="currentColor"
-                    viewbox="0 0 24 24"
+                    viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
                       d="M4 6h16M4 12h16M4 18h16"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                     />
                   </svg>
                 </p>
               </div>
             </div>
           </div>
-          
         </header>
-        
       </div>
     </div>
   );

@@ -29,10 +29,12 @@ export default function MyProfile() {
 
   return (
     <div>
-      {user && (
+      {user && userInfo ? (
         <>
           <p>{userInfo?.data[0]?.email}</p>
         </>
+      ) :(
+        <Loading />
       )}
     </div>
   );

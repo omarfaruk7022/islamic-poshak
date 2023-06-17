@@ -82,19 +82,7 @@ export default function Navbar() {
                   </Link>
                 )}
 
-                <Link
-                  href="/profile"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
-                >
-                  Profile
-                </Link>
-                <Link
-                  href="/contact"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
-                >
-                  Contact
-                </Link>
-                
+               
               </nav>
             </div>
           </div>

@@ -1,20 +1,11 @@
 import React from "react";
-import { BallTriangle } from "react-loader-spinner";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 export default function Loading() {
   return (
     <div>
-      <div className=" flex justify-center">
-        <BallTriangle
-          height={100}
-          width={100}
-          radius={5}
-          color="#4fa94d"
-          ariaLabel="ball-triangle-loading"
-          wrapperClass={{}}
-          wrapperStyle=""
-          visible={true}
-        />
+      <div className="card flex justify-content-center items-center">
+        <ProgressSpinner />
       </div>
     </div>
   );

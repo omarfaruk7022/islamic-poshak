@@ -10,6 +10,7 @@ export default function ProductsCard(product) {
       <Link href={`/products/${_id}`} className="relative block group">
         <Image
           width={350}
+          priority
           height={350}
           src={image}
           alt="Product Image"
