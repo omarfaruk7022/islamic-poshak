@@ -7,25 +7,26 @@ import { signOut } from "firebase/auth";
 import Image from "next/image";
 import Loading from "../Common/Loading";
 import { useRouter } from "next/router";
+import { useQuery } from "@tanstack/react-query";
 
 export default function SideMenu() {
   const [user, loading] = useAuthState(auth);
+  const router = useRouter();
   const email = user?.email;
-  const [userInfo, setUserInfo] = useState();
 
   const handleSignOut = () => {
     signOut(auth);
   };
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/users/email/${email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setUserInfo(data);
-      });
-  }, [email]);
+  //  create useQuery to fetch data from api
 
-  const router = useRouter();
+  const { isLoading, error, data } = useQuery({
+    queryFn: () =>
+      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
+        res.json()
+      ),
+  });
+
 
   if (loading) {
     return <Loading />;
@@ -46,6 +47,26 @@ export default function SideMenu() {
               <MdOutlineSpaceDashboard className="text-[20px]" />
               <span className="text-sm font-medium"> Dashboard </span>
             </Link>
+
+            {data?.data[0]?.role === "admin" && (
+              <Link
+                href="/dashboard/addProduct"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+              >
+                <MdOutlineSpaceDashboard className="text-[20px]" />
+                <span className="text-sm font-medium"> Add Product </span>
+              </Link>
+            )}
+
+            {data?.data[0]?.role === "admin" && (
+              <Link
+                href="/dashboard/manageProduct"
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+              >
+                <MdOutlineSpaceDashboard className="text-[20px]" />
+                <span className="text-sm font-medium"> Manage Product </span>
+              </Link>
+            )}
 
             {/* <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400">
@@ -271,10 +292,10 @@ export default function SideMenu() {
             <div>
               <p className="text-xs">
                 <strong className="block font-medium">
-                  {userInfo?.data[0]?.username}
+                  {data?.data[0]?.username}
                 </strong>
 
-                <span> {userInfo?.data[0]?.email} </span>
+                <span> {data?.data[0]?.email} </span>
               </p>
             </div>
           </Link>
