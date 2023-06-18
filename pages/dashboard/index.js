@@ -22,11 +22,13 @@ export default function Dashboard() {
   
   return (
     <div>
+      
       <div>
         <div>
           <HomeChart />
         </div>
       </div>
+      
     </div>
   );
 }

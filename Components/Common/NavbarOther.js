@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,6 +7,8 @@ import auth from "@/firebase.init";
 import { signOut } from "firebase/auth";
 import { Sidebar } from "primereact/sidebar";
 import MobileMenu from "../Dashboard/MobileMenu";
+import { Button, useColorScheme } from "@mui/joy";
+
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
@@ -15,6 +17,15 @@ export default function NavbarOther() {
   const handleSignOut = () => {
     signOut(auth);
   };
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
   return (
     <div>
       <div>
@@ -29,7 +40,7 @@ export default function NavbarOther() {
             <div className="flex flex-1 items-center justify-end gap-8">
               <nav
                 aria-label="Site Nav"
-                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-white"
+                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide  "
               >
                 <Link
                   href="/"
@@ -68,7 +79,17 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-               
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setMode(mode === "light" ? "dark" : "light");
+                  }}
+                >
+                  {mode === "light" ? "Turn dark" : "Turn light"}
+                </Button>
+                
+
+             
 
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>

@@ -8,6 +8,7 @@ import Image from "next/image";
 import Loading from "../Common/Loading";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
+import { Button, useColorScheme } from "@mui/joy";
 
 export default function SideMenu() {
   const [user, loading] = useAuthState(auth);
@@ -26,7 +27,17 @@ export default function SideMenu() {
         res.json()
       ),
   });
+  const [visible, setVisible] = useState(false);
 
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return null;
+  }
 
   if (loading) {
     return <Loading />;
@@ -42,7 +53,7 @@ export default function SideMenu() {
           <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
             <Link
               href="/dashboard/"
-              className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+              className="flex items-center gap-2 rounded-lg px-4 py-2       "
             >
               <MdOutlineSpaceDashboard className="text-[20px]" />
               <span className="text-sm font-medium"> Dashboard </span>
@@ -51,7 +62,7 @@ export default function SideMenu() {
             {data?.data[0]?.role === "admin" && (
               <Link
                 href="/dashboard/addProduct"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                className="flex items-center gap-2 rounded-lg px-4 py-2  "
               >
                 <MdOutlineSpaceDashboard className="text-[20px]" />
                 <span className="text-sm font-medium"> Add Product </span>
@@ -61,7 +72,7 @@ export default function SideMenu() {
             {data?.data[0]?.role === "admin" && (
               <Link
                 href="/dashboard/manageProduct"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                className="flex items-center gap-2 rounded-lg px-4 py-2  "
               >
                 <MdOutlineSpaceDashboard className="text-[20px]" />
                 <span className="text-sm font-medium"> Manage Product </span>
@@ -69,7 +80,7 @@ export default function SideMenu() {
             )}
 
             {/* <details className="group [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400">
+              <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  ">
                 <div className="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +119,7 @@ export default function SideMenu() {
               <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
                 <Link
                   href="/employees"
-                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                  className="flex items-center gap-2 rounded-lg px-4 py-2  "
                 >
                   <MdFormatListNumberedRtl className="text-[20px]" />
 
@@ -117,7 +128,7 @@ export default function SideMenu() {
 
                 <Link
                   href="/addEmployee"
-                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                  className="flex items-center gap-2 rounded-lg px-4 py-2  "
                 >
                   <AiOutlineUserAdd />
 
@@ -128,7 +139,7 @@ export default function SideMenu() {
 
             <Link
               href="/dashboard/myProfile"
-              className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+              className="flex items-center gap-2 rounded-lg px-4 py-2  "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -150,7 +161,7 @@ export default function SideMenu() {
 
             <Link
               href="#"
-              className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+              className="flex items-center gap-2 rounded-lg px-4 py-2  "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +182,7 @@ export default function SideMenu() {
             </Link>
 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400">
+              <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2  ">
                 <div className="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -210,7 +221,7 @@ export default function SideMenu() {
               <nav aria-label="Account Nav" className="mt-2 flex flex-col px-4">
                 <Link
                   href="#"
-                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                  className="flex items-center gap-2 rounded-lg px-4 py-2 "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -229,10 +240,17 @@ export default function SideMenu() {
 
                   <span className="text-sm font-medium"> Details </span>
                 </Link>
-
+                <Button
+                  variant="outlined"
+                  onClick={() => {
+                    setMode(mode === "light" ? "dark" : "light");
+                  }}
+                >
+                  {mode === "light" ? "Turn dark" : "Turn light"}
+                </Button>
                 <Link
                   href="#"
-                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                  className="flex items-center gap-2 rounded-lg px-4 py-2 "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -255,7 +273,7 @@ export default function SideMenu() {
                 <button
                   onClick={handleSignOut}
                   type="submit"
-                  className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-gray-300 hover:bg-[#24243a] hover:text-gray-400"
+                  className="flex w-full items-center gap-2 rounded-lg px-4 py-2 "
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

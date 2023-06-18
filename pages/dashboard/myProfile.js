@@ -32,10 +32,12 @@ export default function MyProfile() {
       {user && userInfo ? (
         <>
           <p>{userInfo?.data[0]?.email}</p>
+          <p>{userInfo?.data[0]?.role}</p>
         </>
       ) :(
         <Loading />
       )}
+ 
     </div>
   );
 }

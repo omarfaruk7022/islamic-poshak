@@ -40,7 +40,7 @@ export default function Blog() {
               <a
                 rel="noopener noreferrer"
                 href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400"
+                className="inline-flex items-center py-2 space-x-2 text-sm   text-violet-400"
               >
                 <span>Read more</span>
                 <svg
@@ -67,7 +67,7 @@ export default function Blog() {
               <a
                 rel="noopener noreferrer"
                 href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400"
+                className="inline-flex items-center py-2 space-x-2 text-sm   text-violet-400"
               >
                 <span>Read more</span>
                 <svg
@@ -94,7 +94,7 @@ export default function Blog() {
               <a
                 rel="noopener noreferrer"
                 href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm dark:text-violet-400"
+                className="inline-flex items-center py-2 space-x-2 text-sm   text-violet-400"
               >
                 <span>Read more</span>
                 <svg
