@@ -7,7 +7,6 @@ import auth from "@/firebase.init";
 import { signOut } from "firebase/auth";
 import { Sidebar } from "primereact/sidebar";
 import MobileMenu from "../Dashboard/MobileMenu";
-import { Button, useColorScheme } from "@mui/joy";
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
@@ -16,19 +15,11 @@ export default function NavbarOther() {
   const handleSignOut = () => {
     signOut(auth);
   };
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
   return (
     <div>
       <div>
-        <header aria-label="Site Header" className="w-full ">
+        <header aria-label="Site Header" className="w-full shadow-lg  ">
           <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
               <Link href="/">
@@ -78,15 +69,7 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-                <p
-                  variant="outlined"
-                  onClick={() => {
-                    setMode(mode === "light" ? "dark" : "light");
-                  }}
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current cursor-pointer"
-                >
-                  {mode === "light" ? " Dark" : " Light"}
-                </p>
+               
 
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>

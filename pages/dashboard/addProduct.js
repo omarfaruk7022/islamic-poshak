@@ -39,8 +39,10 @@ export default function AddProduct() {
     <div>
       {data?.data[0]?.role === "admin" ? (
         <>
-          <h1>Admin</h1>
-          <h2>{data?.data[0]?.username}</h2>
+          <div className="bg-white shadow-xl p-5 ml-5 rounded-md">
+            <h1>Admin</h1>
+            <h2>{data?.data[0]?.username}</h2>
+          </div>
         </>
       ) : (
         <Loading />

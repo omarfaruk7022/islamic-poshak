@@ -31,13 +31,16 @@ export default function MyProfile() {
     <div>
       {user && userInfo ? (
         <>
-          <p>{userInfo?.data[0]?.email}</p>
-          <p>{userInfo?.data[0]?.role}</p>
+          <div className="h-[500px]">
+            <div className="bg-white shadow-xl p-5 m-5 rounded-md">
+              <p>{userInfo?.data[0]?.email}</p>
+              <p>{userInfo?.data[0]?.role}</p>
+            </div>
+          </div>
         </>
-      ) :(
+      ) : (
         <Loading />
       )}
- 
     </div>
   );
 }

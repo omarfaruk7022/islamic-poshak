@@ -79,7 +79,7 @@ export default function HomeChart() {
 
   return (
     <div className="">
-      <div className="card ">
+      <div className="card ml-5">
             <Chart type="line" data={chartData} options={chartOptions} />
         </div>
     </div>

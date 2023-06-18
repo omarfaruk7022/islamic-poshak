@@ -25,10 +25,10 @@ export default function DashboardLayout({ children }) {
           <Sheet>
             <NavbarOther />
             <div className="flex">
-              <div>
+              <div className="w-[200px]">
                 <SideMenu />
               </div>
-              <div>{children}</div>
+              <div className="w-full h-full ">{children}</div>
             </div>
           </Sheet>
         </main>
