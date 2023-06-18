@@ -9,7 +9,6 @@ import { Sidebar } from "primereact/sidebar";
 import MobileMenu from "../Dashboard/MobileMenu";
 import { Button, useColorScheme } from "@mui/joy";
 
-
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
   const [visible, setVisible] = useState(false);
@@ -79,17 +78,15 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-                <Button
+                <p
                   variant="outlined"
                   onClick={() => {
                     setMode(mode === "light" ? "dark" : "light");
                   }}
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current cursor-pointer"
                 >
-                  {mode === "light" ? "Turn dark" : "Turn light"}
-                </Button>
-                
-
-             
+                  {mode === "light" ? " Dark" : " Light"}
+                </p>
 
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>

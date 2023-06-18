@@ -23,15 +23,11 @@ export default function App({ Component, pageProps, session }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <CssVarsProvider>
-          <main>
-            <Sheet>
+       
               <Layout>
                 <Component {...pageProps} />
               </Layout>
-            </Sheet>
-          </main>
-        </CssVarsProvider>
+           
       </Hydrate>
     </QueryClientProvider>
   );
