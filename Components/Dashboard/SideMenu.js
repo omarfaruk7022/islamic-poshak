@@ -8,7 +8,6 @@ import Image from "next/image";
 import Loading from "../Common/Loading";
 import { useRouter } from "next/router";
 import { useQuery } from "@tanstack/react-query";
-import { Button, useColorScheme } from "@mui/joy";
 
 export default function SideMenu() {
   const [user, loading] = useAuthState(auth);
@@ -29,31 +28,14 @@ export default function SideMenu() {
   });
   const [visible, setVisible] = useState(false);
 
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  if (!mounted) {
-    return null;
-  }
-
-  if (loading) {
-    return <Loading />;
-  }
-  if (!user) {
-    router.push("/login");
-  }
-
   return (
     <div className="hidden lg:block shadow-2xl   px-6  ">
       <div className="flex h-screen flex-col justify-between ">
         <div className=" py-6 ">
-          <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
+          <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1 ">
             <Link
               href="/dashboard/"
-              className="flex items-center gap-2 rounded-lg px-2 py-2       "
+              className="flex items-center gap-2 rounded-lg px-2 py-2 text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
             >
               <MdOutlineSpaceDashboard className="text-[20px]" />
               <span className="text-sm font-medium"> Dashboard </span>
@@ -62,7 +44,7 @@ export default function SideMenu() {
             {data?.data[0]?.role === "admin" && (
               <Link
                 href="/dashboard/addProduct"
-                className="flex items-center gap-2 rounded-lg px-2 py-2  "
+                className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
               >
                 <MdOutlineSpaceDashboard className="text-[20px]" />
                 <span className="text-sm font-medium"> Add Product </span>
@@ -72,10 +54,19 @@ export default function SideMenu() {
             {data?.data[0]?.role === "admin" && (
               <Link
                 href="/dashboard/manageProduct"
-                className="flex items-center gap-2 rounded-lg px-2 py-2  "
+                className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
               >
                 <MdOutlineSpaceDashboard className="text-[20px]" />
                 <span className="text-sm font-medium"> Manage Product </span>
+              </Link>
+            )}
+            {data?.data[0]?.role === "admin" && (
+              <Link
+                href="/dashboard/allUsers"
+                className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
+              >
+                <MdOutlineSpaceDashboard className="text-[20px]" />
+                <span className="text-sm font-medium"> All Users </span>
               </Link>
             )}
 
@@ -139,7 +130,7 @@ export default function SideMenu() {
 
             <Link
               href="/dashboard/myProfile"
-              className="flex items-center gap-2 rounded-lg px-2 py-2  "
+              className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -161,7 +152,7 @@ export default function SideMenu() {
 
             <Link
               href="#"
-              className="flex items-center gap-2 rounded-lg px-2 py-2  "
+              className="flex items-center gap-2 rounded-lg px-2 py-2  text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black "
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -182,7 +173,7 @@ export default function SideMenu() {
             </Link>
 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
-              <summary className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-2  ">
+              <summary className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-2  text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black ">
                 <div className="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -221,34 +212,7 @@ export default function SideMenu() {
               <nav aria-label="Account Nav" className="mt-2 flex flex-col px-2">
                 <Link
                   href="#"
-                  className="flex items-center gap-2 rounded-lg px-2 py-2 "
-                  onClick={() => {
-                    setMode(mode === "light" ? "dark" : "light");
-                  }}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"
-                    />
-                  </svg>
-                  <span className="text-sm font-medium">
-                 
-                    {mode === "light" ? "Dark" : "Light"}
-                  </span>
-                </Link>
-
-                <Link
-                  href="#"
-                  className="flex items-center gap-2 rounded-lg px-2 py-2 "
+                  className="flex items-center gap-2 rounded-lg px-4 py-2  text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -271,7 +235,7 @@ export default function SideMenu() {
                 <button
                   onClick={handleSignOut}
                   type="submit"
-                  className="flex w-full items-center gap-2 rounded-lg px-2 py-2 "
+                  className="flex w-full items-center gap-2 rounded-lg px-4 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

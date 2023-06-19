@@ -9,7 +9,7 @@ export default function Footer() {
         aria-label="Site Footer"
         className=" bg-[url(https://i.ibb.co/JQNXrBT/Banner.jpg)] bg-cover bg-center bg-no-repeat"
       >
-        <div className="px-4 py-16 sm:px-6 lg:col-span-6 lg:px-8 ">
+        <div className="px-4 py-16 sm:px-6 lg:col-span-6 lg:px-8  dark:bg-[#000001] dark:bg-opacity-[30%]  ">
           <div className="flex justify-end">
             <div>
               <p>

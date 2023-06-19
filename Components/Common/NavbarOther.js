@@ -7,6 +7,7 @@ import auth from "@/firebase.init";
 import { signOut } from "firebase/auth";
 import { Sidebar } from "primereact/sidebar";
 import MobileMenu from "../Dashboard/MobileMenu";
+import ThemeToggler from "../Dashboard/ThemeToggler";
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
@@ -19,7 +20,10 @@ export default function NavbarOther() {
   return (
     <div>
       <div>
-        <header aria-label="Site Header" className="w-full shadow-lg  ">
+        <header
+          aria-label="Site Header"
+          className="w-full  shadow-lg dark:shadow-2xl  "
+        >
           <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
               <Link href="/">
@@ -69,7 +73,9 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-               
+                <div className="flex ">
+                  <ThemeToggler />
+                </div>
 
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>

@@ -3,7 +3,7 @@ import React from "react";
 export default function Blog() {
   return (
     <div>
-      <div className="bg-[url(https://i.ibb.co/VggrXmq/hero-pattern-opacity.png)] bg-cover bg-center bg-no-repeat bg-[#111121]">
+      <div className="bg-[url(https://i.ibb.co/VggrXmq/hero-pattern-opacity.png)] bg-cover bg-center bg-no-repeat ">
         <div className=" grid grid-cols-12 mx-auto ">
           <div className="flex flex-col justify-center col-span-12 align-middle bg-no-repeat bg-cover  lg:col-span-6 lg:h-auto">
             <div className="flex flex-col items-center p-8 py-12 text-center">

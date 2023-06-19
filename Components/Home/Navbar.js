@@ -5,6 +5,7 @@ import Link from "next/link";
 import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
+import ThemeToggler from "../Dashboard/ThemeToggler";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
@@ -82,7 +83,9 @@ export default function Navbar() {
                   </Link>
                 )}
 
-               
+                <div className="flex ">
+                  <ThemeToggler />
+                </div>
               </nav>
             </div>
           </div>
