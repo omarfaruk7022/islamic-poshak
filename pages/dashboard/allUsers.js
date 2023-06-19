@@ -15,7 +15,7 @@ export default function AllUsers() {
   return (
     <div>
       <div class="overflow-x-auto  p-5">
-        <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+        <table class="min-w-full divide-y-2 divide-gray-200 text-sm">
           <thead class="ltr:text-left rtl:text-right">
             <tr>
               <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
