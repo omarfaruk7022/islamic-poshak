@@ -2,17 +2,14 @@ import React, { useEffect, useState } from "react";
 import DashboardLayout from "@/layouts/dashboardLayout";
 import { useQuery } from "@tanstack/react-query";
 import swal from "sweetalert";
+import Image from "next/image";
+import { Dialog } from "primereact/dialog";
+import EditModal from "@/Components/Dashboard/EditModal";
 
 export default function ManageProduct() {
-  //   const [products, setProducts] = useState([]);
-  const updateData = {
-    name: "Honda",
-    description: "Honda is a car",
-    price: 10000,
-    unit: "car",
-    status: "active",
-    image: "https://i.ibb.co/9HZqYqP/sports-car.jpg",
-  };
+  const [visible, setVisible] = useState(false);
+  const [selectedItemId, setSelectedItemId] = useState(null);
+
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["products"],
@@ -21,22 +18,8 @@ export default function ManageProduct() {
   });
 
   const handleEdit = (id) => {
-    fetch(`http://localhost:5000/api/product/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updateData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "fail") {
-          swal("Error", "Product Update Failed", "error");
-        } else {
-          swal("Yayy", "Product Update Successfully Completed", "success");
-          refetch();
-        }
-      });
+    setVisible(true);
+    setSelectedItemId(id);
   };
 
   const handleDelete = (id) => {
@@ -70,22 +53,26 @@ export default function ManageProduct() {
         <table class="min-w-full divide-y-2 divide-gray-100 text-sm">
           <thead class="ltr:text-left rtl:text-right">
             <tr>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
+                Image
+              </th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Name
               </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Description
               </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Price
               </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
-                Unit
-              </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Status
               </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
+                Added By
+              </th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Action
               </th>
             </tr>
@@ -94,29 +81,43 @@ export default function ManageProduct() {
             <>
               <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
+                    <Image
+                      width={150}
+                      height={100}
+                      className="rounded-md h-24"
+                      draggable={false}
+                      src={product?.image}
+                      alt=""
+                    ></Image>
+                  </td>
+                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
                     {product?.name}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                     {product?.description}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                     {product?.price}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
-                    {product?.unit}
-                  </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                     {product?.status}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
+                    {product?.addedBy}
+                  </td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                     <button
+                      label="Show"
+                      icon="pi pi-external-link"
                       onClick={() => handleEdit(product?._id)}
                       className="bg-green-500 text-white px-2 py-1 rounded-md"
                     >
                       Edit
                     </button>
                   </td>
+                  {visible && <EditModal id={selectedItemId} visible={visible} setVisible={setVisible} refetch={refetch}/>}
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                     <button
                       onClick={() => handleDelete(product?._id)}

@@ -18,17 +18,17 @@ export default function AllUsers() {
         <table class="min-w-full divide-y-2 divide-gray-200 text-sm">
           <thead class="ltr:text-left rtl:text-right">
             <tr>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Name
               </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Email
               </th>
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Role
               </th>
 
-              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900">
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Action
               </th>
             </tr>
@@ -37,13 +37,13 @@ export default function AllUsers() {
             <>
               <tbody class="divide-y divide-gray-200">
                 <tr>
-                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <td class="whitespace-nowrap px-4 py-2 font-medium  text-gray-700 dark:text-gray-200">
                     {user?.username}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
                     {user?.email}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
                     {user?.role === "admin" ? (
                       <span className="text-red-500">{user?.role}</span>
                     ) : (

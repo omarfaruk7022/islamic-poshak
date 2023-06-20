@@ -3,23 +3,23 @@ import { signOut } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { AiOutlineUserAdd } from "react-icons/ai";
 import {
   MdFormatListNumberedRtl,
   MdOutlineSpaceDashboard,
 } from "react-icons/md";
+import ThemeToggler from "./ThemeToggler";
 
 export default function MobileMenu() {
   const handleSignOut = () => {
     signOut(auth);
   };
   return (
-    <div className="flex h-screen flex-col justify-between  ">
+    <div className="flex h-screen flex-col justify-between bg-white dark:bg-black ">
       <div className="px-4 py-6">
         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
           <Link
             href="/dashboard"
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black  "
+            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200  "
           >
             <MdOutlineSpaceDashboard className="text-[20px]" />
 
@@ -86,7 +86,7 @@ export default function MobileMenu() {
 
           <Link
             href="/dashboard/myProfile"
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black "
+            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@ export default function MobileMenu() {
 
           <Link
             href="/dashboard"
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black "
+            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,7 @@ export default function MobileMenu() {
           </Link>
 
           <details className="group [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-black ">
+            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-black dark:text-gray-200 ">
               <div className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ export default function MobileMenu() {
             <nav aria-label="Account Nav" className="mt-2 flex flex-col px-4">
               <Link
                 href="/dashboard"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-black "
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +190,7 @@ export default function MobileMenu() {
 
               <Link
                 href="/"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-black "
+                className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200 "
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -210,10 +210,14 @@ export default function MobileMenu() {
                 <span className="text-sm font-medium"> Security </span>
               </Link>
 
+              <div className="flex ">
+                <ThemeToggler />
+              </div>
+
               <button
                 onClick={handleSignOut}
                 type="submit"
-                className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-black "
+                className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
