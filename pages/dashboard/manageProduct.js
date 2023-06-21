@@ -10,7 +10,6 @@ export default function ManageProduct() {
   const [visible, setVisible] = useState(false);
   const [selectedItemId, setSelectedItemId] = useState(null);
 
-
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
@@ -65,6 +64,9 @@ export default function ManageProduct() {
               <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Price
               </th>
+              <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
+                Quantity
+              </th>
 
               <th class="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                 Status
@@ -100,9 +102,20 @@ export default function ManageProduct() {
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                     {product?.price}
                   </td>
+                  <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
+                    {product?.quantity}
+                  </td>
 
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
-                    {product?.status}
+                    {product?.status === "in-stock" && (
+                      <p className="text-green-500">In-stock</p>
+                    )}
+                    {product?.status === "out-of-stock" && (
+                      <p className="text-red-500">Out-of-stock</p>
+                    )}
+                    {product?.status === "discontinued" && (
+                      <p className="text-red-500">Discontinued</p>
+                    )}
                   </td>
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                     {product?.addedBy}
@@ -117,7 +130,14 @@ export default function ManageProduct() {
                       Edit
                     </button>
                   </td>
-                  {visible && <EditModal id={selectedItemId} visible={visible} setVisible={setVisible} refetch={refetch}/>}
+                  {visible && (
+                    <EditModal
+                      id={selectedItemId}
+                      visible={visible}
+                      setVisible={setVisible}
+                      refetch={refetch}
+                    />
+                  )}
                   <td class="whitespace-nowrap px-4 py-2 text-gray-700">
                     <button
                       onClick={() => handleDelete(product?._id)}

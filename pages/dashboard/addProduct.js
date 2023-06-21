@@ -29,7 +29,6 @@ export default function AddProduct() {
     const addedBy = email;
     const img = e.target.image.files[0];
     const formData = new FormData();
-    console.log(formData);
     formData.append("image", img);
     const url = `https://api.imgbb.com/1/upload?key=${imgStorageKey}`;
 
@@ -50,7 +49,6 @@ export default function AddProduct() {
             status,
             quantity,
           };
-          console.log(data);
           if (
             name &&
             description &&
@@ -77,7 +75,6 @@ export default function AddProduct() {
         }
       });
   };
-  console.log(data);
   if (error) {
     console.log(error);
   }
