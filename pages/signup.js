@@ -29,7 +29,7 @@ export default function Signup() {
       swal("Error", error.message, "error");
       return;
     } else {
-      fetch(`http://localhost:5000/api/users/email/${email}`, {
+      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -41,7 +41,7 @@ export default function Signup() {
           if (data) {
             createUserWithEmailAndPassword(email, password);
             swal("Yayy", "Sign Up Successfully Completed", "success");
-            router.push("/");
+            window.history.back();
           } else {
             swal("Error", "Sign Up Failed", "error");
           }

@@ -2,21 +2,31 @@ import Loading from "@/Components/Common/Loading";
 import auth from "@/firebase.init";
 import DashboardLayout from "@/layouts/dashboardLayout";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import swal from "sweetalert";
+import cross from "../../assets/images/close.png";
 
 export default function AddProduct() {
   const [user, loading] = useAuthState(auth);
   const router = useRouter();
   const email = user?.email;
-  const { isLoading, error, data } = useQuery({
+  const isUserAdminQuery = useQuery({
+    queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
+      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
+        (res) => res.json()
       ),
   });
+
+  const data = isUserAdminQuery.data;
+  const isLoading = isUserAdminQuery.isLoading;
+  const error = isUserAdminQuery.error;
+  if (data?.data[0]?.role !== "admin" && data !== undefined) {
+    router.push("/dashboard");
+  }
   const imgStorageKey = "7bd193c3ab5dcf0453572e262a763279";
 
   const handleSubmit = (e) => {
@@ -58,7 +68,7 @@ export default function AddProduct() {
             status &&
             addedBy
           ) {
-            fetch("http://localhost:5000/api/product", {
+            fetch("https://bmw-server.onrender.com/api/product", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -100,81 +110,81 @@ export default function AddProduct() {
               <form className="p-5" onSubmit={handleSubmit}>
                 <label
                   for="name"
-                  class="relative block overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  my-2 focus-within:ring-1 w-full lg:w-96  m-auto"
+                  className="relative block overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  my-2 focus-within:ring-1 w-full lg:w-96  m-auto"
                 >
                   <input
                     type="name"
                     id="name"
                     placeholder="Name"
                     required
-                    class="peer h-8 w-full text-black  dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-black  dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Name
                   </span>
                 </label>
                 <label
                   for="description"
-                  class="relative block overflow-hidden rounded-md border border-gray-300  dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
+                  className="relative block overflow-hidden rounded-md border border-gray-300  dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
                 >
                   <input
                     type="name"
                     id="description"
                     placeholder="Description"
                     required
-                    class="peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Description
                   </span>
                 </label>
                 <label
                   for="price"
-                  class="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
+                  className="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
                 >
                   <input
                     type="text"
                     id="price"
                     placeholder="Price"
                     required
-                    class="peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Price
                   </span>
                 </label>
                 <label
                   for="quantity"
-                  class="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
+                  className="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
                 >
                   <input
                     type="number"
                     id="quantity"
                     placeholder="Quantity"
                     required
-                    class="peer h-8 w-full  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Quantity
                   </span>
                 </label>
                 <label
                   for="status"
-                  class="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
+                  className="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
                 >
                   <input
                     type="text"
                     id="status"
                     placeholder="Status"
                     required
-                    class="peer h-8 w-full text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Status
                   </span>
                 </label>
@@ -184,7 +194,7 @@ export default function AddProduct() {
                   name="image"
                   placeholder="Image"
                   required
-                  class="peer h-8  m-auto block my-3  text-black dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm w-full lg:w-96"
+                  className="peer h-8  m-auto block my-3  text-black dark:text-gray-200 text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm w-full lg:w-96"
                 />
 
                 <div className="flex justify-center">
@@ -199,7 +209,22 @@ export default function AddProduct() {
           </div>
         </>
       ) : (
-        <Loading />
+        <>
+          {data?.data[0]?.role !== "admin" &&
+          data !== undefined &&
+          router.push("/dashboard") ? (
+            <div className="m-5">
+              <h2 className="text-red-500 font-bold text-center text-xl">
+                You Are Not Authenticated Redirecting to Dashboard
+              </h2>
+              <div className="flex justify-center items-center my-2">
+                <Image src={cross} alt="" width={100} height={100}></Image>
+              </div>
+            </div>
+          ) : (
+            <Loading />
+          )}
+        </>
       )}
     </div>
   );

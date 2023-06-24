@@ -24,7 +24,9 @@ export default function Products() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/product").then((res) => res.json()),
+      fetch("https://bmw-server.onrender.com/api/product").then((res) =>
+        res.json()
+      ),
   });
 
   if (loading) {
@@ -40,7 +42,7 @@ export default function Products() {
         <>
           <NavbarOther />
           <div className="grid grid-cols-1 gap-3 px-4 md:grid-cols-2 lg:grid-cols-4  ">
-            {data?.data.map((product) => ( 
+            {data?.data.map((product) => (
               <ProductsCard key={product._id} product={product} />
             ))}
           </div>

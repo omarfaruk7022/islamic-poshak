@@ -49,7 +49,7 @@ export default function EditModal({ id, visible, setVisible, refetch }) {
             status &&
             addedBy
           ) {
-            fetch(`http://localhost:5000/api/product/${id}`, {
+            fetch(`https://bmw-server.onrender.com/api/product/${id}`, {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",
@@ -82,81 +82,81 @@ export default function EditModal({ id, visible, setVisible, refetch }) {
               <form className="p-5" onSubmit={handleSubmit}>
                 <label
                   for="name"
-                  class="relative block overflow-hidden rounded-md border border-gray-300  px-3 pt-3 shadow-sm  my-2 focus-within:ring-1 w-96 m-auto"
+                  className="relative block overflow-hidden rounded-md border border-gray-300  px-3 pt-3 shadow-sm  my-2 focus-within:ring-1 w-96 m-auto"
                 >
                   <input
                     type="name"
                     id="name"
                     placeholder="Name"
                     required
-                    class="peer h-8 w-full text-black   text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-black   text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Name
                   </span>
                 </label>
                 <label
                   for="description"
-                  class="relative block overflow-hidden rounded-md border border-gray-300   px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
+                  className="relative block overflow-hidden rounded-md border border-gray-300   px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
                 >
                   <input
                     type="name"
                     id="description"
                     placeholder="Description"
                     required
-                    class="peer h-8 w-full text-black  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-black  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Description
                   </span>
                 </label>
                 <label
                   for="price"
-                  class="relative block my-2 overflow-hidden rounded-md border border-gray-300  px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
+                  className="relative block my-2 overflow-hidden rounded-md border border-gray-300  px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
                 >
                   <input
                     type="text"
                     id="price"
                     placeholder="Price"
                     required
-                    class="peer h-8 w-full text-black  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-black  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700   transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700   transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Price
                   </span>
                 </label>
                 <label
                   for="quantity"
-                  class="relative block my-2 overflow-hidden rounded-md border border-gray-300 px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
+                  className="relative block my-2 overflow-hidden rounded-md border border-gray-300 px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
                 >
                   <input
                     type="number"
                     id="quantity"
                     placeholder="Quantity"
                     required
-                    class="peer h-8 w-full  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Quantity
                   </span>
                 </label>
                 <label
                   for="status"
-                  class="relative block my-2 overflow-hidden rounded-md border border-gray-300 px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
+                  className="relative block my-2 overflow-hidden rounded-md border border-gray-300 px-3 pt-3 shadow-sm  focus-within:ring-1 w-96 m-auto"
                 >
                   <input
                     type="text"
                     id="status"
                     placeholder="Status"
                     required
-                    class="peer h-8 w-full text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                    className="peer h-8 w-full text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   />
 
-                  <span class="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+                  <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Status
                   </span>
                 </label>
@@ -166,7 +166,7 @@ export default function EditModal({ id, visible, setVisible, refetch }) {
                   name="image"
                   placeholder="Image"
                   required
-                  class="peer h-8 w-96 m-auto block my-3  text-black  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  className="peer h-8 w-96 m-auto block my-3  text-black  text-[15px] border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                 />
 
                 <div className="flex justify-center">

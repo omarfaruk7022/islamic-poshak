@@ -24,7 +24,7 @@ export default function DashboardLayout({ children }) {
       <NavbarOther />
 
       <div className="flex">
-        <div className="w-[200px]">
+        <div >
           <SideMenu />
         </div>
         <div className="w-full h-full ">{children}</div>

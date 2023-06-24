@@ -22,14 +22,14 @@ export default function SideMenu() {
 
   const { isLoading, error, data } = useQuery({
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
+      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
+        (res) => res.json()
       ),
   });
   const [visible, setVisible] = useState(false);
 
   return (
-    <div className="hidden lg:block shadow-2xl   px-6  ">
+    <div className="hidden lg:block shadow-2xl px-6  w-[220px] ">
       <div className="flex h-screen flex-col justify-between ">
         <div className=" py-6 ">
           <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1 ">
@@ -260,13 +260,13 @@ export default function SideMenu() {
         </div>
 
         <div className="sticky inset-x-0 bottom-0 ">
-          <Link href="/" className="flex items-center gap-2  p-4">
+          <Link href="/" className="flex items-center gap-2 py-3">
             <Image
               alt="Man"
               width={40}
               height={40}
               src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-              className="h-10 w-10 rounded-full object-cover"
+              className="h-8 w-8 rounded-full object-cover"
             />
 
             <div>
