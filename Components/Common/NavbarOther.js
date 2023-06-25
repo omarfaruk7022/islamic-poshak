@@ -87,7 +87,7 @@ export default function NavbarOther() {
                 <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
                   <svg
                     aria-hidden="true"
-                    className="h-5 w-5 text-white"
+                    className="h-5 w-5 text-black dark:text-gray-100"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

@@ -35,7 +35,7 @@ export default function Login() {
 
   if (error) {
     swal("Oops", "Email or Password May Incorrect", "error");
-    return;
+    
   } else if (user) {
     window.history.back();
     swal("Yayy", "Login Successfully Completed", "success");
@@ -73,6 +73,7 @@ export default function Login() {
 
               <div className="relative">
                 <input
+                required
                   type="email"
                   name="email"
                   className="w-full rounded-lg border-gray-200 text-black p-4 pe-12 text-sm shadow-sm outline-none"
@@ -105,6 +106,7 @@ export default function Login() {
 
               <div className="relative">
                 <input
+                required
                   name="password"
                   type="password"
                   className="w-full rounded-lg text-black border-gray-200 p-4 pe-12 text-sm shadow-sm  outline-none"

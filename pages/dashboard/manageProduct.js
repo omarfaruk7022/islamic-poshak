@@ -21,14 +21,16 @@ export default function ManageProduct() {
   const productsQuery = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("https://bmw-server.onrender.com/api/product").then((res) => res.json()),
+      fetch("https://bmw-server.onrender.com/api/product").then((res) =>
+        res.json()
+      ),
   });
 
   const usersQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then((res) =>
-        res.json()
+      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
+        (res) => res.json()
       ),
   });
 

@@ -41,7 +41,7 @@ export default function Products() {
       {user ? (
         <>
           <NavbarOther />
-          <div className="grid grid-cols-1 gap-3 px-4 md:grid-cols-2 lg:grid-cols-4  ">
+          <div className="grid grid-cols-1 gap-3  md:grid-cols-2 lg:grid-cols-4  lg:px-24 px-0">
             {data?.data.map((product) => (
               <ProductsCard key={product._id} product={product} />
             ))}

@@ -24,28 +24,37 @@ export default function Signup() {
       password,
       username,
     };
-
-    if (error) {
-      swal("Error", error.message, "error");
-      return;
+    if (!password || !email) {
+      swal("Oops", "Email or Password Must Not Be Empty", "error");
+   
+    } else if (password.length < 6) {
+      swal("Oops", "Password Must Be 6 Characters", "error");
+     
+    }
+    if (!email.includes("@")) {
+      swal("Oops", "Email Must Be Valid", "error");
     } else {
-      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`, {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(userSignupData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data) {
-            createUserWithEmailAndPassword(email, password);
-            swal("Yayy", "Sign Up Successfully Completed", "success");
-            window.history.back();
-          } else {
-            swal("Error", "Sign Up Failed", "error");
-          }
-        });
+      if (error) {
+        swal("Error", error.message, "error");
+      } else {
+        fetch(`https://bmw-server.onrender.com/api/users/email/${email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userSignupData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data) {
+              createUserWithEmailAndPassword(email, password);
+              swal("Yayy", "Sign Up Successfully Completed", "success");
+              router.push("/dashboard");
+            } else {
+              swal("Error", "Sign Up Failed", "error");
+            }
+          });
+      }
     }
   };
 
@@ -78,9 +87,10 @@ export default function Signup() {
 
                 <div className="relative">
                   <input
-                    type="name"
+                    required
+                    type="text"
                     name="name"
-                    className="w-full rounded-lg text-black border-gray-200 p-4 pe-12 text-sm shadow-sm  outline-none"
+                    className="w-full rounded-lg border-gray-200 text-black p-4 pe-12 text-sm shadow-sm  outline-none"
                     placeholder="Enter name"
                   />
                 </div>
@@ -92,6 +102,7 @@ export default function Signup() {
 
                 <div className="relative">
                   <input
+                    required
                     type="email"
                     name="email"
                     className="w-full rounded-lg border-gray-200 text-black p-4 pe-12 text-sm shadow-sm  outline-none"
@@ -124,6 +135,7 @@ export default function Signup() {
 
                 <div className="relative">
                   <input
+                    required
                     name="password"
                     type="password"
                     className="w-full rounded-lg text-black border-gray-200 p-4 pe-12 text-sm shadow-sm  outline-none"

@@ -81,8 +81,6 @@ export default function AllUsers() {
         }
       });
   };
-  console.log(users);
-  console.log(userIsAdmin?.data[0]?._id);
 
   return (
     <div>
@@ -122,7 +120,7 @@ export default function AllUsers() {
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
                         {user?.role === "admin" ? (
-                          <span className="text-red-500">{user?.role}</span>
+                          <span className="text-red-500">Admin</span>
                         ) : (
                           <span className="text-green-500">Normal user</span>
                         )}

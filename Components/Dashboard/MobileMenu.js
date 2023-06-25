@@ -8,81 +8,64 @@ import {
   MdOutlineSpaceDashboard,
 } from "react-icons/md";
 import ThemeToggler from "./ThemeToggler";
+import { useRouter } from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useQuery } from "@tanstack/react-query";
 
 export default function MobileMenu() {
+  const [user, loading] = useAuthState(auth);
+  const router = useRouter();
+  const email = user?.email;
+
   const handleSignOut = () => {
     signOut(auth);
   };
+
+  //  create useQuery to fetch data from api
+
+  const { isLoading, error, data } = useQuery({
+    queryFn: () =>
+      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
+        (res) => res.json()
+      ),
+  });
   return (
     <div className="flex h-screen flex-col justify-between bg-white dark:bg-black ">
       <div className="px-4 py-6">
         <nav aria-label="Main Nav" className="mt-6 flex flex-col space-y-1">
           <Link
-            href="/dashboard"
-            className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200  "
+            href="/dashboard/"
+            className="flex items-center gap-2 rounded-lg px-2 py-2 text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
           >
             <MdOutlineSpaceDashboard className="text-[20px]" />
-
             <span className="text-sm font-medium"> Dashboard </span>
           </Link>
-
-          {/* <details className="group [&_summary::-webkit-details-marker]:hidden">
-            <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-black  ">
-              <div className="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 opacity-75"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
-
-                <span className="text-sm font-medium"> Employees </span>
-              </div>
-
-              <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </span>
-            </summary>
-
-            <nav aria-label="Teams Nav" className="mt-2 flex flex-col px-4">
+          {data?.data[0]?.role === "admin" && (
+            <>
               <Link
-                href="/employees"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-black  "
+                href="/dashboard/addProduct"
+                className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
               >
-                <MdFormatListNumberedRtl className="text-[20px]" />
-
-                <span className="text-sm font-medium">List </span>
+                <MdOutlineSpaceDashboard className="text-[20px]" />
+                <span className="text-sm font-medium"> Add Product </span>
               </Link>
 
               <Link
-                href="/addEmployee"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-black "
+                href="/dashboard/manageProduct"
+                className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
               >
-                <AiOutlineUserAdd />
-
-                <span className="text-sm font-medium"> Add </span>
+                <MdOutlineSpaceDashboard className="text-[20px]" />
+                <span className="text-sm font-medium"> Manage Product </span>
               </Link>
-            </nav>
-          </details> */}
+              <Link
+                href="/dashboard/allUsers"
+                className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
+              >
+                <MdOutlineSpaceDashboard className="text-[20px]" />
+                <span className="text-sm font-medium"> All Users </span>
+              </Link>
+            </>
+          )}
 
           <Link
             href="/dashboard/myProfile"
@@ -210,10 +193,6 @@ export default function MobileMenu() {
                 <span className="text-sm font-medium"> Security </span>
               </Link>
 
-              <div className="flex ">
-                <ThemeToggler />
-              </div>
-
               <button
                 onClick={handleSignOut}
                 type="submit"
@@ -236,6 +215,10 @@ export default function MobileMenu() {
 
                 <span className="text-sm font-medium"> Logout </span>
               </button>
+              <div className="flex items-center gap-2 px-4 rounded-lg py-2 text-black dark:text-gray-200">
+                <ThemeToggler />
+                <h4 className="text-sm font-medium">Dark / Light</h4>
+              </div>
             </nav>
           </details>
         </nav>
