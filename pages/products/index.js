@@ -32,13 +32,11 @@ export default function Products() {
   if (loading) {
     return <Loading />;
   }
-  if (!user) {
-    router.push("/login");
-  }
+ 
 
   return (
     <div>
-      {user ? (
+      
         <>
           <NavbarOther />
           <div className="grid grid-cols-1 gap-3  md:grid-cols-2 lg:grid-cols-4  lg:px-24 px-0">
@@ -47,9 +45,7 @@ export default function Products() {
             ))}
           </div>
         </>
-      ) : (
-        <Loading />
-      )}
+      
     </div>
   );
 }
