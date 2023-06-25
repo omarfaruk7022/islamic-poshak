@@ -78,7 +78,7 @@ export default function ManageProduct() {
     <div>
       {userIsAdmin?.data[0]?.role === "admin" && userIsAdmin !== undefined ? (
         <>
-          <div className="overflow-x-auto   p-5">
+          <div className="overflow-x-auto p-5">
             <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm">
               <thead className="ltr:text-left rtl:text-right">
                 <tr className="">

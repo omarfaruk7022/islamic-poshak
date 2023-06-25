@@ -33,9 +33,7 @@ export default function SideMenu() {
       ).then((res) => res.json()),
   });
 
-  if (loading || isLoading) {
-    return <Loading />;
-  }
+
 
   return (
     <div className="hidden lg:block shadow-2xl px-6  w-[220px] ">

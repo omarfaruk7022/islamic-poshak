@@ -13,6 +13,7 @@ html {
   --background-end-rgb: 255, 255, 255;
 }
 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -20,6 +21,26 @@ html {
     --background-end-rgb: 0, 0, 0;
   }
 }
+canvas {
+  width:83vw !important;
+  height: 600px !important;
+}
 
+
+
+@media screen and (max-width: 600px) {
+  canvas {
+    width: 100% !important;
+    height: 300px !important;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width:1000px) {
+  canvas {
+    width: 100vw !important;
+    height: 400px !important;
+  }
+
+}
 
 
