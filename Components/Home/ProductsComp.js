@@ -20,7 +20,7 @@ export default function ProductsComp() {
       ) : error ? (
         <h1>{error}</h1>
       ) : (
-        data?.data?.map((product) => (
+        data?.data?.slice(0,8).map((product) => (
           <ProductsCard key={product._id} product={product} />
         ))
       )}
