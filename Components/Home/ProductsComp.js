@@ -7,8 +7,8 @@ export default function ProductsComp() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("https://bmw-server.onrender.com/api/product").then((res) =>
-        res.json()
+      fetch("https://easy-plum-caridea-tie.cyclic.app/api/product").then(
+        (res) => res.json()
       ),
   });
   return (

@@ -37,7 +37,7 @@ export default function Signup() {
       if (error) {
         swal("Error", error.message, "error");
       } else {
-        fetch(`https://bmw-server.onrender.com/api/users/email/${email}`, {
+        fetch(`https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",

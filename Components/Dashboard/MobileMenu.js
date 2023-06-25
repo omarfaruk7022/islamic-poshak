@@ -25,9 +25,9 @@ export default function MobileMenu() {
 
   const { isLoading, error, data } = useQuery({
     queryFn: () =>
-      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
   return (
     <div className="flex h-screen flex-col justify-between bg-white dark:bg-black ">

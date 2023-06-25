@@ -16,9 +16,9 @@ export default function AddProduct() {
   const isUserAdminQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
 
   const data = isUserAdminQuery.data;
@@ -68,7 +68,7 @@ export default function AddProduct() {
             status &&
             addedBy
           ) {
-            fetch("https://bmw-server.onrender.com/api/product", {
+            fetch("https://easy-plum-caridea-tie.cyclic.app/api/product", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

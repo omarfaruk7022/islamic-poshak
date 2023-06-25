@@ -26,15 +26,16 @@ export default function SideMenu() {
     signOut(auth);
   };
 
-  //  create useQuery to fetch data from api
-
   const { isLoading, error, data } = useQuery({
     queryFn: () =>
-      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
-  const [visible, setVisible] = useState(false);
+
+  if (loading || isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="hidden lg:block shadow-2xl px-6  w-[220px] ">

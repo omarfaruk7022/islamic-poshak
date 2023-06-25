@@ -49,13 +49,16 @@ export default function EditModal({ id, visible, setVisible, refetch }) {
             status &&
             addedBy
           ) {
-            fetch(`https://bmw-server.onrender.com/api/product/${id}`, {
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            }).then((res) => {
+            fetch(
+              `https://easy-plum-caridea-tie.cyclic.app/api/product/${id}`,
+              {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              }
+            ).then((res) => {
               if (res.ok) {
                 refetch();
                 swal("Yayy", "Product Updated Successfully", "success");

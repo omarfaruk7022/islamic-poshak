@@ -21,17 +21,17 @@ export default function ManageProduct() {
   const productsQuery = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("https://bmw-server.onrender.com/api/product").then((res) =>
-        res.json()
+      fetch("https://easy-plum-caridea-tie.cyclic.app/api/product").then(
+        (res) => res.json()
       ),
   });
 
   const usersQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`https://bmw-server.onrender.com/api/users/email/${email}`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
 
   const products = productsQuery.data;
@@ -58,7 +58,7 @@ export default function ManageProduct() {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`https://bmw-server.onrender.com/api/product/${id}`, {
+        fetch(`https://easy-plum-caridea-tie.cyclic.app/api/product/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -78,7 +78,7 @@ export default function ManageProduct() {
     <div>
       {userIsAdmin?.data[0]?.role === "admin" && userIsAdmin !== undefined ? (
         <>
-          <div className="overflow-x-auto  p-5">
+          <div className="overflow-x-auto   p-5">
             <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm">
               <thead className="ltr:text-left rtl:text-right">
                 <tr className="">
