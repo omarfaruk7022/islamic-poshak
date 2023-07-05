@@ -2,4 +2,4 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 
 
-The website link is [https://bmw-theta.vercel.app/]
+The website link is [BMW](https://bmw-theta.vercel.app/)
