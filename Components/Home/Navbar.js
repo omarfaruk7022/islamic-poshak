@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/logo-light.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,18 +6,41 @@ import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import ThemeToggler from "../Dashboard/ThemeToggler";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Common/Loading";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
-
+  const email = user?.email;
   const handleSignOut = () => {
     signOut(auth);
   };
+
+  const usersQuery = useQuery({
+    queryKey: ["users"],
+    queryFn: () =>
+      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
+        res.json()
+      ),
+  });
+  const refetch = () => {
+    usersQuery.refetch();
+  };
+  const userInfo = usersQuery.data?.data[0];
+  useEffect(() => {
+    if (!userInfo) {
+      refetch();
+    }
+  });
+
   return (
     <div>
       <div>
-        <header aria-label="Site Header" className="w-full absolute">
-          <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
+        <header
+          aria-label="Site Header  "
+          className="w-full bg-white shadow-lg dark:bg-[#001C30] fixed top-0 left-0 right-0 "
+        >
+          <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8  ">
             <div className="flex items-center gap-4 ">
               <button type="button" className="p-2 lg:hidden">
                 <svg
@@ -41,10 +64,10 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <div className="flex flex-1 items-center justify-end gap-8">
+            <div className="flex flex-1 items-center justify-end gap-8 ">
               <nav
                 aria-label="Site Nav"
-                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700"
+                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700 dark:text-gray-300"
               >
                 <Link
                   href="/"
@@ -83,8 +106,83 @@ export default function Navbar() {
                   </Link>
                 )}
 
-                <div className="flex ">
-                  <ThemeToggler />
+                <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
+                  <div class="flex gap-4">
+                    <p
+                      
+                      class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400"
+                    >
+                      <ThemeToggler />
+                    </p>
+                    <Link
+                      href="#"
+                      class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400"
+                    >
+                      <span class="sr-only">Academy</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                        <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
+                        />
+                      </svg>
+                    </Link>
+
+                    <Link
+                      href="#"
+                      class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400"
+                    >
+                      <span class="sr-only">Notifications</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+
+                  {user && (
+                    <>
+                      <button
+                        type="button"
+                        class="group flex shrink-0 items-center rounded-lg transition"
+                      >
+                        <Image
+                          alt="profile"
+                          width={40}
+                          height={30}
+                          src={userInfo?.profilePhoto}
+                          class="h-10 w-10 rounded-full object-cover"
+                        />
+
+                        <p class="ms-2 hidden text-left text-xs sm:block">
+                          <strong class="block font-medium">
+                            {userInfo?.username}
+                          </strong>
+
+                          <span class="text-gray-500">{email}</span>
+                        </p>
+                      </button>
+                    </>
+                  )}
                 </div>
               </nav>
             </div>

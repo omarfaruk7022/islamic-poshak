@@ -6,23 +6,23 @@ export default function ProductsCard(product) {
   const { _id, name, image, price } = product.product;
 
   return (
-    <div className="m-auto">
-      <Link href={`/products/${_id}`} className="relative block group">
+    <div className="m-auto bg-[#001C30] dark:bg-gray-200">
+      <Link href={`/products/${_id}`} className=" block group">
         <Image
           width={350}
           priority
           height={350}
           src={image}
           alt="Product Image"
-          className="h-[250px] w-full object-cover transition duration-500 group-hover:opacity-90 sm:h-[450px]"
+          className="h-[250px] w-full object-cover  "
         />
 
-        <div className="absolute inset-0 flex flex-col items-start justify-end p-6">
-          <h3 className="text-xl font-medium text-white">{name}</h3>
+        <div className=" inset-0 flex flex-col items-start justify-end p-6 ">
+          <h3 className="text-xl font-medium text-white dark:text-black">{name}</h3>
 
-          <p className="mt-1.5 max-w-[40ch] text-xs text-white">{price}</p>
+          <p className="mt-1.5 max-w-[40ch] text-xs text-white dark:text-black">{price}</p>
 
-          <span className="inline-block px-5 py-3 mt-3 text-xs font-medium tracking-wide text-white uppercase bg-black">
+          <span className="inline-block px-4 py-2 mt-2 text-xs font-medium text-black dark:text-white uppercase bg-white dark:bg-black">
             Shop Now
           </span>
         </div>

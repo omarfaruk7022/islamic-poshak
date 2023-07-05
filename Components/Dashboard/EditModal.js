@@ -49,16 +49,13 @@ export default function EditModal({ id, visible, setVisible, refetch }) {
             status &&
             addedBy
           ) {
-            fetch(
-              `https://easy-plum-caridea-tie.cyclic.app/api/product/${id}`,
-              {
-                method: "PUT",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-              }
-            ).then((res) => {
+            fetch(`http://localhost:5000/api/product/${id}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }).then((res) => {
               if (res.ok) {
                 refetch();
                 swal("Yayy", "Product Updated Successfully", "success");

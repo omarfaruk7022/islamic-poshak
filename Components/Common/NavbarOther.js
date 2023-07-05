@@ -24,7 +24,7 @@ export default function NavbarOther() {
           aria-label="Site Header"
           className="w-full  shadow-lg dark:shadow-2xl  "
         >
-          <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
+          <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
               <Link href="/">
                 <Image src={logo} width={50} alt="logo"></Image>
