@@ -18,15 +18,17 @@ export default function AllUsers() {
   const usersQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/users").then((res) => res.json()),
+      fetch("https://easy-plum-caridea-tie.cyclic.app/api/users").then((res) =>
+        res.json()
+      ),
   });
 
   const isUserAdminQuery = useQuery({
     queryKey: ["isUserAdmin"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
 
   const users = usersQuery.data;
@@ -51,7 +53,7 @@ export default function AllUsers() {
   }
 
   const handleAdmin = (id) => {
-    fetch(`http://localhost:5000/api/users/${id}`, {
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/users/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ role: "admin" }),
@@ -66,7 +68,7 @@ export default function AllUsers() {
   };
 
   const handleRemoveAdmin = (id) => {
-    fetch(`http://localhost:5000/api/users/${id}`, {
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/users/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ role: "Normal user" }),

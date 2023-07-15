@@ -14,7 +14,7 @@ export default function productDetails() {
   const [product, setProduct] = useState();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    fetch(`http://localhost:5000/api/product/${id}`)
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/product/${id}`)
       .then((res) => res.json())
       .then((json) => setProduct(json));
   }, [id]);

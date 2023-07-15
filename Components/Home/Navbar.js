@@ -19,9 +19,9 @@ export default function Navbar() {
   const usersQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
   const refetch = () => {
     usersQuery.refetch();
@@ -108,10 +108,7 @@ export default function Navbar() {
 
                 <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
                   <div class="flex gap-4">
-                    <p
-                      
-                      class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400"
-                    >
+                    <p class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400">
                       <ThemeToggler />
                     </p>
                     <Link
