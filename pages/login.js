@@ -11,10 +11,28 @@ export default function Login() {
     useSignInWithEmailAndPassword(auth);
   let signInError;
 
-  const handleSubmit = (e) => {
+  const handleAdminSubmit = (e) => {
     e.preventDefault();
-    const password = e.target.password.value;
-    const email = e.target.email.value;
+    const password = "123456";
+    const email = "super-admin@gmail.com";
+    if (!password || !email) {
+      swal("Oops", "Email or Password Must Not Be Empty", "error");
+      return;
+    } else if (password.length < 6) {
+      swal("Oops", "Password Must Be 6 Characters", "error");
+      return;
+    }
+    if (!email.includes("@")) {
+      swal("Oops", "Email Must Be Valid", "error");
+      return;
+    } else {
+      signInWithEmailAndPassword(email, password);
+    }
+  };
+  const handleUserSubmit = (e) => {
+    e.preventDefault();
+    const password = "123456";
+    const email = "omar@gmail.com";
     if (!password || !email) {
       swal("Oops", "Email or Password Must Not Be Empty", "error");
       return;
@@ -35,7 +53,6 @@ export default function Login() {
 
   if (error) {
     swal("Oops", "Email or Password May Incorrect", "error");
-    
   } else if (user) {
     window.history.back();
     swal("Yayy", "Login Successfully Completed", "success");
@@ -53,16 +70,17 @@ export default function Login() {
           </h1>
 
           <p className="mx-auto mt-4 max-w-md text-center text-gray-500">
-            Welcome Back To <span className="text-green-400 font-bold">BMW Family</span>
+            Welcome Back To{" "}
+            <span className="text-green-400 font-bold">BMW Family</span>
           </p>
 
           <form
-            onSubmit={handleSubmit}
+            onSubmit={handleAdminSubmit}
             action=""
             className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
           >
             <p className="text-center text-lg font-medium">
-             Login to your account
+              Login to your account
             </p>
 
             {signInError}
@@ -73,7 +91,7 @@ export default function Login() {
 
               <div className="relative">
                 <input
-                required
+                  // required
                   type="email"
                   name="email"
                   className="w-full rounded-lg border-gray-200 text-black p-4 pe-12 text-sm shadow-sm outline-none"
@@ -106,7 +124,7 @@ export default function Login() {
 
               <div className="relative">
                 <input
-                required
+                  // required
                   name="password"
                   type="password"
                   className="w-full rounded-lg text-black border-gray-200 p-4 pe-12 text-sm shadow-sm  outline-none"
@@ -114,12 +132,19 @@ export default function Login() {
                 />
               </div>
             </div>
-            <div>
+            <div className="flex justify-between gap-4">
               <input
                 type="submit"
-                value="Login"
+                value="Admin Login"
                 className="block w-full rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white cursor-pointer hover:bg-green-700"
               />
+
+              <button
+                onClick={handleUserSubmit}
+                className="block w-full rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white cursor-pointer hover:bg-green-700"
+              >
+                User Login
+              </button>
             </div>
 
             <p className="text-center text-sm text-gray-500">

@@ -26,10 +26,8 @@ export default function Signup() {
     };
     if (!password || !email) {
       swal("Oops", "Email or Password Must Not Be Empty", "error");
-   
     } else if (password.length < 6) {
       swal("Oops", "Password Must Be 6 Characters", "error");
-     
     }
     if (!email.includes("@")) {
       swal("Oops", "Email Must Be Valid", "error");
@@ -37,13 +35,16 @@ export default function Signup() {
       if (error) {
         swal("Error", error.message, "error");
       } else {
-        fetch(`https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userSignupData),
-        })
+        fetch(
+          `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userSignupData),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data) {
@@ -77,7 +78,7 @@ export default function Signup() {
               className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
             >
               <p className="text-center text-lg font-medium">
-                Sign Up to your account
+                You can Sign Up as a <span className="text-green-400"> Normal User</span>
               </p>
 
               <div>
