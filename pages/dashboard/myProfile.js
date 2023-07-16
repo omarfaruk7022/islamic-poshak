@@ -32,9 +32,8 @@ export default function MyProfile() {
       {user && userInfo ? (
         <>
           <div className="h-[500px]">
-            <div className="bg-white shadow-xl p-5 m-5 rounded-md">
-              <p>{userInfo?.data[0]?.email}</p>
-              <p>{userInfo?.data[0]?.role}</p>
+            <div className="bg-white dark:bg-black shadow-xl p-5 m-5 rounded-md">
+              <p>Under maintenance</p>
             </div>
           </div>
         </>
