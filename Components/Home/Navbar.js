@@ -8,9 +8,14 @@ import { signOut } from "firebase/auth";
 import ThemeToggler from "../Dashboard/ThemeToggler";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../Common/Loading";
+import { Sidebar } from "primereact/sidebar";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import Cart from "./Cart";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
+  const [visibleRight, setVisibleRight] = useState(false);
+
   const email = user?.email;
   const handleSignOut = () => {
     signOut(auth);
@@ -133,31 +138,29 @@ export default function Navbar() {
                         />
                       </svg>
                     </Link>
-
-                    <Link
-                      href="#"
-                      class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400"
-                    >
-                      <span class="sr-only">Notifications</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-5 w-5"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                        />
-                      </svg>
-                    </Link>
                   </div>
 
                   {user && (
                     <>
+                      <div className=" ">
+                        <button
+                          icon="pi pi-arrow-left"
+                          className="bg-white  transition-all p-2 rounded-md shadow-md"
+                          onClick={() => setVisibleRight(true)}
+
+                        >
+                          <AiOutlineShoppingCart className="text-[20px] " />
+                        </button>
+                      </div>
+                      <div>
+                        <Sidebar
+                          position="right"
+                          visible={visibleRight}
+                          onHide={() => setVisibleRight(false)}
+                        >
+                          <Cart />
+                        </Sidebar>
+                      </div>
                       <button
                         type="button"
                         class="group flex shrink-0 items-center rounded-lg transition"

@@ -8,10 +8,12 @@ import { signOut } from "firebase/auth";
 import { Sidebar } from "primereact/sidebar";
 import MobileMenu from "../Dashboard/MobileMenu";
 import ThemeToggler from "../Dashboard/ThemeToggler";
+import Cart from "../Home/Cart";
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
   const [visible, setVisible] = useState(false);
+  const [visibleRight, setVisibleRight] = useState(false);
 
   const handleSignOut = () => {
     signOut(auth);
@@ -83,6 +85,7 @@ export default function NavbarOther() {
                   </Sidebar>
                 </div>
               </nav>
+              
               <div className="lg:hidden md:block">
                 <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
                   <svg
@@ -102,6 +105,7 @@ export default function NavbarOther() {
                   </svg>
                 </p>
               </div>
+              
             </div>
           </div>
         </header>

@@ -68,6 +68,7 @@ export default function ManageProduct() {
             } else {
               swal("Yayy", "Product Delete Successfully Completed", "success");
               refetch();
+              
             }
           });
       }
@@ -88,9 +89,7 @@ export default function ManageProduct() {
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                     Name
                   </th>
-                  <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
-                    Description
-                  </th>
+
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                     Price
                   </th>
@@ -126,9 +125,7 @@ export default function ManageProduct() {
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
                         {product?.name}
                       </td>
-                      <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
-                        {product?.description}
-                      </td>
+
                       <td className="whitespace-nowrap px-4 py-2 text-gray-700 dark:text-gray-200">
                         {product?.price}
                       </td>
