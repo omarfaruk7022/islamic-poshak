@@ -9,6 +9,7 @@ import { Sidebar } from "primereact/sidebar";
 import MobileMenu from "../Dashboard/MobileMenu";
 import ThemeToggler from "../Dashboard/ThemeToggler";
 import Cart from "../Home/Cart";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
@@ -33,7 +34,7 @@ export default function NavbarOther() {
               </Link>
             </div>
 
-            <div className="flex flex-1 items-center justify-end gap-8">
+            <div className="flex flex-1 items-center justify-end ">
               <nav
                 aria-label="Site Nav"
                 className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide  "
@@ -75,7 +76,7 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-                <div className="flex ">
+                <div className=" m-auto bg-white dark:bg-black rounded-md">
                   <ThemeToggler />
                 </div>
 
@@ -85,7 +86,7 @@ export default function NavbarOther() {
                   </Sidebar>
                 </div>
               </nav>
-              
+
               <div className="lg:hidden md:block">
                 <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
                   <svg
@@ -105,7 +106,24 @@ export default function NavbarOther() {
                   </svg>
                 </p>
               </div>
-              
+              <div className=" ">
+                <button
+                  icon="pi pi-arrow-left"
+                  className="bg-white dark:bg-black  transition-all p-2 rounded-md shadow-md"
+                  onClick={() => setVisibleRight(true)}
+                >
+                  <AiOutlineShoppingCart className="text-[20px] " />
+                </button>
+              </div>
+              <div>
+                <Sidebar
+                  position="right"
+                  visible={visibleRight}
+                  onHide={() => setVisibleRight(false)}
+                >
+                  <Cart />
+                </Sidebar>
+              </div>
             </div>
           </div>
         </header>

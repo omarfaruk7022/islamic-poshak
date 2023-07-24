@@ -15,7 +15,7 @@ import { RiAccountPinCircleFill } from "react-icons/ri";
 import { MdManageAccounts } from "react-icons/md";
 import { MdSpaceDashboard } from "react-icons/md";
 import { MdSecurity } from "react-icons/md";
-import { HiOutlineLogout } from "react-icons/hi";
+import { HiOutlineLogout, HiShoppingBag } from "react-icons/hi";
 
 export default function SideMenu() {
   const [user, loading] = useAuthState(auth);
@@ -69,6 +69,13 @@ export default function SideMenu() {
                 >
                   <FaUsers className="text-[20px]" />
                   <span className="text-sm font-medium"> All Users </span>
+                </Link>
+                <Link
+                  href="/dashboard/allOrders"
+                  className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
+                >
+                  <HiShoppingBag className="text-[20px]" />
+                  <span className="text-sm font-medium"> All Orders </span>
                 </Link>
               </>
             )}

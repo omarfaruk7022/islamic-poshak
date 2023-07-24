@@ -113,9 +113,10 @@ export default function Navbar() {
 
                 <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
                   <div class="flex gap-4">
-                    <p class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400">
+                    <div className="bg-white dark:bg-[#263449] hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 m-auto dark:rounded-md">
                       <ThemeToggler />
-                    </p>
+                    </div>
+
                     <Link
                       href="#"
                       class="block shrink-0 rounded-lg  p-2.5 text-gray-600 shadow-sm hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400"
@@ -145,9 +146,8 @@ export default function Navbar() {
                       <div className=" ">
                         <button
                           icon="pi pi-arrow-left"
-                          className="bg-white  transition-all p-2 rounded-md shadow-md"
+                          className="bg-white dark:bg-[#263449] transition-all p-2 rounded-md shadow-md"
                           onClick={() => setVisibleRight(true)}
-
                         >
                           <AiOutlineShoppingCart className="text-[20px] " />
                         </button>

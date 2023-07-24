@@ -1,6 +1,8 @@
 import Loading from "@/Components/Common/Loading";
 import NavbarOther from "@/Components/Common/NavbarOther";
 import auth from "@/firebase.init";
+import { useQuery } from "@tanstack/react-query";
+import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -9,7 +11,8 @@ import swal from "sweetalert";
 
 export default function productDetails() {
   const date = new Date();
-  const time = date.toLocaleString();
+  const formattedDate = format(date, "PP");
+  const formattedDate2 = format(date, "p");
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
@@ -22,6 +25,7 @@ export default function productDetails() {
       .then((res) => res.json())
       .then((json) => setProduct(json));
   }, [id]);
+  console.log(product?.data);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [user, loading] = useAuthState(auth);
   if (loading) {
@@ -35,7 +39,8 @@ export default function productDetails() {
 
     const data = {
       productId: product?.data?._id,
-      orderDate: time,
+      orderDate: formattedDate,
+      orderTime: formattedDate2,
       name: product?.data?.name,
       price: product?.data?.price,
       image: product?.data?.image,
@@ -43,8 +48,15 @@ export default function productDetails() {
       deliveryAddress: e.target.address.value,
       email: user?.email,
     };
-    console.log(data);
-    fetch("http://localhost:5000/api/cart", {
+    if (data.quantity <= 0) {
+      swal("Error!", "Quantity must be greater than 0!", "error");
+      return;
+    }
+    if (data.deliveryAddress === "") {
+      swal("Error!", "Delivery Address is required!", "error");
+      return;
+    }
+    fetch("https://easy-plum-caridea-tie.cyclic.app/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -194,7 +206,9 @@ export default function productDetails() {
 
                   <div class="mt-4">
                     <div class="prose max-w-none">
-                      <p className="text-sm">{product?.data?.description}</p>
+                      <p className="text-sm text-black dark:text-gray-300">
+                        {product?.data?.description}
+                      </p>
                     </div>
 
                     <button class="mt-2 text-sm font-medium underline">
@@ -259,14 +273,14 @@ export default function productDetails() {
                           min="1"
                           defaultValue="1"
                           placeholder="Qty"
-                          class="w-12 rounded border-gray-200 py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                          class="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                         />
 
                         <input
                           type="text"
                           name="address"
                           placeholder="Delivery Address"
-                          className="inline-block w-96 rounded border-gray-200 py-3 text-center text-xs focus:outline-none focus:ring-0 "
+                          className="inline-block w-96 rounded  py-3 text-center text-xs focus:outline-none focus:ring-0 text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black"
                         />
                         <input
                           type="submit"

@@ -1,7 +1,7 @@
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
-import {MdOutlineDarkMode} from "react-icons/md";
-import {MdOutlineLightMode} from "react-icons/md";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { MdOutlineLightMode } from "react-icons/md";
 
 const ThemeToggler = () => {
   const { theme, setTheme } = useTheme();
@@ -11,13 +11,12 @@ const ThemeToggler = () => {
   return (
     <>
       <span
-        className=" text-lg cursor-pointer text-black dark:text-white  rounded-md  flex items-center justify-center   transition-all duration-300 focus:outline-none"
+        className=" text-[20px] cursor-pointer  flex items-center justify-center  duration-300 focus:outline-none  m-auto  transition-all p-2 rounded-md shadow-md"
         onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         aria-label="Toggle Dark Mode"
       >
-        {theme === "light" ? <MdOutlineDarkMode/> : <MdOutlineLightMode/>}
+        {theme === "light" ? <MdOutlineDarkMode /> : <MdOutlineLightMode />}
       </span>
-      
     </>
   );
 };

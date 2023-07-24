@@ -77,7 +77,6 @@ export default function AddProduct() {
             }).then((res) => {
               if (res.ok) {
                 swal("Yayy", "Product Added Successfully", "success");
-              
               } else {
                 swal("Error", "Product Added Failed", "error");
               }

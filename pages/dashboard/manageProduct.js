@@ -16,7 +16,6 @@ export default function ManageProduct() {
   const [user] = useAuthState(auth);
   const email = user?.email;
   const router = useRouter();
-  const [userInfo, setUserInfo] = useState();
 
   const productsQuery = useQuery({
     queryKey: ["products"],
@@ -68,7 +67,6 @@ export default function ManageProduct() {
             } else {
               swal("Yayy", "Product Delete Successfully Completed", "success");
               refetch();
-              
             }
           });
       }
