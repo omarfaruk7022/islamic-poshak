@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import swal from "sweetalert";
+import cross from "../../assets/images/close.png";
 
 export default function AllOrders() {
   const router = useRouter();
