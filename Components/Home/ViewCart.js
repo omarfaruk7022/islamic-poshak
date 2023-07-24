@@ -154,7 +154,14 @@ export default function ViewCart() {
                         ) : (
                           <>
                             Your order is{" "}
-                            <span className="text-green-400">
+                            <span
+                              class={`${
+                                product?.orderStatus === "Confirmed" ||
+                                product?.orderStatus === "Delivered"
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }`}
+                            >
                               {product?.orderStatus}
                             </span>
                           </>

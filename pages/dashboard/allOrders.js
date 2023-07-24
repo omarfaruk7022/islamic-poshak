@@ -29,12 +29,13 @@ export default function AllOrders() {
       ).then((res) => res.json()),
   });
   const orders = ordersQuery.data;
-  console.log(orders);
+
   const userIsAdmin = isUserAdminQuery.data;
   const refetch = () => {
     isUserAdminQuery.refetch();
     ordersQuery.refetch();
   };
+
   const isLoading = isUserAdminQuery.isLoading || ordersQuery.isLoading;
 
   if (userIsAdmin?.data[0]?.role !== "admin" && userIsAdmin !== undefined) {
@@ -93,6 +94,9 @@ export default function AllOrders() {
                     Quantity
                   </th>
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
+                    Ordered by
+                  </th>
+                  <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
                     Delivery Address
                   </th>
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
@@ -128,6 +132,9 @@ export default function AllOrders() {
                         {order?.quantity}
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
+                        {order?.email}
+                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
                         {order?.deliveryAddress}
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
@@ -144,7 +151,7 @@ export default function AllOrders() {
                                 handleStatus(e, order?._id, e.target.value)
                               }
                               name="status"
-                              className="select select-bordered rounded-md bg-white dark:bg-black outline-none focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-green-700 focus:border-transparent "
+                              className="text-[13px] rounded-md w-28 h-10 bg-white dark:bg-black outline-none focus:outline-none focus:ring-2 focus:ring-green-400 dark:focus:ring-green-700 focus:border-transparent "
                             >
                               <option
                                 className="text-black dark:text-white"
