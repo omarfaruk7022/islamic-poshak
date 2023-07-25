@@ -43,7 +43,7 @@ export default function Navbar() {
       <div>
         <header
           aria-label="Site Header  "
-          className="w-full bg-white shadow-lg dark:bg-[#001C30] fixed top-0 left-0 right-0 "
+          className="w-full bg-white shadow-lg dark:bg-[#001C30]  "
         >
           <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8  ">
             <div className="flex items-center gap-4 ">
