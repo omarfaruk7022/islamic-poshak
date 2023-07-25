@@ -11,7 +11,6 @@ import banner4 from "../../assets/images/banner4.jpg";
 import banner5 from "../../assets/images/banner5.jpg";
 import logo from "../../assets/images/logo.png";
 
-
 export default function Banner() {
   return (
     <div>
