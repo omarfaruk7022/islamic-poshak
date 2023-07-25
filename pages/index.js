@@ -6,10 +6,9 @@ import ProductsComp from "@/Components/Home/ProductsComp";
 import Head from "next/head";
 
 export default function Home() {
-  
   <Head>
     <title>Best Car Buying Website in This World</title>
-  </Head>
+  </Head>;
 
   return (
     <div>
