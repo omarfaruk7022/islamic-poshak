@@ -1,6 +1,5 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Pagination, Autoplay } from "swiper";
@@ -27,7 +26,7 @@ export default function Banner() {
             delay: 2500,
             disableOnInteraction: false,
           }}
-          modules={[Pagination, Navigation]}
+          modules={[Pagination, Navigation,Autoplay]}
         >
           <SwiperSlide>
             <div>
