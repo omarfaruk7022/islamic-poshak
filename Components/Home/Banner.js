@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import Image from "next/image";
-import banner1 from "../../assets/images/banner1.jpg";
+import banner1 from "../../assets/images/Banner1.jpg";
 import banner2 from "../../assets/images/banner2.jpg";
 import banner3 from "../../assets/images/banner3.jpg";
 import banner4 from "../../assets/images/banner4.jpg";
@@ -26,7 +26,7 @@ export default function Banner() {
             delay: 2500,
             disableOnInteraction: false,
           }}
-          modules={[Pagination, Navigation,Autoplay]}
+          modules={[Pagination, Navigation, Autoplay]}
         >
           <SwiperSlide>
             <div>
