@@ -4,7 +4,7 @@ export default function Banner() {
   return (
     <div>
       <div>
-        <section className="bg-[url(https://i.ibb.co/S0K99V4/Banner1.jpg)] bg-cover bg-center bg-no-repeat">
+        <section className="bg-[url(https://i.ibb.co/w0WFXtx/Banner1.jpg)] bg-cover bg-center bg-no-repeat">
           <div className=" mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
             <div className="max-w-xl ltr:sm:text-left rtl:sm:text-right">
               <h1 className="text-3xl font-extrabold sm:text-5xl">

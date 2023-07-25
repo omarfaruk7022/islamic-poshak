@@ -37,7 +37,8 @@ export default function Products() {
     <div>
       <>
         <NavbarOther />
-        <div className="grid grid-cols-1 gap-3  md:grid-cols-2 lg:grid-cols-4  lg:px-24 px-0">
+        <h4 className="text-3xl text-center pt-10">All Products</h4>
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 lg:px-36 px-0">
           {data?.data.map((product) => (
             <ProductsCard key={product._id} product={product} />
           ))}

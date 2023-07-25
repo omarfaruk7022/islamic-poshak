@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/images/logo-light.svg";
+import logo from "../../assets/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -30,7 +30,7 @@ export default function NavbarOther() {
           <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
               <Link href="/">
-                <Image src={logo} width={50} alt="logo"></Image>
+                <Image src={logo} width={150} alt="logo"></Image>
               </Link>
             </div>
 

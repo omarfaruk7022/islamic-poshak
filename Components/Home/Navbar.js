@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/images/logo-light.svg";
+import logo from "../../assets/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import auth from "@/firebase.init";
@@ -65,7 +65,7 @@ export default function Navbar() {
               </button>
 
               <Link href="/">
-                <Image src={logo} width={50} alt="logo" priority></Image>
+                <Image src={logo} width={150} alt="logo" priority></Image>
               </Link>
             </div>
 
