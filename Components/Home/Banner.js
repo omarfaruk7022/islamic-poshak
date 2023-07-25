@@ -4,13 +4,12 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import Image from "next/image";
-import banner1 from "../../assets/images/Banner1.jpg";
-import banner2 from "../../assets/images/Banner2.jpg";
-import banner3 from "../../assets/images/Banner3.jpg";
-import banner4 from "../../assets/images/Banner4.jpg";
-import banner5 from "../../assets/images/Banner5.jpg";
+import banner1 from "../../assets/images/banner1.jpg";
+import banner2 from "../../assets/images/banner2.jpg";
+import banner3 from "../../assets/images/banner3.jpg";
+import banner4 from "../../assets/images/banner4.jpg";
+import banner5 from "../../assets/images/banner5.jpg";
 import logo from "../../assets/images/logo.png";
-
 
 export default function Banner() {
   return (
