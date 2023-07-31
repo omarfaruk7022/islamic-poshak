@@ -18,11 +18,11 @@ export default function App({ Component, pageProps, session }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <ThemeProvider enableSystem={true} attribute="class">
+        {/* <ThemeProvider enableSystem={true} attribute="class"> */}
           <Layout>
             <Component {...pageProps} />
           </Layout>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </Hydrate>
     </QueryClientProvider>
   );

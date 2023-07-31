@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: "bmw-car-v1",
   storageBucket: "bmw-car-v1.appspot.com",
   messagingSenderId: "982638039509",
-  appId: "1:982638039509:web:2425b96f4d60b37a2ead5c"
+  appId: "1:982638039509:web:2425b96f4d60b37a2ead5c",
 };
 
 // Initialize Firebase

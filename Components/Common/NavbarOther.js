@@ -76,9 +76,9 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-                <div className=" m-auto bg-white dark:bg-black rounded-md">
+                {/* <div className=" m-auto bg-white dark:bg-black rounded-md">
                   <ThemeToggler />
-                </div>
+                </div> */}
 
                 <div>
                   <Sidebar visible={visible} onHide={() => setVisible(false)}>

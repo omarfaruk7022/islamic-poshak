@@ -113,9 +113,9 @@ export default function Navbar() {
 
                 <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
                   <div class="flex gap-4">
-                    <div className="bg-white dark:bg-[#263449] hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 m-auto dark:rounded-md">
+                    {/* <div className="bg-white dark:bg-[#263449] hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 m-auto dark:rounded-md">
                       <ThemeToggler />
-                    </div>
+                    </div> */}
 
                     <Link
                       href="#"

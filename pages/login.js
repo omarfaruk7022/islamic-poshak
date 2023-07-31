@@ -1,5 +1,7 @@
 import Loading from "@/Components/Common/Loading";
 import auth from "@/firebase.init";
+import { getAuth, signInWithPhoneNumber } from "firebase/auth";
+
 import Link from "next/link";
 import { Router, useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
@@ -61,6 +63,7 @@ export default function Login() {
     <Loading />;
     return;
   }
+
   return (
     <div>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
