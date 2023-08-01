@@ -35,13 +35,16 @@ export default function Signup() {
       if (error) {
         swal("Error", error.message, "error");
       } else {
-        fetch(`http://localhost:5000/api/users/email/${email}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userSignupData),
-        })
+        fetch(
+          `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userSignupData),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data) {

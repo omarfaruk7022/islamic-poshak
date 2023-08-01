@@ -14,8 +14,8 @@ export default function ViewCart() {
   const cartQuery = useQuery({
     queryKey: ["cart"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/cart/${email}`).then((res) =>
-        res.json()
+      fetch(`https://easy-plum-caridea-tie.cyclic.app/api/cart/${email}`).then(
+        (res) => res.json()
       ),
   });
   const refetch = () => {
@@ -30,7 +30,7 @@ export default function ViewCart() {
   });
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/cart/${id}`, {
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/cart/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {

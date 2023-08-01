@@ -17,15 +17,17 @@ export default function AllOrders() {
   const ordersQuery = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/cart").then((res) => res.json()),
+      fetch("https://easy-plum-caridea-tie.cyclic.app/api/cart").then((res) =>
+        res.json()
+      ),
   });
 
   const isUserAdminQuery = useQuery({
     queryKey: ["isUserAdmin"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
   const orders = ordersQuery.data;
 
@@ -50,7 +52,7 @@ export default function AllOrders() {
 
   const handleStatus = (e, id, status) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/cart/${id}`, {
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/cart/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ orderStatus: status }),
@@ -63,7 +65,7 @@ export default function AllOrders() {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/cart/${id}`, {
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/cart/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

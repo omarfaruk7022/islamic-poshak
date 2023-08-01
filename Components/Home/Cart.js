@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import swal from "sweetalert";
 
 export default function Cart() {
   const [user] = useAuthState(auth);
@@ -14,8 +15,8 @@ export default function Cart() {
   const cartQuery = useQuery({
     queryKey: ["cart"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/cart/${email}`).then((res) =>
-        res.json()
+      fetch(`https://easy-plum-caridea-tie.cyclic.app/api/cart/${email}`).then(
+        (res) => res.json()
       ),
   });
   const refetch = () => {
@@ -29,20 +30,11 @@ export default function Cart() {
     }
   });
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/cart/${id}`, {
+    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/cart/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        toast.success("Product deleted successfully!", {
-          position: "top-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+        swal("Deleted!", "Your Product has been deleted!", "success");
         refetch();
       }
     });

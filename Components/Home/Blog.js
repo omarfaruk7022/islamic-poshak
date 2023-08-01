@@ -8,10 +8,10 @@ export default function Blog() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/product").then((res) => res.json()),
+      fetch("https://easy-plum-caridea-tie.cyclic.app/api/product").then(
+        (res) => res.json()
+      ),
   });
-
-
 
   return (
     <div>
@@ -52,14 +52,30 @@ export default function Blog() {
                             class="object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
                           />
 
-                          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
-                            <h3 class="text-xl font-medium text-white">
-                              Casual Trainers
-                            </h3>
+                          <div class="absolute inset-0 flex flex-col justify-end p-6">
+                            <div className="flex justify-between">
+                              <div>
+                                <h3 class="text-xl font-medium text-white">
+                                  {product.name}
+                                </h3>
 
-                            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
-                              Shop Now
-                            </span>
+                                <p>
+                                  <span class="text-lg font-medium text-white">
+                                    {product.description}
+                                  </span>
+                                </p>
+                              </div>
+                              <div>
+                                <p>
+                                  <span class="text-lg font-medium text-white">
+                                    {product.price}৳
+                                  </span>
+                                </p>
+                                <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+                                  Shop Now
+                                </span>
+                              </div>
+                            </div>
                           </div>
                         </a>
                       </li>
