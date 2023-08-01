@@ -16,9 +16,9 @@ export default function AddProduct() {
   const isUserAdminQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(
-        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
-      ).then((res) => res.json()),
+      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
+        res.json()
+      ),
   });
 
   const data = isUserAdminQuery.data;
@@ -31,6 +31,7 @@ export default function AddProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const category = e.target.category.value;
     const name = e.target.name.value;
     const description = e.target.description.value;
     const price = e.target.price.value;
@@ -51,6 +52,7 @@ export default function AddProduct() {
         if (result.success) {
           const image = result.data.url;
           const data = {
+            category,
             name,
             description,
             price,
@@ -60,6 +62,7 @@ export default function AddProduct() {
             quantity,
           };
           if (
+            category &&
             name &&
             description &&
             price &&
@@ -68,7 +71,7 @@ export default function AddProduct() {
             status &&
             addedBy
           ) {
-            fetch("https://easy-plum-caridea-tie.cyclic.app/api/product", {
+            fetch("http://localhost:5000/api/product", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -109,6 +112,22 @@ export default function AddProduct() {
               </h2>
               <form className="p-5" onSubmit={handleSubmit}>
                 <label
+                  for="category"
+                  className=" block overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 py-2 shadow-sm focus-within:ring-1 w-full lg:w-96  m-auto"
+                >
+                  <select
+                    name="category"
+                    id="category"
+                    className="text-sm border border-gray-300 p-2 dark:border-gray-200 lg:w-96 m-auto block peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent  placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  >
+                    <option default>Select Category</option>
+                    <option value="Grocery">Grocery </option>
+                    <option value="Dress">Dress</option>
+                    <option value="Medicine">Medicine</option>
+                  </select>
+                </label>
+
+                <label
                   for="name"
                   className="relative block overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  my-2 focus-within:ring-1 w-full lg:w-96  m-auto"
                 >
@@ -121,7 +140,7 @@ export default function AddProduct() {
                   />
 
                   <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                    Name
+                    Product Name
                   </span>
                 </label>
                 <label
@@ -129,7 +148,7 @@ export default function AddProduct() {
                   className="relative block overflow-hidden rounded-md border border-gray-300  dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
                 >
                   <input
-                    type="name"
+                    type="text"
                     id="description"
                     placeholder="Description"
                     required
@@ -137,7 +156,7 @@ export default function AddProduct() {
                   />
 
                   <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                    Description
+                    Product Description
                   </span>
                 </label>
                 <label
@@ -153,7 +172,7 @@ export default function AddProduct() {
                   />
 
                   <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700  dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                    Price
+                    Product Price per unit
                   </span>
                 </label>
                 <label
@@ -169,7 +188,7 @@ export default function AddProduct() {
                   />
 
                   <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                    Quantity
+                    Available Quantity
                   </span>
                 </label>
                 <label
@@ -185,7 +204,7 @@ export default function AddProduct() {
                   />
 
                   <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
-                    Status
+                    Product Status
                   </span>
                 </label>
 

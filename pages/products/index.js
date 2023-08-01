@@ -7,6 +7,7 @@ import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "@/Components/Common/Loading";
 import { useRouter } from "next/router";
+import Footer from "@/Components/Common/Footer";
 
 // export async function getStaticProps() {
 //   const products = await loadProducts();
@@ -24,9 +25,7 @@ export default function Products() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("https://easy-plum-caridea-tie.cyclic.app/api/product").then(
-        (res) => res.json()
-      ),
+      fetch("http://localhost:5000/api/product").then((res) => res.json()),
   });
 
   if (loading) {
@@ -44,6 +43,7 @@ export default function Products() {
           ))}
         </div>
       </>
+      <Footer />
     </div>
   );
 }

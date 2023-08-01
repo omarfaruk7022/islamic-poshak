@@ -21,6 +21,7 @@ export default function App({ Component, pageProps, session }) {
         {/* <ThemeProvider enableSystem={true} attribute="class"> */}
           <Layout>
             <Component {...pageProps} />
+            
           </Layout>
         {/* </ThemeProvider> */}
       </Hydrate>

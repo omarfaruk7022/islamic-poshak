@@ -1,119 +1,75 @@
-import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
+import Loading from "../Common/Loading";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Blog() {
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      fetch("http://localhost:5000/api/product").then((res) => res.json()),
+  });
+
+
+
   return (
     <div>
-      <div className="bg-[url(https://i.ibb.co/VggrXmq/hero-pattern-opacity.png)] bg-cover bg-center bg-no-repeat ">
-        <div className=" grid grid-cols-12 mx-auto ">
-          <div className="flex flex-col justify-center col-span-12 align-middle bg-no-repeat bg-cover  lg:col-span-6 lg:h-auto">
-            <div className="flex flex-col items-center p-8 py-12 text-center">
-              <span>12 June</span>
-              <h1 className="py-4 text-5xl font-bold">
-                Lorem, ipsum dolor sit amet consectetur adipisicing.
+      <section>
+        <div class=" px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
+          <header class="text-center">
+            <h4 className="text-3xl text-center pt-10">
+              Our Fashion <span className="text-green-500">Collections</span>
+            </h4>
+
+            <p class="max-w-md mx-auto mt-4 text-gray-500">
+              We have worlds best cotton and woolen clothes for you. We have all
+              the latest fashion collection for you.
+            </p>
+          </header>
+
+          <ul class="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-4">
+            {isLoading ? (
+              <h1>
+                <Loading />
               </h1>
-              <p className="pb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
-              </p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-7 h-7"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </div>
-          <div className="flex flex-col col-span-12 p-6 divide-y lg:col-span-6 lg:p-10 divide-gray-700">
-            <div className="pt-6 pb-4 space-y-2">
-              <span>12 June</span>
-              <h1 className="text-3xl font-bold ">Lorem ipsum dolor sit.</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
-              </p>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm   text-violet-400"
-              >
-                <span>Read more</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-            <div className="pt-6 pb-4 space-y-2">
-              <span>12 June</span>
-              <h1 className="text-3xl font-bold">Lorem ipsum dolor sit.</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
-              </p>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm   text-violet-400"
-              >
-                <span>Read more</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-            <div className="pt-6 pb-4 space-y-2">
-              <span>12 June</span>
-              <h1 className="text-3xl font-bold">Lorem ipsum dolor sit.</h1>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas,
-                a!
-              </p>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="inline-flex items-center py-2 space-x-2 text-sm   text-violet-400"
-              >
-                <span>Read more</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-              </a>
-            </div>
-          </div>
+            ) : error ? (
+              <h1>{error}</h1>
+            ) : (
+              data?.data
+                .filter((product) => product.category === "Dress")
+                ?.slice(0, 8)
+                .map((product) => (
+                  <>
+                    <Link href={`/products/${product._id}`}>
+                      <li>
+                        <a href="#" class="relative block group">
+                          <Image
+                            src={product.image}
+                            width={350}
+                            height={350}
+                            alt=""
+                            class="object-cover w-full transition duration-500 aspect-square group-hover:opacity-90"
+                          />
+
+                          <div class="absolute inset-0 flex flex-col items-start justify-end p-6">
+                            <h3 class="text-xl font-medium text-white">
+                              Casual Trainers
+                            </h3>
+
+                            <span class="mt-1.5 inline-block bg-black px-5 py-3 text-xs font-medium uppercase tracking-wide text-white">
+                              Shop Now
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                    </Link>
+                  </>
+                ))
+            )}
+          </ul>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

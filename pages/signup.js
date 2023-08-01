@@ -35,16 +35,13 @@ export default function Signup() {
       if (error) {
         swal("Error", error.message, "error");
       } else {
-        fetch(
-          `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`,
-          {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(userSignupData),
-          }
-        )
+        fetch(`http://localhost:5000/api/users/email/${email}`, {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userSignupData),
+        })
           .then((res) => res.json())
           .then((data) => {
             if (data) {
@@ -78,7 +75,8 @@ export default function Signup() {
               className="mb-0 mt-6 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8"
             >
               <p className="text-center text-lg font-medium">
-                You can Sign Up as a <span className="text-green-400"> Normal User</span>
+                You can Sign Up as a{" "}
+                <span className="text-green-400"> Normal User</span>
               </p>
 
               <div>

@@ -28,9 +28,9 @@ export default function SideMenu() {
 
   const { isLoading, error, data } = useQuery({
     queryFn: () =>
-      fetch(
-        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
-      ).then((res) => res.json()),
+      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
+        res.json()
+      ),
   });
 
   return (

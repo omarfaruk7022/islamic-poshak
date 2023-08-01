@@ -21,11 +21,11 @@ export default function productDetails() {
   const [product, setProduct] = useState();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/product/${id}`)
+    fetch(`http://localhost:5000/api/product/${id}`)
       .then((res) => res.json())
       .then((json) => setProduct(json));
   }, [id]);
-  console.log(product?.data);
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [user, loading] = useAuthState(auth);
   if (loading) {
@@ -41,6 +41,7 @@ export default function productDetails() {
       productId: product?.data?._id,
       orderDate: formattedDate,
       orderTime: formattedDate2,
+      category: product?.data?.category,
       name: product?.data?.name,
       price: product?.data?.price,
       image: product?.data?.image,
@@ -56,7 +57,7 @@ export default function productDetails() {
       swal("Error!", "Delivery Address is required!", "error");
       return;
     }
-    fetch("https://easy-plum-caridea-tie.cyclic.app/api/cart", {
+    fetch("http://localhost:5000/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -151,6 +152,9 @@ export default function productDetails() {
                     <div class="max-w-[35ch] space-y-2">
                       <h1 class="text-xl font-bold sm:text-2xl">
                         {product?.data?.name}
+                      </h1>
+                      <h1 class="text-xl font-bold sm:text-2xl">
+                        Category: {product?.data?.category}
                       </h1>
 
                       <div class="-ms-0.5 flex">
