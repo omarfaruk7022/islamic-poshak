@@ -1,6 +1,6 @@
 import Footer from "@/Components/Common/Footer";
 import Banner from "@/Components/Home/Banner";
-import Blog from "@/Components/Home/Blog";
+import Blog from "@/Components/Home/Fashions";
 import Navbar from "@/Components/Home/Navbar";
 import ProductsComp from "@/Components/Home/ProductsComp";
 import Head from "next/head";

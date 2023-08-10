@@ -17,7 +17,7 @@ export default function ProductsCard(product) {
           height={350}
           src={image}
           alt="Product Image"
-          className="  h-[210px] rounded-md p-3 m-auto"
+          className="h-[210px] rounded-md p-3 m-auto"
         />
 
         <div className="flex justify-between pt-3 px-2">
