@@ -10,11 +10,13 @@ import MobileMenu from "../Dashboard/MobileMenu";
 import ThemeToggler from "../Dashboard/ThemeToggler";
 import Cart from "../Home/Cart";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import MobileNav from "../Home/MobileNav";
 
 export default function NavbarOther() {
   const [user] = useAuthState(auth);
   const [visible, setVisible] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
+  const [visibleNav, setVisibleNav] = useState(false);
 
   const handleSignOut = () => {
     signOut(auth);
@@ -29,8 +31,38 @@ export default function NavbarOther() {
         >
           <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
             <div className="flex items-center gap-4 ">
+              <button
+                type="button"
+                className="p-2 lg:hidden"
+                onClick={() => setVisibleNav(true)}
+              >
+                <svg
+                  className="h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+              <div>
+                <Sidebar
+                  position="left"
+                  visible={visibleNav}
+                  onHide={() => setVisibleNav(false)}
+                >
+                  <MobileNav />
+                </Sidebar>
+              </div>
+
               <Link href="/">
-                <Image src={logo} width={150} alt="logo"></Image>
+                <Image src={logo} width={150} alt="logo" priority></Image>
               </Link>
             </div>
 
@@ -81,31 +113,16 @@ export default function NavbarOther() {
                 </div> */}
 
                 <div>
-                  <Sidebar visible={visible} onHide={() => setVisible(false)}>
-                    <MobileMenu />
+                  <Sidebar
+                    position="left"
+                    visible={visibleNav}
+                    onHide={() => setVisibleNav(false)}
+                  >
+                    <MobileNav />
                   </Sidebar>
                 </div>
               </nav>
 
-              <div className="lg:hidden md:block">
-                <p icon="pi pi-arrow-right " onClick={() => setVisible(true)}>
-                  <svg
-                    aria-hidden="true"
-                    className="h-5 w-5 text-black dark:text-gray-100"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 6h16M4 12h16M4 18h16"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                    />
-                  </svg>
-                </p>
-              </div>
               <div className=" ">
                 <button
                   icon="pi pi-arrow-left"

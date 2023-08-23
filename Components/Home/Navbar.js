@@ -11,10 +11,12 @@ import Loading from "../Common/Loading";
 import { Sidebar } from "primereact/sidebar";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import Cart from "./Cart";
+import MobileNav from "./MobileNav";
 
 export default function Navbar() {
   const [user] = useAuthState(auth);
   const [visibleRight, setVisibleRight] = useState(false);
+  const [visibleNav, setVisibleNav] = useState(false);
 
   const email = user?.email;
   const handleSignOut = () => {
@@ -47,7 +49,11 @@ export default function Navbar() {
         >
           <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8  ">
             <div className="flex items-center gap-4 ">
-              <button type="button" className="p-2 lg:hidden">
+              <button
+                type="button"
+                className="p-2 lg:hidden"
+                onClick={() => setVisibleNav(true)}
+              >
                 <svg
                   className="h-6 w-6"
                   xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +69,15 @@ export default function Navbar() {
                   />
                 </svg>
               </button>
+              <div>
+                <Sidebar
+                  position="left"
+                  visible={visibleNav}
+                  onHide={() => setVisibleNav(false)}
+                >
+                  <MobileNav />
+                </Sidebar>
+              </div>
 
               <Link href="/">
                 <Image src={logo} width={150} alt="logo" priority></Image>

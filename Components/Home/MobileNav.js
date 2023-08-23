@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import logo from "../../assets/images/logo-light.svg";
+import logo from "../../assets/images//logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import auth from "@/firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
 import ThemeToggler from "../Dashboard/ThemeToggler";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { HiOutlineLogout } from "react-icons/hi";
 
 export default function MobileNav() {
   const [user] = useAuthState(auth);
@@ -17,75 +19,88 @@ export default function MobileNav() {
     <div>
       <div>
         <header aria-label="Site Header" className="w-full absolute">
-          <div className="mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
-            <div className="flex items-center gap-4 ">
-              <button type="button" className="p-2 lg:hidden">
-                <svg
-                  className="h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-
-              <Link href="/">
-                <Image src={logo} width={50} alt="logo" priority></Image>
-              </Link>
-            </div>
-
-            <div className="flex flex-1 items-center justify-end gap-8">
+          <div className="mx-auto flex h-16 max-w-screen-2xl items-center sm:px-6 lg:px-8 ">
+            <div className="">
               <nav
-                aria-label="Site Nav"
-                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700"
+                aria-label="Main Nav"
+                className="mt-6 flex flex-col space-y-1"
               >
+                <div>
+                  <Link href="/" className="">
+                    <Image src={logo} width={150} alt="logo" priority></Image>
+                  </Link>
+                </div>
                 <Link
                   href="/"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
                 >
-                  Home
+                  <MdOutlineSpaceDashboard className="text-[20px]" />
+                  <span className="text-sm font-medium"> Home </span>
                 </Link>
+
                 <Link
                   href="/products"
-                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200"
                 >
-                  Products
-                </Link>
-                {user && (
-                  <Link
-                    href="/dashboard"
-                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 opacity-75"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
                   >
-                    Dashboard
-                  </Link>
-                )}
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                    />
+                  </svg>
+
+                  <span className="text-sm font-medium"> Products </span>
+                </Link>
+
+                <Link
+                  href="/dashboard"
+                  className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5 opacity-75"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+
+                  <span className="text-sm font-medium"> Dashboard </span>
+                </Link>
 
                 {user ? (
                   <button
                     onClick={handleSignOut}
-                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current"
+                    className="flex items-center gap-2 rounded-lg px-[19px] py-2 text-black dark:text-gray-200 text-sm font-medium"
                   >
-                    LOGOUT
+                    <HiOutlineLogout className="text-[20px]" />
+                    <span className="text-sm font-medium"> Logout </span>
                   </button>
                 ) : (
                   <Link
                     href="/login"
-                    className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                    className="flex items-center gap-2 rounded-lg px-4 py-2 text-black dark:text-gray-200 text-sm font-medium"
                   >
-                    Login / Register
+                    <span className="text-sm font-medium">
+                      {" "}
+                      Login / Register{" "}
+                    </span>
                   </Link>
                 )}
-
-                <div className="flex ">
-                  <ThemeToggler />
-                </div>
               </nav>
             </div>
           </div>
