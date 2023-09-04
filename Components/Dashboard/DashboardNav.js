@@ -2,34 +2,52 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/images/logo.png";
 import Image from "next/image";
 import Link from "next/link";
-import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "@/firebase.init";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-import { Sidebar } from "primereact/sidebar";
-import MobileMenu from "../Dashboard/MobileMenu";
 import ThemeToggler from "../Dashboard/ThemeToggler";
-import Cart from "../Home/Cart";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Common/Loading";
+import { Sidebar } from "primereact/sidebar";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import MobileNav from "../Home/MobileNav";
+import MobileMenu from "./MobileMenu";
+import Cart from "../Home/Cart";
 
-export default function NavbarOther() {
+export default function DashboardNav() {
   const [user] = useAuthState(auth);
-  const [visible, setVisible] = useState(false);
   const [visibleRight, setVisibleRight] = useState(false);
   const [visibleNav, setVisibleNav] = useState(false);
 
+  const email = user?.email;
   const handleSignOut = () => {
     signOut(auth);
   };
+
+  const usersQuery = useQuery({
+    queryKey: ["users"],
+    queryFn: () =>
+      fetch(
+        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
+  });
+  const refetch = () => {
+    usersQuery.refetch();
+  };
+  const userInfo = usersQuery.data?.data[0];
+  useEffect(() => {
+    if (!userInfo) {
+      refetch();
+    }
+  });
 
   return (
     <div>
       <div>
         <header
-          aria-label="Site Header"
-          className="w-full  shadow-lg dark:shadow-2xl  "
+          aria-label="Site Header  "
+          className="w-full bg-white shadow-lg dark:bg-[#001C30]  "
         >
-          <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8 ">
+          <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8  ">
             <div className="flex items-center gap-4 ">
               <button
                 type="button"
@@ -66,10 +84,10 @@ export default function NavbarOther() {
               </Link>
             </div>
 
-            <div className="flex flex-1 items-center justify-end ">
+            <div className="flex flex-1 items-center justify-end gap-8 ">
               <nav
                 aria-label="Site Nav"
-                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide  "
+                className="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-700 dark:text-gray-300"
               >
                 <Link
                   href="/"
@@ -108,39 +126,57 @@ export default function NavbarOther() {
                   </Link>
                 )}
 
-                {/* <div className=" m-auto bg-white dark:bg-black rounded-md">
-                  <ThemeToggler />
-                </div> */}
+                <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
+                  <div class="flex gap-4">
+                    {/* <div className="bg-white dark:bg-[#263449] hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 m-auto dark:rounded-md">
+                      <ThemeToggler />
+                    </div> */}
+                  </div>
 
-                <div>
-                  <Sidebar
-                    position="left"
-                    visible={visibleNav}
-                    onHide={() => setVisibleNav(false)}
-                  >
-                    <MobileNav />
-                  </Sidebar>
+                  {user && (
+                    <>
+                      <div className=" ">
+                        <button
+                          icon="pi pi-arrow-left"
+                          className="bg-white dark:bg-[#263449] transition-all p-2 rounded-md shadow-md"
+                          onClick={() => setVisibleRight(true)}
+                        >
+                          <AiOutlineShoppingCart className="text-[20px] " />
+                        </button>
+                      </div>
+                      <div>
+                        <Sidebar
+                          position="right"
+                          visible={visibleRight}
+                          onHide={() => setVisibleRight(false)}
+                        >
+                          <Cart />
+                        </Sidebar>
+                      </div>
+                      <button
+                        type="button"
+                        class="group flex shrink-0 items-center rounded-lg transition"
+                      >
+                        <Image
+                          alt="profile"
+                          width={40}
+                          height={30}
+                          src={userInfo?.profilePhoto}
+                          class="h-10 w-10 rounded-full object-cover"
+                        />
+
+                        <p class="ms-2 hidden text-left text-xs sm:block">
+                          <strong class="block font-medium">
+                            {userInfo?.username}
+                          </strong>
+
+                          <span class="text-gray-500">{email}</span>
+                        </p>
+                      </button>
+                    </>
+                  )}
                 </div>
               </nav>
-
-              <div className=" ">
-                <button
-                  icon="pi pi-arrow-left"
-                  className="bg-white dark:bg-black  transition-all p-2 rounded-md shadow-md"
-                  onClick={() => setVisibleRight(true)}
-                >
-                  <AiOutlineShoppingCart className="text-[20px] " />
-                </button>
-              </div>
-              <div>
-                <Sidebar
-                  position="right"
-                  visible={visibleRight}
-                  onHide={() => setVisibleRight(false)}
-                >
-                  <Cart />
-                </Sidebar>
-              </div>
             </div>
           </div>
         </header>

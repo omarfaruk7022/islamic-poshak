@@ -7,6 +7,7 @@ import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { ThemeProvider } from "next-themes";
 import ThemeToggler from "@/Components/Dashboard/ThemeToggler";
+import DashboardNav from "@/Components/Dashboard/DashboardNav";
 
 export default function DashboardLayout({ children }) {
   const router = useRouter();
@@ -21,10 +22,10 @@ export default function DashboardLayout({ children }) {
 
   return (
     <div>
-      <NavbarOther />
+      <DashboardNav />
 
       <div className="flex">
-        <div >
+        <div>
           <SideMenu />
         </div>
         <div className="w-full h-full ">{children}</div>
