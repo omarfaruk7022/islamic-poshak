@@ -101,34 +101,14 @@ export default function productDetails() {
             <div class="relative mx-auto max-w-screen-xl px-4 py-8">
               <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
                 <div class="grid grid-cols-2 gap-4 md:grid-cols-1">
-                  <ReactImageMagnify
-                    className="z-1"
-                    {...{
-                      smallImage: {
-                        alt: "Wristwatch by Ted Baker London",
-                        isFluidWidth: true,
-                        src: product?.data?.image,
-                      },
-                      largeImage: {
-                        src: product?.data?.image,
-                        width: 1400,
-                        height: 1800,
-                      },
-                    }}
-                    {...{
-                      style: {
-                        zIndex: 50,
-                        backgroundColor: "#fff !important",
-                      },
-                    }}
-                  />
-                  {/* <Image
+                  
+                  <Image
                     width={300}
                     height={300}
                     alt=""
                     src={product?.data?.image}
                     class="aspect-square w-full rounded-xl object-cover"
-                  /> */}
+                  />
 
                   {/* <div class="grid grid-cols-2 gap-4 lg:mt-4">
                     <Image
