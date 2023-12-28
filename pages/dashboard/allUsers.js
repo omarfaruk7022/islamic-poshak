@@ -22,7 +22,6 @@ export default function AllUsers() {
         res.json()
       ),
   });
-
   const isUserAdminQuery = useQuery({
     queryKey: ["isUserAdmin"],
     queryFn: () =>

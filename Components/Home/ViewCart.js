@@ -73,9 +73,9 @@ export default function ViewCart() {
             )}
             <div class="mt-8">
               <ul class="space-y-4">
-                {cartProducts?.map((product) => (
+                {cartProducts?.map((product, index) => (
                   <>
-                    <li class="flex items-center gap-4">
+                    <li class="flex items-center gap-4" key={index}>
                       <Image
                         width={50}
                         height={50}

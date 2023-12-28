@@ -27,12 +27,12 @@ export default function SideMenu() {
   };
 
   const { isLoading, error, data } = useQuery({
+    queryKey: ["users"],
     queryFn: () =>
       fetch(
         `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
       ).then((res) => res.json()),
   });
-
   return (
     <div className="hidden lg:block shadow-2xl px-6  w-[220px] ">
       <div className="flex h-screen flex-col justify-between ">

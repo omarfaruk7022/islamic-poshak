@@ -40,6 +40,8 @@ export default function Navbar() {
     }
   });
 
+  console.log(userInfo);
+
   return (
     <div>
       <div>

@@ -22,7 +22,7 @@ export default function ProductsComp() {
       </p>
 
       {isLoading ? (
-        <div >
+        <div>
           <Loading />
         </div>
       ) : error ? (

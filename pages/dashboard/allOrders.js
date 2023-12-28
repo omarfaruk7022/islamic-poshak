@@ -78,8 +78,8 @@ export default function AllOrders() {
     <div>
       {userIsAdmin?.data[0]?.role === "admin" ? (
         <>
-          <div className="overflow-x-auto  p-5">
-            <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm">
+          <div className="overflow-x-auto overflow-auto   p-5">
+            <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm ">
               <thead className="ltr:text-left rtl:text-right">
                 <tr>
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
@@ -113,7 +113,7 @@ export default function AllOrders() {
               </thead>
               {orders?.data?.map((order) => (
                 <>
-                  <tbody className="divide-y divide-gray-200">
+                  <tbody className="divide-y divide-gray-200 overflow-auto ">
                     <tr>
                       <td className="">
                         <Image

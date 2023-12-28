@@ -29,7 +29,7 @@ export default function Fashions() {
           </header>
 
           {isLoading ? (
-            <div >
+            <div>
               <Loading />
             </div>
           ) : error ? (

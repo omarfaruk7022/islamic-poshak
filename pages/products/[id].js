@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import ReactImageMagnify from "react-image-magnify";
 import swal from "sweetalert";
 
 export default function productDetails() {
@@ -100,13 +101,34 @@ export default function productDetails() {
             <div class="relative mx-auto max-w-screen-xl px-4 py-8">
               <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
                 <div class="grid grid-cols-2 gap-4 md:grid-cols-1">
-                  <Image
+                  <ReactImageMagnify
+                    className="z-1"
+                    {...{
+                      smallImage: {
+                        alt: "Wristwatch by Ted Baker London",
+                        isFluidWidth: true,
+                        src: product?.data?.image,
+                      },
+                      largeImage: {
+                        src: product?.data?.image,
+                        width: 1400,
+                        height: 1800,
+                      },
+                    }}
+                    {...{
+                      style: {
+                        zIndex: 50,
+                        backgroundColor: "#fff !important",
+                      },
+                    }}
+                  />
+                  {/* <Image
                     width={300}
                     height={300}
                     alt=""
                     src={product?.data?.image}
                     class="aspect-square w-full rounded-xl object-cover"
-                  />
+                  /> */}
 
                   {/* <div class="grid grid-cols-2 gap-4 lg:mt-4">
                     <Image
@@ -143,7 +165,7 @@ export default function productDetails() {
                   </div> */}
                 </div>
 
-                <div class="sticky top-0">
+                <div class="sticky top-0 ">
                   <strong class="rounded-full border border-blue-600 bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-blue-600">
                     Pre Order
                   </strong>

@@ -81,7 +81,7 @@ export default function AddProduct() {
               if (res.ok) {
                 swal("Yayy", "Product Added Successfully", "success");
               } else {
-                swal("Error", "Product Added Failed", "error");
+                swal("Error", res.message, "error");
               }
             });
           }
