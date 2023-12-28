@@ -7,7 +7,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import ReactImageMagnify from "react-image-magnify";
 import swal from "sweetalert";
 
 export default function productDetails() {
