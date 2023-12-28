@@ -84,6 +84,7 @@ export default function AddProduct() {
                 swal("Error", res.message, "error");
               }
             });
+            
           }
         }
       });
