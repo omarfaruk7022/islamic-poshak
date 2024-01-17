@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo-1.png";
 import Image from "next/image";
 import Link from "next/link";
 import auth from "@/firebase.init";
@@ -26,9 +26,9 @@ export default function Navbar() {
   const usersQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(
-        `https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`
-      ).then((res) => res.json()),
+      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
+        res.json()
+      ),
   });
   const refetch = () => {
     usersQuery.refetch();

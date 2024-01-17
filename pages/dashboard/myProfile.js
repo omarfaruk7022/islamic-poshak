@@ -13,7 +13,7 @@ export default function MyProfile() {
   const email = user?.email;
 
   useEffect(() => {
-    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/users/email/${email}`)
+    fetch(`http://localhost:5000/api/users/email/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setUserInfo(data);

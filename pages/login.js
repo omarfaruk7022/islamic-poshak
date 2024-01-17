@@ -17,8 +17,8 @@ export default function Login() {
 
   const handleAdminSubmit = (e) => {
     e.preventDefault();
-    const password = "123456";
-    const email = "super-admin@gmail.com";
+    const password = e.target.password.value;
+    const email = e.target.email.value;
     if (!password || !email) {
       swal("Oops", "Email or Password Must Not Be Empty", "error");
       return;
@@ -140,16 +140,16 @@ export default function Login() {
             <div className="flex justify-between gap-4">
               <input
                 type="submit"
-                value="Admin Login"
+                value="Login"
                 className="block w-full rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white cursor-pointer hover:bg-green-700"
               />
 
-              <button
+              {/* <button
                 onClick={handleUserSubmit}
                 className="block w-full rounded-lg bg-green-500 px-5 py-3 text-sm font-medium text-white cursor-pointer hover:bg-green-700"
               >
                 User Login
-              </button>
+              </button> */}
             </div>
 
             <p className="text-center text-sm text-gray-500">

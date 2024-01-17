@@ -8,9 +8,7 @@ export default function Fashions() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("https://easy-plum-caridea-tie.cyclic.app/api/product").then(
-        (res) => res.json()
-      ),
+      fetch("http://localhost:5000/api/product").then((res) => res.json()),
   });
 
   return (

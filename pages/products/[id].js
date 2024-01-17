@@ -21,7 +21,7 @@ export default function productDetails() {
   const [product, setProduct] = useState();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    fetch(`https://easy-plum-caridea-tie.cyclic.app/api/product/${id}`)
+    fetch(`http://localhost:5000/api/product/${id}`)
       .then((res) => res.json())
       .then((json) => setProduct(json));
   }, [id]);
@@ -57,7 +57,7 @@ export default function productDetails() {
       swal("Error!", "Delivery Address is required!", "error");
       return;
     }
-    fetch("https://easy-plum-caridea-tie.cyclic.app/api/cart", {
+    fetch("http://localhost:5000/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,7 +100,6 @@ export default function productDetails() {
             <div class="relative mx-auto max-w-screen-xl px-4 py-8">
               <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
                 <div class="grid grid-cols-2 gap-4 md:grid-cols-1">
-                  
                   <Image
                     width={300}
                     height={300}
