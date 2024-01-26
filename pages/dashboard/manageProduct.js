@@ -76,7 +76,7 @@ export default function ManageProduct() {
       {userIsAdmin?.data[0]?.role === "admin" && userIsAdmin !== undefined ? (
         <>
           <div className="overflow-x-auto p-5 ">
-            <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm overflow-y-auto  h-screen">
+            <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm overflow-y-scroll  ">
               <thead className="ltr:text-left rtl:text-right">
                 <tr className="">
                   <th className="whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900 dark:text-white">
@@ -109,14 +109,12 @@ export default function ManageProduct() {
                   <tbody className="divide-y divide-gray-200 ">
                     <tr>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
-                        <Image
-                          width={150}
-                          height={100}
-                          className="rounded-md h-24"
+                        <img
+                          className="rounded-md w-[40px]"
                           draggable={false}
                           src={product?.image}
                           alt=""
-                        ></Image>
+                        ></img>
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 dark:text-gray-200">
                         {product?.name}

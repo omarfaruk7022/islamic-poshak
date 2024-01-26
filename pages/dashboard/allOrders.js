@@ -50,7 +50,7 @@ export default function AllOrders() {
 
   const handleStatus = (e, id, status) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/cart/${id}`, {
+    fetch(`http://localhost:5000/api/order/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ orderStatus: status }),
@@ -114,12 +114,12 @@ export default function AllOrders() {
                   <tbody className="divide-y divide-gray-200 overflow-auto ">
                     <tr>
                       <td className="">
-                        <Image
+                        <img
                           src={order?.image}
                           alt=""
-                          width={100}
-                          height={100}
-                        ></Image>
+                          className="rounded-md w-[40px]"
+                          
+                        ></img>
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
                         {order?.name}

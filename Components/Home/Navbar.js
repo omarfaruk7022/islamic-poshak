@@ -17,6 +17,7 @@ export default function Navbar() {
   const [user] = useAuthState(auth);
   const [visibleRight, setVisibleRight] = useState(false);
   const [visibleNav, setVisibleNav] = useState(false);
+  const [cartData, setCartData] = useState();
 
   const email = user?.email;
   const handleSignOut = () => {
@@ -30,17 +31,30 @@ export default function Navbar() {
         res.json()
       ),
   });
+  const userInfo = usersQuery.data?.data[0];
   const refetch = () => {
     usersQuery.refetch();
   };
-  const userInfo = usersQuery.data?.data[0];
   useEffect(() => {
     if (!userInfo) {
       refetch();
     }
-  });
+  }, []);
 
-  console.log(userInfo);
+  const cartQuery = useQuery({
+    queryKey: ["cart"],
+    queryFn: () =>
+      fetch(`http://localhost:5000/api/cart/${email}`).then((res) =>
+        res.json()
+      ),
+  });
+  const cartRefetch = () => {
+    cartQuery.refetch();
+  };
+
+
+
+  const cartProducts = cartQuery.data?.data;
 
   return (
     <div>
@@ -137,13 +151,16 @@ export default function Navbar() {
 
                   {user && (
                     <>
-                      <div className=" ">
+                      <div className="">
                         <button
                           icon="pi pi-arrow-left"
-                          className="bg-white dark:bg-[#263449] transition-all p-2 rounded-md shadow-md"
+                          className="mb-4"
                           onClick={() => setVisibleRight(true)}
                         >
-                          <AiOutlineShoppingCart className="text-[20px] " />
+                          <AiOutlineShoppingCart className="text-[30px] absolute bg-white dark:bg-[#263449]   transition-all p-1 rounded-md shadow-md" />
+                          <span class="whitespace-nowrap rounded-full bg-green-100 px-1.5 py-0.5 text-sm text-green-700 relative left-5 bottom-1">
+                            {cartProducts?.length}
+                          </span>
                         </button>
                       </div>
                       <div>
@@ -152,7 +169,7 @@ export default function Navbar() {
                           visible={visibleRight}
                           onHide={() => setVisibleRight(false)}
                         >
-                          <Cart />
+                          <Cart cartData={cartData} setCartData={setCartData} />
                         </Sidebar>
                       </div>
                       <button

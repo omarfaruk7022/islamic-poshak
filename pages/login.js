@@ -1,4 +1,5 @@
 import Loading from "@/Components/Common/Loading";
+import useToken from "@/Hooks/useToken";
 import auth from "@/firebase.init";
 import { getAuth, signInWithPhoneNumber } from "firebase/auth";
 
@@ -10,11 +11,12 @@ import swal from "sweetalert";
 
 export default function Login() {
   const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
+  useSignInWithEmailAndPassword(auth);
   let signInError;
-
   
-
+  const [token] = useToken(user );
+  
+  console.log("token", token);
   const handleAdminSubmit = (e) => {
     e.preventDefault();
     const password = e.target.password.value;

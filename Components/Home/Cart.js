@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import swal from "sweetalert";
 
-export default function Cart() {
+export default function Cart({cartData,setCartData}) {
   const [user] = useAuthState(auth);
   const email = user?.email;
 
@@ -23,6 +23,7 @@ export default function Cart() {
     cartQuery.refetch();
   };
   const cartProducts = cartQuery.data?.data;
+ 
 
   useEffect(() => {
     if (!cartProducts) {
@@ -53,10 +54,9 @@ export default function Cart() {
             {cartProducts?.map((product) => (
               <>
                 <li class="flex items-center gap-4">
-                  <Image
+                  <img
                     src={product?.image}
-                    width={50}
-                    height={50}
+                    
                     alt=""
                     class="h-16 w-16 rounded object-cover"
                   />

@@ -49,7 +49,7 @@ export default function AddProduct() {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.success) {
+        if (result.success ) {
           const image = result.data.url;
           const data = {
             category,
@@ -80,6 +80,11 @@ export default function AddProduct() {
             }).then((res) => {
               if (res.ok) {
                 swal("Yayy", "Product Added Successfully", "success");
+                e.target.name.value = "";
+                e.target.description.value = "";
+                e.target.price.value = "";
+                e.target.quantity.value = "";
+                e.target.image.value = "";
               } else {
                 swal("Error", res.message, "error");
               }
@@ -121,9 +126,9 @@ export default function AddProduct() {
                     className="text-sm border border-gray-300 p-2 dark:border-gray-200 lg:w-96 m-auto block peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent  placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                   >
                     <option default>Select Category</option>
-                    <option value="Grocery">Grocery </option>
+                    <option value="Borka">Borka </option>
+                    <option value="Abaya">Abaya</option>
                     <option value="Dress">Dress</option>
-                    <option value="Medicine">Medicine</option>
                   </select>
                 </label>
 
@@ -191,7 +196,7 @@ export default function AddProduct() {
                     Available Quantity
                   </span>
                 </label>
-                <label
+                {/* <label
                   for="status"
                   className="relative block my-2 overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 px-3 pt-3 shadow-sm  focus-within:ring-1 w-full lg:w-96 m-auto"
                 >
@@ -206,8 +211,23 @@ export default function AddProduct() {
                   <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 dark:text-gray-200 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
                     Product Status
                   </span>
-                </label>
+                </label> */}
 
+                <label
+                  for="status"
+                  className=" block overflow-hidden rounded-md border border-gray-300 dark:border-gray-200 py-2 shadow-sm focus-within:ring-1 w-full lg:w-96  m-auto"
+                >
+                  <select
+                    name="status"
+                    id="status"
+                    required
+                    className="text-sm border border-gray-300 p-2 dark:border-gray-200 lg:w-96 m-auto block peer h-8 w-full text-black dark:text-gray-200 text-[15px] border-none bg-transparent  placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                  >
+                    <option default>Product Status</option>
+                    <option value="in-stock">in-stock</option>
+                    <option value="out-of-stock">out-of-stock</option>
+                  </select>
+                </label>
                 <input
                   type="file"
                   name="image"

@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "@/Components/Common/Loading";
 import { useRouter } from "next/router";
 import Footer from "@/Components/Common/Footer";
+import Navbar from "@/Components/Home/Navbar";
 
 // export async function getStaticProps() {
 //   const products = await loadProducts();
@@ -35,7 +36,7 @@ export default function Products() {
   return (
     <div>
       <>
-        <NavbarOther />
+        <Navbar />
         <h4 className="text-3xl text-center pt-10">All Products</h4>
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 lg:px-36 px-0">
           {data?.data.map((product) => (

@@ -5,6 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
+import Navbar from "./Navbar";
 
 export default function ViewCart() {
   const [user] = useAuthState(auth);
@@ -38,6 +39,39 @@ export default function ViewCart() {
       }
     });
   };
+  const handleOrder = () => {
+    let orderData = [];
+    cartProducts?.map((product) => {
+      orderData.push({
+        productId: product?._id,
+        quantity: product?.quantity,
+        deliveryAddress: product?.deliveryAddress,
+        orderDate: product?.orderDate,
+        orderTime: product?.orderTime,
+        orderStatus: product?.orderStatus,
+        email: user?.email,
+      });
+    });
+    if (orderData.quantity <= 0) {
+      swal("Error!", "Quantity must be greater than 0!", "error");
+      return;
+    }
+    if (orderData.deliveryAddress === "") {
+      swal("Error!", "Delivery Address is required!", "error");
+      return;
+    }
+    fetch("http://localhost:5000/api/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    }).then((res) => {
+      if (res.ok) {
+        swal("Success!", "Product added to cart!", "success");
+      }
+    });
+  };
 
   const subTotal = cartProducts?.reduce((acc, item) => {
     return acc + item.price * item.quantity;
@@ -48,7 +82,7 @@ export default function ViewCart() {
 
   return (
     <div>
-      <NavbarOther />
+      <Navbar />
 
       <section>
         <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -220,12 +254,12 @@ export default function ViewCart() {
                   </div>
 
                   <div class="flex justify-end">
-                    <a
-                      href="#"
+                    <button
+                      onClick={() => handleOrder()}
                       class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600"
                     >
                       Checkout
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
