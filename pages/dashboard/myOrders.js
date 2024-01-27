@@ -9,58 +9,57 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import swal from "sweetalert";
 import cross from "../../assets/images/close.png";
 
-export default function AllOrders() {
+export default function MyOrders() {
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
   const email = user?.email;
 
+  //   const ordersQuery = useQuery({
+  //     queryKey: ["orders"],
+  //     queryFn: () =>
+  //       fetch("http://localhost:5000/api/cart").then((res) => res.json()),
+  //   });
+
   const ordersQuery = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/order").then((res) => res.json()),
-  });
-
-  const isUserAdminQuery = useQuery({
-    queryKey: ["isUserAdmin"],
-    queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
+      fetch(`http://localhost:5000/api/order/${email}`).then((res) =>
         res.json()
       ),
   });
   const orders = ordersQuery.data;
-
-  const userIsAdmin = isUserAdminQuery.data;
+console.log(orders)
+//   const userIsAdmin = isUserAdminQuery.data;
   const refetch = () => {
-    isUserAdminQuery.refetch();
     ordersQuery.refetch();
   };
 
-  const isLoading = isUserAdminQuery.isLoading || ordersQuery.isLoading;
+  const isLoading = ordersQuery.isLoading;
 
-  if (userIsAdmin?.data[0]?.role !== "admin" && userIsAdmin !== undefined) {
-    router.push("/dashboard");
-  }
+//   if (userIsAdmin?.data[0]?.role !== "admin" && userIsAdmin !== undefined) {
+//     router.push("/dashboard");
+//   }
+
+//   if (userIsAdmin?.data[0]?.role !== "admin") {
+//     router.push("/dashboard");
+//   }
 
   if (loading || isLoading) {
     return <Loading />;
   }
-  if (userIsAdmin?.data[0]?.role !== "admin") {
-    router.push("/dashboard");
-  }
-
-  const handleStatus = (e, id, status) => {
-    e.preventDefault();
-    fetch(`http://localhost:5000/api/order/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ orderStatus: status }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        swal("Updated!", "Your Order Status has been updated!", "success");
-        refetch();
-      });
-  };
+//   const handleStatus = (e, id, status) => {
+//     e.preventDefault();
+//     fetch(`http://localhost:5000/api/order/${id}`, {
+//       method: "PATCH",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify({ orderStatus: status }),
+//     })
+//       .then((res) => res.json())
+//       .then((data) => {
+//         swal("Updated!", "Your Order Status has been updated!", "success");
+//         refetch();
+//       });
+//   };
 
   const handleDelete = (id) => {
     fetch(`http://localhost:5000/api/order/${id}`, {
@@ -74,7 +73,7 @@ export default function AllOrders() {
   };
   return (
     <div>
-      {userIsAdmin?.data[0]?.role === "admin" ? (
+     
         <>
           <div className="overflow-x-auto overflow-auto   p-5">
             <table className="min-w-full divide-y-2 divide-gray-100 dark:divide-gray-800 text-sm ">
@@ -118,7 +117,6 @@ export default function AllOrders() {
                           src={order?.image}
                           alt=""
                           className="rounded-md w-[40px]"
-                          
                         ></img>
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
@@ -207,8 +205,8 @@ export default function AllOrders() {
             </table>
           </div>
         </>
-      ) : (
-        <>
+      
+        {/* <>
           {userIsAdmin?.data[0]?.role !== "admin" &&
           userIsAdmin !== undefined &&
           router.push("/dashboard") ? (
@@ -223,10 +221,10 @@ export default function AllOrders() {
           ) : (
             <Loading />
           )}
-        </>
-      )}
+        </> */}
+    
     </div>
   );
 }
 
-AllOrders.Layout = DashboardLayout;
+MyOrders.Layout = DashboardLayout;

@@ -38,7 +38,6 @@ export default function productDetails() {
     e.preventDefault();
 
     const data = {
-      productId: product?.data?._id,
       orderDate: formattedDate,
       orderTime: formattedDate2,
       category: product?.data?.category,

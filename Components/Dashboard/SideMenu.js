@@ -87,6 +87,13 @@ export default function SideMenu() {
               <RiAccountPinCircleFill className="text-[20px]" />
               <span className="text-sm font-medium"> My Profile </span>
             </Link>
+            <Link
+              href="/dashboard/myOrders"
+              className="flex items-center gap-2 rounded-lg px-2 py-2   text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black"
+            >
+              <RiAccountPinCircleFill className="text-[20px]" />
+              <span className="text-sm font-medium"> My Orders </span>
+            </Link>
 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer items-center justify-between rounded-lg px-2 py-2  text-gray-900  hover:bg-gray-200  transition-all dark:text-gray-300 dark:hover:hover:bg-black ">

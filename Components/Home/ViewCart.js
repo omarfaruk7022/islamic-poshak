@@ -39,13 +39,16 @@ export default function ViewCart() {
       }
     });
   };
-  const handleOrder = () => {
+  const handleOrder = (e) => {
+    e.preventDefault();
     let orderData = [];
     cartProducts?.map((product) => {
       orderData.push({
-        productId: product?._id,
-        quantity: product?.quantity,
-        deliveryAddress: product?.deliveryAddress,
+        name: product?.name,
+        price: product?.price,
+        image: product?.image,
+        quantity: e.target.quantity.value,
+        deliveryAddress: e.target.address.value,
         orderDate: product?.orderDate,
         orderTime: product?.orderTime,
         orderStatus: product?.orderStatus,
@@ -254,12 +257,40 @@ export default function ViewCart() {
                   </div>
 
                   <div class="flex justify-end">
-                    <button
-                      onClick={() => handleOrder()}
-                      class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600"
-                    >
-                      Checkout
-                    </button>
+                    <form class="mt-8" onSubmit={handleOrder}>
+                      <fieldset>
+                        <div class="mt-8 flex gap-4">
+                          <label for="quantity" class="sr-only">
+                            Qty
+                          </label>
+
+                          <input
+                            type="number"
+                            id="quantity"
+                            name="quantity"
+                            min="1"
+                            required
+                            defaultValue="1"
+                            placeholder="Qty"
+                            class="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                          />
+
+                          <input
+                            type="text"
+                            name="address"
+                            required
+                            placeholder="Delivery Address"
+                            className="inline-block w-96 rounded  py-3 text-center text-xs focus:outline-none focus:ring-0 text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black"
+                          />
+
+                          <input
+                            type="submit"
+                            value="Checkout"
+                            class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600"
+                          />
+                        </div>
+                      </fieldset>
+                    </form>
                   </div>
                 </div>
               </div>

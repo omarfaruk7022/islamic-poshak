@@ -17,7 +17,6 @@ export default function ProductsCard(product) {
     e.preventDefault();
 
     const data = {
-      productId: product?.data?._id,
       orderDate: formattedDate,
       orderTime: formattedDate2,
       category: product?.data?.category,
@@ -32,7 +31,7 @@ export default function ProductsCard(product) {
       swal("Error!", "Quantity must be greater than 0!", "error");
       return;
     }
-   
+
     fetch("http://localhost:5000/api/cart", {
       method: "POST",
       headers: {
@@ -84,7 +83,6 @@ export default function ProductsCard(product) {
             <button
               type="submit"
               class="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500 cursor-pointer transition-all"
-              
             >
               <FaCartPlus />
             </button>
