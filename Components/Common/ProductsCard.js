@@ -15,23 +15,27 @@ export default function ProductsCard(product) {
   const formattedDate2 = format(date, "p");
   const handleAddToCart = (e) => {
     e.preventDefault();
-
     const data = {
+      productId: _id,
       orderDate: formattedDate,
       orderTime: formattedDate2,
-      category: product?.data?.category,
       name: name,
+      quantity: 1,
       price: price,
       image: image,
-      quantity: 1,
-      deliveryAddress: "",
       email: user?.email,
     };
-    if (data.quantity <= 0) {
-      swal("Error!", "Quantity must be greater than 0!", "error");
-      return;
-    }
+    // const data = {
+    //   productId: _id,
+    //   orderDate: formattedDate,
+    //   orderTime: formattedDate2,
+    //   name: product?.product?.name,
+    //   price: product?.product?.price,
+    //   image: product?.product?.image,
+    //   email: user?.email,
+    // };
 
+    console.log(data);
     fetch("http://localhost:5000/api/cart", {
       method: "POST",
       headers: {
@@ -42,6 +46,7 @@ export default function ProductsCard(product) {
       if (res.ok) {
         swal("Success!", "Product added to cart!", "success");
       }
+      console.log(res);
     });
   };
 

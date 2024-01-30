@@ -9,6 +9,7 @@ export default function ProductsComp() {
     queryFn: () =>
       fetch("http://localhost:5000/api/product").then((res) => res.json()),
   });
+  console.log("data",data?.data)
   return (
     <>
       <h4 className="text-3xl text-center pt-10">
@@ -29,7 +30,7 @@ export default function ProductsComp() {
 
       <div className="grid grid-cols-1 gap-3  md:grid-cols-3 lg:grid-cols-6 px-0 lg:px-36">
         {data?.data
-          .filter((product) => product.category === "Grocery")
+          .filter((product) => product.category === "Borka" || "Abaya")
           ?.slice(0, 8)
           .map((product) => (
             <ProductsCard key={product._id} product={product} />

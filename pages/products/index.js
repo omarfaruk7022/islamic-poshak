@@ -29,6 +29,7 @@ export default function Products() {
       fetch("http://localhost:5000/api/product").then((res) => res.json()),
   });
 
+  console.log(data)
   if (loading) {
     return <Loading />;
   }

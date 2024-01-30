@@ -186,7 +186,7 @@ export default function Navbar() {
 
                         <p class="ms-2 hidden text-left text-xs sm:block">
                           <strong class="block font-medium">
-                            {userInfo?.username}
+                            {userInfo?.role}
                           </strong>
 
                           <span class="text-gray-500">{email}</span>
