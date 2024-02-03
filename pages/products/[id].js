@@ -97,24 +97,24 @@ export default function productDetails() {
           </div> */}
 
           <section>
-            <div class="relative mx-auto max-w-screen-xl px-4 py-8">
-              <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
-                <div class="grid grid-cols-2 gap-4 md:grid-cols-1">
+            <div className="relative mx-auto max-w-screen-xl px-4 py-8">
+              <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
+                <div className="grid grid-cols-2 gap-4 md:grid-cols-1">
                   <Image
                     width={300}
                     height={300}
                     alt=""
                     src={product?.data?.image}
-                    class="aspect-square w-full rounded-xl object-cover"
+                    className="aspect-square w-full rounded-xl object-cover"
                   />
 
-                  {/* <div class="grid grid-cols-2 gap-4 lg:mt-4">
+                  {/* <div className="grid grid-cols-2 gap-4 lg:mt-4">
                     <Image
                       width={300}
                       height={300}
                       alt="Les Paul"
                       src={product?.data?.image}
-                      class="aspect-square w-full rounded-xl object-cover"
+                      className="aspect-square w-full rounded-xl object-cover"
                     />
 
                     <Image
@@ -122,7 +122,7 @@ export default function productDetails() {
                       height={300}
                       alt="Les Paul"
                       src={product?.data?.image}
-                      class="aspect-square w-full rounded-xl object-cover"
+                      className="aspect-square w-full rounded-xl object-cover"
                     />
 
                     <Image
@@ -130,7 +130,7 @@ export default function productDetails() {
                       height={300}
                       alt="Les Paul"
                       src={product?.data?.image}
-                      class="aspect-square w-full rounded-xl object-cover"
+                      className="aspect-square w-full rounded-xl object-cover"
                     />
 
                     <Image
@@ -138,28 +138,28 @@ export default function productDetails() {
                       height={300}
                       alt=""
                       src={product?.data?.image}
-                      class="aspect-square w-full rounded-xl object-cover"
+                      className="aspect-square w-full rounded-xl object-cover"
                     />
                   </div> */}
                 </div>
 
-                <div class="sticky top-0 ">
-                  <strong class="rounded-full border border-blue-600 bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-blue-600">
+                <div className="sticky top-0 ">
+                  <strong className="rounded-full border border-blue-600 bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-blue-600">
                     Pre Order
                   </strong>
 
-                  <div class="mt-8 flex justify-between">
-                    <div class="max-w-[35ch] space-y-2">
-                      <h1 class="text-xl font-bold sm:text-2xl">
+                  <div className="mt-8 flex justify-between">
+                    <div className="max-w-[35ch] space-y-2">
+                      <h1 className="text-xl font-bold sm:text-2xl">
                         {product?.data?.name}
                       </h1>
-                      <h1 class="text-xl font-bold sm:text-2xl">
+                      <h1 className="text-xl font-bold sm:text-2xl">
                         Category: {product?.data?.category}
                       </h1>
 
-                      <div class="-ms-0.5 flex">
+                      <div className="-ms-0.5 flex">
                         <svg
-                          class="h-5 w-5 text-yellow-400"
+                          className="h-5 w-5 text-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -168,7 +168,7 @@ export default function productDetails() {
                         </svg>
 
                         <svg
-                          class="h-5 w-5 text-yellow-400"
+                          className="h-5 w-5 text-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -177,7 +177,7 @@ export default function productDetails() {
                         </svg>
 
                         <svg
-                          class="h-5 w-5 text-yellow-400"
+                          className="h-5 w-5 text-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -186,7 +186,7 @@ export default function productDetails() {
                         </svg>
 
                         <svg
-                          class="h-5 w-5 text-yellow-400"
+                          className="h-5 w-5 text-yellow-400"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -195,7 +195,7 @@ export default function productDetails() {
                         </svg>
 
                         <svg
-                          class="h-5 w-5 text-gray-200"
+                          className="h-5 w-5 text-gray-200"
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 20 20"
                           fill="currentColor"
@@ -205,68 +205,68 @@ export default function productDetails() {
                       </div>
                     </div>
 
-                    <p class="text-lg font-bold">${product?.data?.price}</p>
+                    <p className="text-lg font-bold">${product?.data?.price}</p>
                   </div>
 
-                  <div class="mt-4">
-                    <div class="prose max-w-none">
+                  <div className="mt-4">
+                    <div className="prose max-w-none">
                       <p className="text-sm text-black dark:text-gray-300">
                         {product?.data?.description}
                       </p>
                     </div>
 
-                    <button class="mt-2 text-sm font-medium underline">
+                    <button className="mt-2 text-sm font-medium underline">
                       Read More
                     </button>
                   </div>
 
-                  <form class="mt-8" onSubmit={handleAddToCart}>
+                  <form className="mt-8" onSubmit={handleAddToCart}>
                     <fieldset>
-                      {/* <div class="flex flex-wrap gap-1">
-                        <label for="color_tt" class="cursor-pointer">
+                      {/* <div className="flex flex-wrap gap-1">
+                        <label for="color_tt" className="cursor-pointer">
                           <input
                             type="radio"
                             name="color"
                             value="Texas Tea"
                             id="color_tt"
-                            class="peer sr-only"
+                            className="peer sr-only"
                           />
 
-                          <span class="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                          <span className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                             Texas Tea
                           </span>
                         </label>
 
-                        <label for="color_fr" class="cursor-pointer">
+                        <label for="color_fr" className="cursor-pointer">
                           <input
                             type="radio"
                             name="color"
                             value="Fiesta Red"
                             id="color_fr"
-                            class="peer sr-only"
+                            className="peer sr-only"
                           />
 
-                          <span class="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                          <span className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                             Fiesta Red
                           </span>
                         </label>
 
-                        <label for="color_cb" class="cursor-pointer">
+                        <label for="color_cb" className="cursor-pointer">
                           <input
                             type="radio"
                             name="color"
                             value="Cobalt Blue"
                             id="color_cb"
-                            class="peer sr-only "
+                            className="peer sr-only "
                           />
 
-                          <span class="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                          <span className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                             Cobalt Blue
                           </span>
                         </label>
                       </div> */}
-                      <div class="mt-8 flex gap-4">
-                        <label for="quantity" class="sr-only">
+                      <div className="mt-8 flex gap-4">
+                        <label for="quantity" className="sr-only">
                           Qty
                         </label>
 
@@ -277,7 +277,7 @@ export default function productDetails() {
                           min="1"
                           defaultValue="1"
                           placeholder="Qty"
-                          class="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                          className="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                         />
 
                         <input
@@ -288,7 +288,7 @@ export default function productDetails() {
                         />
                         <input
                           type="submit"
-                          class="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500 cursor-pointer transition-all"
+                          className="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500 cursor-pointer transition-all"
                           value="Add to Cart"
                         />
                       </div>

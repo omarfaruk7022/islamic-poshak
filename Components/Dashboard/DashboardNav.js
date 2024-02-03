@@ -126,8 +126,8 @@ export default function DashboardNav() {
                   </Link>
                 )}
 
-                <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
-                  <div class="flex gap-4">
+                <div className="flex flex-1 items-center justify-between gap-8 sm:justify-end">
+                  <div className="flex gap-4">
                     {/* <div className="bg-white dark:bg-[#263449] hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 m-auto dark:rounded-md">
                       <ThemeToggler />
                     </div> */}
@@ -155,22 +155,22 @@ export default function DashboardNav() {
                       </div>
                       <button
                         type="button"
-                        class="group flex shrink-0 items-center rounded-lg transition"
+                        className="group flex shrink-0 items-center rounded-lg transition"
                       >
                         <Image
                           alt="profile"
                           width={40}
                           height={30}
                           src={userInfo?.profilePhoto}
-                          class="h-10 w-10 rounded-full object-cover"
+                          className="h-10 w-10 rounded-full object-cover"
                         />
 
-                        <p class="ms-2 hidden text-left text-xs sm:block">
-                          <strong class="block font-medium">
+                        <p className="ms-2 hidden text-left text-xs sm:block">
+                          <strong className="block font-medium">
                             {userInfo?.username}
                           </strong>
 
-                          <span class="text-gray-500">{email}</span>
+                          <span className="text-gray-500">{email}</span>
                         </p>
                       </button>
                     </>

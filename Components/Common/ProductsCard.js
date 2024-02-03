@@ -16,7 +16,7 @@ export default function ProductsCard(product) {
   const handleAddToCart = (e) => {
     e.preventDefault();
     const data = {
-      productId: _id,
+      itemId: _id,
       orderDate: formattedDate,
       orderTime: formattedDate2,
       name: name,
@@ -54,12 +54,15 @@ export default function ProductsCard(product) {
     <div className="m-auto rounded-md mt-5 ">
       <div className=" block group  h-[310px]  border border-green-400 rounded-md hover:shadow-lg transition-shadow">
         <Link href={`/products/${_id}`}>
-          <img
-            priority
-            src={image}
-            alt="Product Image"
-            className="h-[210px] rounded-md p-3 m-auto "
-          />
+          <div className="relative h-[210px] rounded-md p-3 m-auto">
+            <Image
+              priority
+              src={image}
+              alt="Product Image"
+              className="object-cover object-center"
+              layout="fill"
+            />
+          </div>
 
           <div className="flex justify-between pt-3 px-2 border-t-2">
             <div>
@@ -87,7 +90,7 @@ export default function ProductsCard(product) {
           <form onSubmit={handleAddToCart}>
             <button
               type="submit"
-              class="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500 cursor-pointer transition-all"
+              className="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500 cursor-pointer transition-all"
             >
               <FaCartPlus />
             </button>
