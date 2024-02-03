@@ -44,9 +44,7 @@ export default function ViewCart() {
     e.preventDefault();
     let orderData = [];
     cartProducts?.map((product) => {
-      console.log(product.productId);
       orderData.push({
-        productId: product?.productId,
         name: product?.name,
         price: product?.price,
         image: product?.image,
@@ -58,7 +56,6 @@ export default function ViewCart() {
         email: user?.email,
       });
     });
-    console.log(cartProducts);
     if (orderData.quantity <= 0) {
       swal("Error!", "Quantity must be greater than 0!", "error");
       return;
@@ -102,7 +99,7 @@ export default function ViewCart() {
             {cartProducts?.length === 0 && (
               <>
                 <h4 className="text-center text-[50px] opacity-10 my-20">
-                 আপনার কার্ট খালি
+                  আপনার কার্ট খালি
                 </h4>
                 <Link
                   href={"/products"}
@@ -145,7 +142,7 @@ export default function ViewCart() {
                       </div>
                       <div>
                         <h3 class="text-sm text-gray-900 dark:text-gray-200">
-                        ক্রেতার তথ্য
+                          ক্রেতার তথ্য
                         </h3>
 
                         <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">

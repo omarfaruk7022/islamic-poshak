@@ -27,13 +27,14 @@ export default function MyProfile() {
     router.push("/login");
   }
 
+  console.log(userInfo?.data)
   return (
     <div>
       {user && userInfo ? (
         <>
           <div className="h-[500px]">
             <div className="bg-white dark:bg-black shadow-xl p-5 m-5 rounded-md">
-              <p>Under maintenance</p>
+              <p>{ userInfo?.data[0]?.username}</p>
             </div>
           </div>
         </>

@@ -34,6 +34,7 @@ export default function productDetails() {
   if (!user) {
     router.push("/login");
   }
+  console.log(product);
   const handleAddToCart = (e) => {
     e.preventDefault();
 
