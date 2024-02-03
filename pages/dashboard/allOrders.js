@@ -4,15 +4,21 @@ import DashboardLayout from "@/layouts/dashboardLayout";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import swal from "sweetalert";
 import cross from "../../assets/images/close.png";
+import ViewOrder from "@/Components/Dashboard/ViewOrder";
 
 export default function AllOrders() {
   const router = useRouter();
   const [user, loading] = useAuthState(auth);
   const email = user?.email;
+  const [visible, setVisible] = useState(false);
+
+  const handleView = (id) => {
+    setVisible(true);
+  };
 
   const ordersQuery = useQuery({
     queryKey: ["orders"],
@@ -118,7 +124,6 @@ export default function AllOrders() {
                           src={order?.image}
                           alt=""
                           className="rounded-md w-[40px]"
-                          
                         ></img>
                       </td>
                       <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-700 dark:text-gray-200">
@@ -188,6 +193,23 @@ export default function AllOrders() {
                           </div>
                         </form>
                       </td>
+                      <td>
+                        <div className="ml-2">
+                          <button
+                            className="bg-green-500 text-white px-2 py-1 rounded-md"
+                            onClick={() => handleView(order?._id)}
+                          >
+                            View
+                          </button>
+                        </div>
+                      </td>
+                      {visible && (
+                        <ViewOrder
+                          visible={visible}
+                          setVisible={setVisible}
+                          order={order}
+                        />
+                      )}
                       <td>
                         <div className="ml-2">
                           <button
