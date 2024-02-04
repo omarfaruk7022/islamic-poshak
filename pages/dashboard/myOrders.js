@@ -23,7 +23,7 @@ export default function MyOrders() {
   const ordersQuery = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/order/${email}`).then((res) =>
+      fetch(`http://localhost:5000/api/order/email/${email}`).then((res) =>
         res.json()
       ),
   });

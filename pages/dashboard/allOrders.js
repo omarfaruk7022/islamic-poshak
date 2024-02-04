@@ -15,9 +15,16 @@ export default function AllOrders() {
   const [user, loading] = useAuthState(auth);
   const email = user?.email;
   const [visible, setVisible] = useState(false);
-
+  const [selectedItemId, setSelectedItemId] = useState(null);
+  const [orderData, setOrderData] = useState();
+  const [loadingData, setLoadingData] = useState(true);
   const handleView = (id) => {
+    fetch(`http://localhost:5000/api/order/${id}`)
+      .then((res) => res.json())
+      .then((json) => setOrderData(json?.data));
+    setLoadingData(false);
     setVisible(true);
+    setSelectedItemId(id);
   };
 
   const ordersQuery = useQuery({
@@ -205,9 +212,12 @@ export default function AllOrders() {
                       </td>
                       {visible && (
                         <ViewOrder
+                          id={selectedItemId}
+                          orderData={orderData}
+                          loadingData={loadingData}
                           visible={visible}
                           setVisible={setVisible}
-                          order={order}
+                          refetch={refetch}
                         />
                       )}
                       <td>
