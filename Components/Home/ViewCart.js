@@ -48,7 +48,7 @@ export default function ViewCart() {
         name: product?.name,
         price: product?.price,
         image: product?.image,
-        quantity: e.target.quantity.value,
+        quantity: product?.quantity,
         deliveryAddress: e.target.address.value,
         orderDate: product?.orderDate,
         orderTime: product?.orderTime,
@@ -56,26 +56,40 @@ export default function ViewCart() {
         email: user?.email,
       });
     });
-    if (orderData.quantity <= 0) {
-      swal("Error!", "Quantity must be greater than 0!", "error");
-      return;
+  
+    // Check quantity for each product
+    for (const product of orderData) {
+      if (product.quantity <= 0) {
+        swal("Error!", "Quantity must be greater than 0!", "error");
+        return;
+      }
     }
-    if (orderData.deliveryAddress === "") {
+  
+    // Check if deliveryAddress is empty
+    if (orderData.length === 0 || orderData[0].deliveryAddress === "") {
       swal("Error!", "Delivery Address is required!", "error");
       return;
     }
+  
     fetch("http://localhost:5000/api/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(orderData),
+      body: JSON.stringify({ data: orderData }), 
     }).then((res) => {
       if (res.ok) {
-        swal("Success!", "Product added to cart!", "success");
+        swal(
+          "Successfully Order Placed!",
+          "Your order has been placed!",
+          "success"
+        );
+        e.target.reset();
+        refetch();
       }
     });
   };
+  
 
   const subTotal = cartProducts?.reduce((acc, item) => {
     return acc + item.price * item.quantity;
@@ -262,8 +276,7 @@ export default function ViewCart() {
 
                           <input
                             type="text"
-                            name="address"
-                            required
+                            name="address"  
                             placeholder="ডেলিভারী ঠিকানা"
                             className="inline-block w-96 rounded  py-3 text-center text-xs focus:outline-none focus:ring-0 text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black"
                           />
