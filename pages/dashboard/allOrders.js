@@ -19,7 +19,9 @@ export default function AllOrders() {
     queryFn: () =>
       fetch("http://localhost:5000/api/order").then((res) => res.json()),
   });
-
+  const orders = ordersQuery.data;
+  console.log(orders);
+  
   const isUserAdminQuery = useQuery({
     queryKey: ["isUserAdmin"],
     queryFn: () =>
@@ -27,7 +29,6 @@ export default function AllOrders() {
         res.json()
       ),
   });
-  const orders = ordersQuery.data;
 
   const userIsAdmin = isUserAdminQuery.data;
   const refetch = () => {
@@ -230,3 +231,4 @@ export default function AllOrders() {
 }
 
 AllOrders.Layout = DashboardLayout;
+
