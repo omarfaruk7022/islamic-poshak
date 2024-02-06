@@ -52,8 +52,6 @@ export default function Navbar() {
     cartQuery.refetch();
   };
 
-
-
   const cartProducts = cartQuery.data?.data;
 
   return (
@@ -142,8 +140,8 @@ export default function Navbar() {
                   </Link>
                 )}
 
-                <div class="flex flex-1 items-center justify-between gap-8 sm:justify-end">
-                  <div class="flex gap-4">
+                <div className="flex flex-1 items-center justify-between gap-8 sm:justify-end">
+                  <div className="flex gap-4">
                     {/* <div className="bg-white dark:bg-[#263449] hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-400 m-auto dark:rounded-md">
                       <ThemeToggler />
                     </div> */}
@@ -158,7 +156,7 @@ export default function Navbar() {
                           onClick={() => setVisibleRight(true)}
                         >
                           <AiOutlineShoppingCart className="text-[30px] absolute bg-white dark:bg-[#263449]   transition-all p-1 rounded-md shadow-md" />
-                          <span class="whitespace-nowrap rounded-full bg-green-100 px-1.5 py-0.5 text-sm text-green-700 relative left-5 bottom-1">
+                          <span className="whitespace-nowrap rounded-full bg-green-100 px-1.5 py-0.5 text-sm text-green-700 relative left-5 bottom-1">
                             {cartProducts?.length}
                           </span>
                         </button>
@@ -174,22 +172,22 @@ export default function Navbar() {
                       </div>
                       <button
                         type="button"
-                        class="group flex shrink-0 items-center rounded-lg transition"
+                        className="group flex shrink-0 items-center rounded-lg transition"
                       >
                         <Image
                           alt="profile"
                           width={40}
                           height={30}
                           src={userInfo?.profilePhoto}
-                          class="h-10 w-10 rounded-full object-cover"
+                          className="h-10 w-10 rounded-full object-cover"
                         />
 
-                        <p class="ms-2 hidden text-left text-xs sm:block">
-                          <strong class="block font-medium">
+                        <p className="ms-2 hidden text-left text-xs sm:block">
+                          <strong className="block font-medium">
                             {userInfo?.role}
                           </strong>
 
-                          <span class="text-gray-500">{email}</span>
+                          <span className="text-gray-500">{email}</span>
                         </p>
                       </button>
                     </>

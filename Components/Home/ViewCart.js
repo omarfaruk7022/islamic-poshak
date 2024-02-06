@@ -48,7 +48,7 @@ export default function ViewCart() {
         name: product?.name,
         price: product?.price,
         image: product?.image,
-        quantity: e.target.quantity.value,
+        quantity: product?.quantity,
         deliveryAddress: e.target.address.value,
         orderDate: product?.orderDate,
         orderTime: product?.orderTime,
@@ -56,26 +56,40 @@ export default function ViewCart() {
         email: user?.email,
       });
     });
-    if (orderData.quantity <= 0) {
-      swal("Error!", "Quantity must be greater than 0!", "error");
-      return;
+  
+    // Check quantity for each product
+    for (const product of orderData) {
+      if (product.quantity <= 0) {
+        swal("Error!", "Quantity must be greater than 0!", "error");
+        return;
+      }
     }
-    if (orderData.deliveryAddress === "") {
+  
+    // Check if deliveryAddress is empty
+    if (orderData.length === 0 || orderData[0].deliveryAddress === "") {
       swal("Error!", "Delivery Address is required!", "error");
       return;
     }
+  
     fetch("http://localhost:5000/api/order", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(orderData),
+      body: JSON.stringify({ data: orderData }), 
     }).then((res) => {
       if (res.ok) {
-        swal("Success!", "Product added to cart!", "success");
+        swal(
+          "Successfully Order Placed!",
+          "Your order has been placed!",
+          "success"
+        );
+        e.target.reset();
+        refetch();
       }
     });
   };
+  
 
   const subTotal = cartProducts?.reduce((acc, item) => {
     return acc + item.price * item.quantity;
@@ -89,10 +103,10 @@ export default function ViewCart() {
       <Navbar />
 
       <section>
-        <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-          <div class="mx-auto max-w-3xl">
-            <header class="text-center">
-              <h1 class="text-xl font-bold text-gray-900 dark:text-gray-200 sm:text-3xl">
+        <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <header className="text-center">
+              <h1 className="text-xl font-bold text-gray-900 dark:text-gray-200 sm:text-3xl">
                 আপনার কার্ট
               </h1>
             </header>
@@ -110,67 +124,67 @@ export default function ViewCart() {
                 </Link>
               </>
             )}
-            <div class="mt-8">
-              <ul class="space-y-4">
+            <div className="mt-8">
+              <ul className="space-y-4">
                 {cartProducts?.map((product, index) => (
                   <>
-                    <li class="flex items-center gap-4" key={index}>
+                    <li className="flex items-center gap-4" key={index}>
                       <Image
                         width={50}
                         height={50}
                         src={product?.image}
                         alt=""
-                        class="h-16 w-16 rounded object-cover"
+                        className="h-16 w-16 rounded object-cover"
                       />
 
                       <div>
-                        <h3 class="text-sm text-gray-900 dark:text-gray-200">
+                        <h3 className="text-sm text-gray-900 dark:text-gray-200">
                           {product?.name}
                         </h3>
 
-                        <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
+                        <dl className="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
                           <div>
-                            <dt class="inline">দাম: </dt>
-                            <dd class="inline">৳{product?.price}</dd>
+                            <dt className="inline">দাম: </dt>
+                            <dd className="inline">৳{product?.price}</dd>
                           </div>
 
                           <div>
-                            <dt class="inline">পরিমাণ: </dt>
-                            <dd class="inline">{product?.quantity}</dd>
+                            <dt className="inline">পরিমাণ: </dt>
+                            <dd className="inline">{product?.quantity}</dd>
                           </div>
                         </dl>
                       </div>
                       <div>
-                        <h3 class="text-sm text-gray-900 dark:text-gray-200">
+                        <h3 className="text-sm text-gray-900 dark:text-gray-200">
                           ক্রেতার তথ্য
                         </h3>
 
-                        <dl class="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
+                        <dl className="mt-0.5 space-y-px text-[10px] text-gray-600 dark:text-gray-300">
                           <div>
-                            <dt class="inline">ডেলিভারী ঠিকনা: </dt>
+                            <dt className="inline">ডেলিভারী ঠিকনা: </dt>
                             <dd className="inline">
                               {product?.deliveryAddress}
                             </dd>
                           </div>
 
                           <div>
-                            <dt class="inline">অর্ডার তারিখ: </dt>
-                            <dd class="inline">
+                            <dt className="inline">অর্ডার তারিখ: </dt>
+                            <dd className="inline">
                               {product?.orderTime},{product?.orderDate}
                             </dd>
                           </div>
                         </dl>
                       </div>
 
-                      <div class="flex flex-1 items-center justify-end gap-2">
+                      <div className="flex flex-1 items-center justify-end gap-2">
                         <>
                           <button
-                            class="text-gray-600 dark:text-gray-200 transition hover:text-red-600 dark:hover:text-red-600"
+                            className="text-gray-600 dark:text-gray-200 transition hover:text-red-600 dark:hover:text-red-600"
                             onClick={() => {
                               handleDelete(product?._id);
                             }}
                           >
-                            <span class="sr-only">রিমোভ করুন</span>
+                            <span className="sr-only">রিমোভ করুন</span>
 
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -178,7 +192,7 @@ export default function ViewCart() {
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="h-5 w-5"
+                              className="h-5 w-5"
                             >
                               <path
                                 stroke-linecap="round"
@@ -194,39 +208,39 @@ export default function ViewCart() {
                 ))}
               </ul>
 
-              <div class="mt-8 flex justify-end border-t border-gray-100 dark:border-gray-800 pt-8">
-                <div class="w-screen max-w-lg space-y-4">
-                  <dl class="space-y-0.5 text-sm text-gray-700 dark:text-gray-300">
-                    <div class="flex justify-between">
+              <div className="mt-8 flex justify-end border-t border-gray-100 dark:border-gray-800 pt-8">
+                <div className="w-screen max-w-lg space-y-4">
+                  <dl className="space-y-0.5 text-sm text-gray-700 dark:text-gray-300">
+                    <div className="flex justify-between">
                       <dt>সাবটোটাল</dt>
                       <dd>৳{subTotal}</dd>
                     </div>
 
-                    <div class="flex justify-between">
+                    <div className="flex justify-between">
                       <dt>ভ্যাট</dt>
                       <dd>৳{vat}</dd>
                     </div>
 
-                    <div class="flex justify-between">
+                    <div className="flex justify-between">
                       <dt>ডিস্কাউন্ট</dt>
                       <dd>-৳{discount}</dd>
                     </div>
 
-                    <div class="flex justify-between !text-base font-medium">
+                    <div className="flex justify-between !text-base font-medium">
                       <dt>মোট</dt>
                       <dd>৳{total}</dd>
                     </div>
                   </dl>
 
-                  <div class="flex justify-end">
-                    <span class="inline-flex items-center justify-center rounded-full bg-green-100 dark:bg-green-200 px-2.5 py-0.5 text-green-500 dark:text-green-600">
+                  <div className="flex justify-end">
+                    <span className="inline-flex items-center justify-center rounded-full bg-green-100 dark:bg-green-200 px-2.5 py-0.5 text-green-500 dark:text-green-600">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="-ms-1 me-1.5 h-4 w-4"
+                        className="-ms-1 me-1.5 h-4 w-4"
                       >
                         <path
                           stroke-linecap="round"
@@ -235,17 +249,17 @@ export default function ViewCart() {
                         />
                       </svg>
 
-                      {/* <p class="whitespace-nowrap text-xs">
+                      {/* <p className="whitespace-nowrap text-xs">
                         2 Discounts Applied
                       </p> */}
                     </span>
                   </div>
 
-                  <div class="flex justify-end">
-                    <form class="mt-8" onSubmit={handleOrder}>
+                  <div className="flex justify-end">
+                    <form className="mt-8" onSubmit={handleOrder}>
                       <fieldset>
-                        <div class="mt-8 flex gap-4">
-                          <label for="quantity" class="sr-only">
+                        <div className="mt-8 flex gap-4">
+                          <label for="quantity" className="sr-only">
                             পরিমাণ
                           </label>
 
@@ -257,13 +271,12 @@ export default function ViewCart() {
                             required
                             defaultValue="1"
                             placeholder="Qty"
-                            class="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+                            className="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                           />
 
                           <input
                             type="text"
-                            name="address"
-                            required
+                            name="address"  
                             placeholder="ডেলিভারী ঠিকানা"
                             className="inline-block w-96 rounded  py-3 text-center text-xs focus:outline-none focus:ring-0 text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black"
                           />
@@ -271,7 +284,7 @@ export default function ViewCart() {
                           <input
                             type="submit"
                             value="অর্ডার করুন"
-                            class="inline-flex items-center pointer justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 "
+                            className="inline-flex items-center pointer justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 "
                           />
                         </div>
                       </fieldset>

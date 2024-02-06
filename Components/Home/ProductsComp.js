@@ -9,13 +9,13 @@ export default function ProductsComp() {
     queryFn: () =>
       fetch("http://localhost:5000/api/product").then((res) => res.json()),
   });
-  console.log("data",data?.data)
+  console.log("data", data?.data);
   return (
     <>
       <h4 className="text-3xl text-center pt-10">
         Our Grocery <span className="text-green-500">Products</span>
       </h4>
-      <p class="max-w-md mx-auto mt-4 text-gray-500 text-center">
+      <p className="max-w-md mx-auto mt-4 text-gray-500 text-center">
         We have all off Grocery Products for you. We have all the latest Grocery
         Products for you.
       </p>

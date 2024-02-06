@@ -129,14 +129,14 @@ export default function ManageProduct() {
 
                       <td className="whitespace-nowrap px-4 py-2 text-gray-700 r dark:text-gray-200">
                         {product?.status === "in-stock" && (
-                          <span class="inline-flex items-center justify-center rounded-full bg-emerald-200 dark:bg-green-400 px-2.5 py-0.5 text-emerald-700 dark:text-emerald-900">
+                          <span className="inline-flex items-center justify-center rounded-full bg-emerald-200 dark:bg-green-400 px-2.5 py-0.5 text-emerald-700 dark:text-emerald-900">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="-ms-1 me-1.5 h-4 w-4"
+                              className="-ms-1 me-1.5 h-4 w-4"
                             >
                               <path
                                 stroke-linecap="round"
@@ -151,14 +151,14 @@ export default function ManageProduct() {
                           </span>
                         )}
                         {product?.status === "out-of-stock" && (
-                          <span class="inline-flex items-center justify-center rounded-full bg-red-100 dark:bg-red-200 px-2.5 py-0.5 text-red-700 dark:text-red-00">
+                          <span className="inline-flex items-center justify-center rounded-full bg-red-100 dark:bg-red-200 px-2.5 py-0.5 text-red-700 dark:text-red-00">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
                               stroke-width="1.5"
                               stroke="currentColor"
-                              class="-ms-1 me-1.5 h-4 w-4"
+                              className="-ms-1 me-1.5 h-4 w-4"
                             >
                               <path
                                 stroke-linecap="round"
@@ -167,7 +167,7 @@ export default function ManageProduct() {
                               />
                             </svg>
 
-                            <p class="whitespace-nowrap text-sm">
+                            <p className="whitespace-nowrap text-sm">
                               Out-of-stock
                             </p>
                           </span>

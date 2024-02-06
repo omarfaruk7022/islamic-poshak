@@ -44,38 +44,38 @@ export default function Cart({ cartData, setCartData }) {
   return (
     <>
       <div
-        class="w-full max-w-sm  px-4 py-8 sm:px-6 lg:px-2"
+        className="w-full max-w-sm   px-4 py-8 sm:px-6 lg:px-2"
         aria-modal="true"
         role="dialog"
         tabindex="-1"
       >
-        <div class="mt-4 space-y-6">
-          <ul class="space-y-4">
+        <div className="mt-4 space-y-6">
+          <ul className="space-y-4">
             {cartProducts?.map((product) => (
               <>
-                <li class="flex items-center gap-4">
+                <li className="flex items-center gap-4">
                   <img
                     src={product?.image}
                     alt=""
-                    class="h-16 w-16 rounded object-cover"
+                    className="h-16 w-16 rounded object-cover"
                   />
 
                   <div>
-                    <Link href={`/products/${product?.productId}`} class="text-sm text-gray-900">{product?.name}</Link>
+                    <h3 className="text-sm text-gray-900">{product?.name}</h3>
 
-                    <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                    <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                       <div>
-                        <dt class="inline">দাম: </dt>
-                        <dd class="inline">${product?.price}</dd>
+                        <dt className="inline">দাম: </dt>
+                        <dd className="inline">${product?.price}</dd>
                       </div>
                     </dl>
                   </div>
 
-                  <div class="flex flex-1 items-center justify-end gap-2">
-                    <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
+                  <div className="flex flex-1 items-center justify-end gap-2">
+                    <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
                       <div>
-                        <dt class="inline">পরিমাণ: </dt>
-                        <dd class="inline">{product?.quantity}</dd>
+                        <dt className="inline">পরিমাণ: </dt>
+                        <dd className="inline">{product?.quantity}</dd>
                       </div>
                     </dl>
 
@@ -84,16 +84,16 @@ export default function Cart({ cartData, setCartData }) {
                         onClick={() => {
                           handleDelete(product?._id);
                         }}
-                        class="text-gray-600 transition hover:text-red-600"
+                        className="text-gray-600 transition hover:text-red-600"
                       >
-                        <span class="sr-only">রিমোভ করুণ</span>
+                        <span className="sr-only">রিমোভ করুণ</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke-width="1.5"
                           stroke="currentColor"
-                          class="h-4 w-4"
+                          className="h-4 w-4"
                         >
                           <path
                             stroke-linecap="round"
@@ -109,10 +109,10 @@ export default function Cart({ cartData, setCartData }) {
             ))}
           </ul>
 
-          <div class="space-y-4 text-center">
+          <div className="space-y-4 text-center">
             <Link
               href="/cartDetails"
-              class="inline-flex p-3 items-center justify-center rounded-md bg-green-100 dark:bg-green-200  text-green-500 dark:text-green-600 hover:bg-green-200 hover:text-green-600 transition"
+              className="inline-flex p-3 items-center justify-center rounded-md bg-green-100 dark:bg-green-200  text-green-500 dark:text-green-600 hover:bg-green-200 hover:text-green-600 transition"
             >
               {/* View my cart */}
               কার্ট দেখুন ({cartProducts?.length})
@@ -120,7 +120,7 @@ export default function Cart({ cartData, setCartData }) {
 
             <Link
               href={"/products"}
-              class="block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+              className="block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
             >
               {/* Continue shopping */}
               শপিং করুন
