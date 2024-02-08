@@ -29,7 +29,7 @@ export default function Products() {
       fetch("http://localhost:5000/api/product").then((res) => res.json()),
   });
 
-  console.log(data)
+  console.log(data);
   if (loading) {
     return <Loading />;
   }
@@ -38,8 +38,8 @@ export default function Products() {
     <div>
       <>
         <Navbar />
-        <h4 className="text-3xl text-center pt-10">All Products</h4>
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-3 lg:px-36 px-0">
+        <h4 className="text-3xl text-center pt-10">আমাদের সকল প্রোডাক্টস</h4>
+        <div className="flex flex-wrap lg:px-36 px-0 gap-3 justify-center lg:justify-normal">
           {data?.data.map((product) => (
             <ProductsCard key={product._id} product={product} />
           ))}

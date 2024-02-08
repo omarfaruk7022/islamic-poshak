@@ -39,7 +39,6 @@ export default function Cart({ cartData, setCartData }) {
       }
     });
   };
-  
 
   return (
     <>
@@ -61,7 +60,12 @@ export default function Cart({ cartData, setCartData }) {
                   />
 
                   <div>
-                    <Link href={`/products/${product?.productId}`} class="text-sm text-gray-900">{product?.name}</Link>
+                    <Link
+                      href={`/products/${product?.productId}`}
+                      class="text-sm text-gray-900"
+                    >
+                      {product?.name}
+                    </Link>
 
                     <dl class="mt-0.5 space-y-px text-[10px] text-gray-600">
                       <div>

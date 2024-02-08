@@ -15,7 +15,9 @@ export default function Banner() {
   return (
     <div>
       <div>
-        <Swiper
+        <Image className="h-[600px] object-cover" src={banner1} alt=""></Image>
+
+        {/* <Swiper
           slidesPerView={1}
           spaceBetween={30}
           loop={true}
@@ -77,7 +79,7 @@ export default function Banner() {
               <Image className="relative" width={200} src={logo} alt=""></Image>
             </div>
           </SwiperSlide>
-        </Swiper>
+        </Swiper> */}
       </div>
     </div>
   );

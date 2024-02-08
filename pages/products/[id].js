@@ -1,5 +1,6 @@
 import Loading from "@/Components/Common/Loading";
 import NavbarOther from "@/Components/Common/NavbarOther";
+import Navbar from "@/Components/Home/Navbar";
 import auth from "@/firebase.init";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "date-fns";
@@ -74,28 +75,8 @@ export default function productDetails() {
     <div>
       {user && (
         <>
-          <NavbarOther />
-          {/* <div className="flex justify-center">
-            {product ? (
-              <div className="flex justify-center">
-                <div className="flex flex-col justify-center">
-                  <Image
-                    priority
-                    width={300}
-                    height={300}
-                    src={product?.data?.image}
-                    alt=""
-                  />
-                  <h1>{product?.data?.name}</h1>
-                  <h1>{product?.data?.price}</h1>
-                  <h1>{product?.data?.description}</h1>
-                </div>
-              </div>
-            ) : (
-              <Loading />
-            )}
-          </div> */}
-
+          <Navbar />
+          
           <section>
             <div class="relative mx-auto max-w-screen-xl px-4 py-8">
               <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
@@ -105,7 +86,7 @@ export default function productDetails() {
                     height={300}
                     alt=""
                     src={product?.data?.image}
-                    class="aspect-square w-full rounded-xl object-cover"
+                    class=" w-full rounded-xl object-cover"
                   />
 
                   {/* <div class="grid grid-cols-2 gap-4 lg:mt-4">
@@ -205,7 +186,7 @@ export default function productDetails() {
                       </div>
                     </div>
 
-                    <p class="text-lg font-bold">${product?.data?.price}</p>
+                    <p class="text-lg font-bold">৳{product?.data?.price}</p>
                   </div>
 
                   <div class="mt-4">
@@ -280,12 +261,12 @@ export default function productDetails() {
                           class="w-12 rounded text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black py-3 text-center text-xs [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                         />
 
-                        <input
+                        {/* <input
                           type="text"
                           name="address"
-                          placeholder="Delivery Address"
+                          placeholder="ডেলিভারী ঠিকনা"
                           className="inline-block w-96 rounded  py-3 text-center text-xs focus:outline-none focus:ring-0 text-black dark:text-white bg-white border-gray-300 dark:border-gray-800 dark:bg-black"
-                        />
+                        /> */}
                         <input
                           type="submit"
                           class="block rounded bg-green-600 px-5 py-3 text-xs font-medium text-white hover:bg-green-500 cursor-pointer transition-all"

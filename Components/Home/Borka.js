@@ -3,7 +3,7 @@ import ProductsCard from "../Common/ProductsCard";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../Common/Loading";
 
-export default function ProductsComp() {
+export default function Borka() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
@@ -13,7 +13,7 @@ export default function ProductsComp() {
   return (
     <>
       <h4 className="text-3xl text-center pt-10">
-        আমাদের সকল  <span className="text-green-500">বোরকা</span>
+        আমাদের নতুন <span className="text-green-500">বোরকা কালেকশন</span>
       </h4>
       <p class="max-w-md mx-auto mt-4 text-gray-500 text-center">
         আপনার জন্য সকল ধরনের বোরকা বিদ্যমান রয়েছে.
@@ -27,10 +27,10 @@ export default function ProductsComp() {
         <h1>{error}</h1>
       ) : null}
 
-      <div className="grid grid-cols-1 gap-3  md:grid-cols-3 lg:grid-cols-6 px-0 lg:px-36">
+      <div className="flex flex-wrap lg:px-36 px-0 gap-3">
         {data?.data
           .filter((product) => product.category === "Borka")
-          ?.slice(0, 8)
+
           .map((product) => (
             <ProductsCard key={product._id} product={product} />
           ))}

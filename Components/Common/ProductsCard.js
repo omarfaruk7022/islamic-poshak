@@ -51,12 +51,12 @@ export default function ProductsCard(product) {
   };
 
   return (
-    <div className="m-auto rounded-md mt-5 ">
-      <div className=" block group  h-[310px]  border border-green-400 rounded-md hover:shadow-lg transition-shadow">
+    <div className=" rounded-md mt-5 ">
+      <div className=" block group  h-[310px] w-[220px]  border border-green-400 rounded-md hover:shadow-lg transition-shadow">
         <Link href={`/products/${_id}`}>
           <img
             priority
-            src={image}
+            src={image} 
             alt="Product Image"
             className="h-[210px] rounded-md p-3 m-auto "
           />

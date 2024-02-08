@@ -1,6 +1,8 @@
 import Image from "next/image";
 import React from "react";
 import footer from "../../assets/images/footer.jpg";
+import banner1 from "../../assets/images/bg-islamic-poshak.jpg";
+
 import logo from "../../assets/images/logo.png";
 import Link from "next/link";
 

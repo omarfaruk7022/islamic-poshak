@@ -49,7 +49,7 @@ export default function AddProduct() {
     })
       .then((res) => res.json())
       .then((result) => {
-        if (result.success ) {
+        if (result.success) {
           const image = result.data.url;
           const data = {
             category,
@@ -127,8 +127,8 @@ export default function AddProduct() {
                   >
                     <option default>Select Category</option>
                     <option value="Borka">Borka </option>
+                    <option value="Hijab">Hijab</option>
                     <option value="Abaya">Abaya</option>
-                    <option value="Dress">Dress</option>
                   </select>
                 </label>
 

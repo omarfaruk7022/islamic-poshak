@@ -40,6 +40,30 @@ export default function ViewCart() {
     });
   };
 
+  // const handleOrder = (e) => {
+  //   e.preventDefault();
+  //   let orders = [];
+  //   cartProducts?.map((product) => {
+  //     orderData.push({
+  //       name: product?.name,
+  //       price: product?.price,
+  //       image: product?.image,
+  //       quantity: e.target.quantity.value,
+  //       deliveryAddress: e.target.address.value,
+  //       orderDate: product?.orderDate,
+  //       orderTime: product?.orderTime,
+  //       orderStatus: product?.orderStatus,
+  //       email: user?.email,
+  //     });
+  //   });
+  //   if (orderData.quantity <= 0) {
+  //     swal("Error!", "Quantity must be greater than 0!", "error");
+  //     return;
+  //   }
+  //   if (orderData.deliveryAddress === "") {
+  //     swal("Error!", "Delivery Address is required!", "error");
+  //     return;
+  //   }
   const handleOrder = (e) => {
     e.preventDefault();
     let orderData = [];
@@ -48,7 +72,7 @@ export default function ViewCart() {
         name: product?.name,
         price: product?.price,
         image: product?.image,
-        quantity: e.target.quantity.value,
+        quantity: product?.quantity,
         deliveryAddress: e.target.address.value,
         orderDate: product?.orderDate,
         orderTime: product?.orderTime,
@@ -56,11 +80,17 @@ export default function ViewCart() {
         email: user?.email,
       });
     });
-    if (orderData.quantity <= 0) {
-      swal("Error!", "Quantity must be greater than 0!", "error");
-      return;
+
+    // Check quantity for each product
+    for (const product of orderData) {
+      if (product.quantity <= 0) {
+        swal("Error!", "Quantity must be greater than 0!", "error");
+        return;
+      }
     }
-    if (orderData.deliveryAddress === "") {
+
+    // Check if deliveryAddress is empty
+    if (orderData.length === 0 || orderData[0].deliveryAddress === "") {
       swal("Error!", "Delivery Address is required!", "error");
       return;
     }
@@ -69,7 +99,7 @@ export default function ViewCart() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(orderData),
+      body: JSON.stringify({ data: orderData }),
     }).then((res) => {
       if (res.ok) {
         swal("Success!", "Product added to cart!", "success");

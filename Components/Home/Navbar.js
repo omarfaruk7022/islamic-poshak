@@ -52,8 +52,6 @@ export default function Navbar() {
     cartQuery.refetch();
   };
 
-
-
   const cartProducts = cartQuery.data?.data;
 
   return (
@@ -63,7 +61,7 @@ export default function Navbar() {
           aria-label="Site Header  "
           className="w-full bg-white shadow-lg dark:bg-[#001C30]  "
         >
-          <div className="mx-auto flex h-24 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8  ">
+          <div className="mx-auto flex h-20 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8  ">
             <div className="flex items-center gap-4 ">
               <button
                 type="button"
@@ -96,7 +94,7 @@ export default function Navbar() {
               </div>
 
               <Link href="/">
-                <Image src={logo} width={150} alt="logo" priority></Image>
+                <Image src={logo} width={120} alt="logo" priority></Image>
               </Link>
             </div>
 
@@ -112,10 +110,22 @@ export default function Navbar() {
                   Home
                 </Link>
                 <Link
+                  href="/hijab"
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                >
+                  Hijab
+                </Link>
+                <Link
+                  href="/borka"
+                  className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
+                >
+                  Borka
+                </Link>
+                <Link
                   href="/products"
                   className="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-current "
                 >
-                  Products
+                  All products
                 </Link>
                 {user && (
                   <Link

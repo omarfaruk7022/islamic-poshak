@@ -185,16 +185,18 @@ export default function MyOrders() {
                         </div>
                       </form>
                     </td> */}
-                    <td>
+                    {/* <td>
                       <div className="ml-2">
                         <button
                           className="bg-green-500 text-white px-2 py-1 rounded-md"
-                          onClick={() => router.push(`/dashboard/order/${order?._id}`)}
+                          onClick={() =>
+                            router.push(`/dashboard/order/${order?._id}`)
+                          }
                         >
                           View
                         </button>
                       </div>
-                    </td>
+                    </td> */}
                     <td>
                       {order?.orderStatus == "Pending" ||
                       order?.orderStatus == "Processing" ? (
