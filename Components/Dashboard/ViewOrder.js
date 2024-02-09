@@ -15,13 +15,13 @@ export default function ViewOrder({
   const [loading, setLoading] = useState(true);
   // eslint-disable-next-line react-hooks/rules-of-hooks
   // useEffect(() => {
-  //   fetch(`http://localhost:5000/api/order/${id}`)
+  //   fetch(`https://frantic-crab-cape.cyclic.app/api/order/${id}`)
   //     .then((res) => res.json())
   //     .then((json) => setOrder(json?.data));
   // }, [id]);
 
   // const getOrderById = async () => {
-  //   const response = await fetch(`http://localhost:5000/api/order/${id}`);
+  //   const response = await fetch(`https://frantic-crab-cape.cyclic.app/api/order/${id}`);
   //   const data = await response.json();
   //   setOrder(data?.data);
   //   setLoading(false);

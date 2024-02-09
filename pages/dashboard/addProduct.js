@@ -16,9 +16,9 @@ export default function AddProduct() {
   const isUserAdminQuery = useQuery({
     queryKey: ["users"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://frantic-crab-cape.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
 
   const data = isUserAdminQuery.data;
@@ -71,7 +71,7 @@ export default function AddProduct() {
             status &&
             addedBy
           ) {
-            fetch("http://localhost:5000/api/product", {
+            fetch("https://frantic-crab-cape.cyclic.app/api/product", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

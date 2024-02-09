@@ -36,7 +36,7 @@ export default function ProductsCard(product) {
     // };
 
     console.log(data);
-    fetch("http://localhost:5000/api/cart", {
+    fetch("https://frantic-crab-cape.cyclic.app/api/cart", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export default function ProductsCard(product) {
         <Link href={`/products/${_id}`}>
           <img
             priority
-            src={image} 
+            src={image}
             alt="Product Image"
             className="h-[210px] rounded-md p-3 m-auto "
           />

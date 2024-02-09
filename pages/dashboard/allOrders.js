@@ -19,7 +19,7 @@ export default function AllOrders() {
   const [orderData, setOrderData] = useState();
   const [loadingData, setLoadingData] = useState(true);
   const handleView = (id) => {
-    fetch(`http://localhost:5000/api/order/${id}`)
+    fetch(`https://frantic-crab-cape.cyclic.app/api/order/${id}`)
       .then((res) => res.json())
       .then((json) => setOrderData(json?.data));
     setLoadingData(false);
@@ -30,15 +30,17 @@ export default function AllOrders() {
   const ordersQuery = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/order").then((res) => res.json()),
+      fetch("https://frantic-crab-cape.cyclic.app/api/order").then((res) =>
+        res.json()
+      ),
   });
 
   const isUserAdminQuery = useQuery({
     queryKey: ["isUserAdmin"],
     queryFn: () =>
-      fetch(`http://localhost:5000/api/users/email/${email}`).then((res) =>
-        res.json()
-      ),
+      fetch(
+        `https://frantic-crab-cape.cyclic.app/api/users/email/${email}`
+      ).then((res) => res.json()),
   });
   const orders = ordersQuery.data;
 
@@ -63,7 +65,7 @@ export default function AllOrders() {
 
   const handleStatus = (e, id, status) => {
     e.preventDefault();
-    fetch(`http://localhost:5000/api/order/${id}`, {
+    fetch(`https://frantic-crab-cape.cyclic.app/api/order/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ orderStatus: status }),
@@ -76,7 +78,7 @@ export default function AllOrders() {
   };
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/order/${id}`, {
+    fetch(`https://frantic-crab-cape.cyclic.app/api/order/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

@@ -8,7 +8,9 @@ export default function Fashions() {
   const { isLoading, error, data } = useQuery({
     queryKey: ["products"],
     queryFn: () =>
-      fetch("http://localhost:5000/api/product").then((res) => res.json()),
+      fetch("https://frantic-crab-cape.cyclic.app/api/product").then((res) =>
+        res.json()
+      ),
   });
 
   return (
